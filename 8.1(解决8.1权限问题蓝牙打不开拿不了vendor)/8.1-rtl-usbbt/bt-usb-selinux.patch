@@ -1,0 +1,37 @@
+diff --git a/sepolicy/bluetooth.te b/sepolicy/bluetooth.te
+old mode 100644
+new mode 100755
+index 5f107ed..4a78b93
+--- a/sepolicy/bluetooth.te
++++ b/sepolicy/bluetooth.te
+@@ -8,3 +8,4 @@ allow bluetooth storage_device:chr_file rw_file_perms;
+ allow bluetooth gpu_device:dir search;
+ allow bluetooth gpu_device:chr_file { rw_file_perms ioctl };
+ allow bluetooth vendor_file:file { open read getattr execute };
++allow bluetooth tmpfs:dir { write };
+\ No newline at end of file
+diff --git a/sepolicy/hal_bluetooth_default.te b/sepolicy/hal_bluetooth_default.te
+old mode 100644
+new mode 100755
+index 8227f94..31f4574
+--- a/sepolicy/hal_bluetooth_default.te
++++ b/sepolicy/hal_bluetooth_default.te
+@@ -2,3 +2,17 @@ allow hal_bluetooth_default bluetooth_data_file:dir search;
+ allow hal_bluetooth_default serial_device:chr_file rw_file_perms;
+ allow hal_bluetooth_default sysfs:file write;
+ allow hal_bluetooth_default storage_device:chr_file { ioctl open read write };
++
++# Socket creation under /data/misc/bluedroid.
++type_transition hal_bluetooth_default bluetooth_data_file:sock_file bluetooth_socket;
++
++# Allow access to net_admin ioctls
++allowxperm hal_bluetooth_default self:udp_socket ioctl priv_sock_ioctls;
++
++allow hal_bluetooth_default bluetooth_data_file:dir create_dir_perms;
++allow hal_bluetooth_default bluetooth_data_file:file create_file_perms;
++allow hal_bluetooth_default rtkbt_device:chr_file rw_file_perms;
++
++# Socket creation under /data/misc/bluedroid.
++#allow hal_bluetooth_default bluetooth_socket:sock_file create_file_perms;
++allow hal_bluetooth_default self:capability net_admin;
+\ No newline at end of file
