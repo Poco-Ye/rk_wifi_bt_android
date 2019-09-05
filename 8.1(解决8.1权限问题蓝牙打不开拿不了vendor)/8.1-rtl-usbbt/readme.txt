@@ -1,6 +1,11 @@
-1.usbµÄfwÒª·ÅÔÚ»úÆ÷µÄ/system/etc/firmware/ ,°ÑFirmwareÏÂÃæµÄÎÄ¼ş¿½±´µ½/system/etc/firmware/ 
-2.libbt-vendorÖ±½ÓÌæ»» hardware/realtek/rtkbt/code/libbt-vendor/
-3.linuxÄ¿Ç°ÎªkernelÏÂÃæ×îĞÂµÄ²¹¶¡£¬Ö±½ÓÌæ»»
-4.bt-usb-selinux.patchÎªselinux²¹¶¡£¬ device/rockchip/common/
-5.hardware/realtek/rtkbt/vendor/etc/bluetooth/rtkbt.conf Õâ¸öÎÄ¼şÀïÃæ£¬ÒªÉèÖÃ BtDeviceNode=/dev/rtk_btusb
-  Õâ¸öÎÄ¼şÊÇ¿½±´µ½/vendor/etc/bluetooth/
+1.usbçš„fwè¦æ”¾åœ¨æœºå™¨çš„/system/etc/firmware/ ,æŠŠFirmwareä¸‹é¢çš„æ–‡ä»¶æ‹·è´åˆ°/system/etc/firmware/ 
+
+2.libbt-vendorç›´æ¥æ›¿æ¢ hardware/realtek/rtkbt/code/libbt-vendor/
+
+3.linuxç›®å‰ä¸ºkernelä¸‹é¢æœ€æ–°çš„è¡¥ä¸ï¼Œç›´æ¥æ›¿æ¢
+
+4.bt-usb-selinux.patchä¸ºselinuxè¡¥ä¸ï¼Œ device/rockchip/common/
+
+5.hardware/realtek/rtkbt/vendor/etc/bluetooth/rtkbt.conf è¿™ä¸ªæ–‡ä»¶é‡Œé¢ï¼Œè¦è®¾ç½® BtDeviceNode=/dev/rtk_btusb
+
+  è¿™ä¸ªæ–‡ä»¶æ˜¯æ‹·è´åˆ°/vendor/etc/bluetooth/
