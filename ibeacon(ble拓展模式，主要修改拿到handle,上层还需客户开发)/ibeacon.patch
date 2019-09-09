@@ -55,3 +55,40 @@ index 1f3ff51..97e440c 100644
              Log.e(TAG, "Bluetooth LE advertising not supported");
              return null;
          }
+
+
+
+
+
+还有一种情况，例如checkBleModeApp.7z，是直接调用isMultipleAdvertisementSupported()这个方法判断的，有些bt芯片不支持这个，需要直接修改：
+
+packages/apps/Bluetooth$ git diff
+diff --git a/src/com/android/bluetooth/btservice/AdapterService.java b/src/com/android/bluetooth/btservice/AdapterService.java
+index 0c3e501..bf2eb5a 100644
+--- a/src/com/android/bluetooth/btservice/AdapterService.java
++++ b/src/com/android/bluetooth/btservice/AdapterService.java
+@@ -1688,7 +1688,7 @@ public class AdapterService extends Service {
+
+     public boolean isMultiAdvertisementSupported() {
+         enforceCallingOrSelfPermission(BLUETOOTH_PERM, "Need BLUETOOTH permission");
+-        return getNumOfAdvertisementInstancesSupported() >= MIN_ADVT_INSTANCES_FOR_MA;
++        return true;//getNumOfAdvertisementInstancesSupported() >= MIN_ADVT_INSTANCES_FOR_MA;
+     }
+
+     public boolean isRpaOffloadSupported() {
+
+如何确认是否支持isMultiAdvertisementSupported？
+
+首先打开再编译bluedroid
+--- a/include/bt_target.h
+++ b/include/bt_target.h
+-1339,7 +1339,7 and USER_HW_DISABLE_API macros / * feature discovery, multi-adv etc.
+/
+#ifndef BLE_VND_INCLUDED
+-#define BLE_VND_INCLUDED FALSE
++#define BLE_VND_INCLUDED TRUE
+#endif
+
+然后再打开bt debug log，通过查看ADV ins来确认，当ADV ins >= 5时，才表示支持
+btm_ble_vnd_cap_vsc_cmpl_cback: stat=1, irk=0, ADV ins:0, rpa=0, ener=0
+
