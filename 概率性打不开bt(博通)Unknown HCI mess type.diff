@@ -1,0 +1,13 @@
+system/bt/hci/src$ git diff
+diff --git a/hci/src/hci_hal_h4.c b/hci/src/hci_hal_h4.c
+index 9c7afe53..efc98116 100644
+--- a/hci/src/hci_hal_h4.c
++++ b/hci/src/hci_hal_h4.c
+@@ -238,7 +238,7 @@ static void event_uart_has_bytes(eager_reader_t *reader, UNUSED_ATTR void *conte
+       LOG_ERROR(LOG_TAG, "%s Unknown HCI message type 0x%x (min=0x%x max=0x%x). Aborting...",
+                 __func__, type_byte, DATA_TYPE_ACL, DATA_TYPE_EVENT);
+       LOG_EVENT_INT(BT_HCI_UNKNOWN_MESSAGE_TYPE_NUM, type_byte);
+-      assert(false && "Unknown HCI message type");
++      //assert(false && "Unknown HCI message type");
+       return;
+     }
