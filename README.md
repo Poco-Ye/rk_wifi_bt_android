@@ -45,4 +45,47 @@ GPIO_SWPORTA_DDR 0x0004 W 0x00000000 Port A data direction register
 +     //assert(false && "Unknown HCI message type");
 ```
 
-3、
+3、苹果br/edr inquiry不到或者连不到设备蓝牙，苹果手机会过滤掉作source的设备，改成作sink就行 
+```
+<bool name ="profile_supported_a2dp">false</bool>
+<bool name ="profile_supported_a2dp_sink">true</bool>
+
+/system/bt/include/bt_target.h
+
+#define USE_AUDIO_TRACK TRUE
+#ifndef BTA_AV_SINK_INCLUDED
+#define BTA_AV_SINK_INCLUDED TRUE
+#enif
+```
+
+4、设备扫不到其它手机
+
+天线有问题，可以通话扫描inquiry scan的时间来补偿
+inquiry window  inquiry interval
+0x0012             0x0800      11.25ms  1.28s
+0x0012             0x0400      11.25ms  0.64s
+0x0024             0x0400      22.5ms   0.64s
+100                4096        62.5ms   2.56s
+
+配对不上
+page scan window   page scan interval 
+100                2048        62.5ms   1.28s
+
+le scan
+le scan window   le scan interval
+16                 352         10ms     0.22s   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
