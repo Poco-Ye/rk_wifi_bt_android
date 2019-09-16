@@ -6,7 +6,7 @@ io -4 -l 12 0xff770024
 
 先找mapping  再找group
 
-例子3288
+例子3288 
 
 GPIO0 0xff750000 GPIO1 0xff780000 GPIO2 0xff790000
 
@@ -19,27 +19,21 @@ GPIO_SWPORTA_DDR 0x0004 W 0x00000000 Port A data direction register
 这个就是group表 io -4 0xff750000  读的就是引脚的电平  io -4 0xff750004  读的就是引脚的方向
 
 
+2、概率性打不开蓝牙，替换8250驱动，dma打开，博通默认打开流控
+--- a/arch/arm/boot/dts/rk3288-box.dts
++++ b/arch/arm/boot/dts/rk3288-box.dts
+@@ -351,8 +351,9 @@
 
+ &uart_bt {
+         status = "okay";
+-        dma-names = "!tx", "!rx";      //打开dma
++        dma-names = "tx", "rx";
+         pinctrl-0 = <&uart0_xfer &uart0_cts>;
++       dmas=<&dmac_peri 1>,<dmac_peri 2>; //不同芯片的这个dma配置不同，需要查看芯片手册，可以参考串口的手册
+ };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1、概率性打不开蓝牙，替换8250驱动，dma打开，博通默认打开流控
-
-     assert(false && "Unknown HCI message type");
+-     assert(false && "Unknown HCI message type");
      
-     //assert(false && "Unknown HCI message type");
++     //assert(false && "Unknown HCI message type");
 
-2、
+3、
