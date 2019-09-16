@@ -33,6 +33,9 @@ GPIO_SWPORTA_DDR 0x0004 W 0x00000000 Port A data direction register
 +       dmas=<&dmac_peri 1>,<dmac_peri 2>; //不同芯片的这个dma配置不同，需要查看芯片手册，可以参考串口的手册
  };
 
+--- a/hci/src/hci_hal_h4.c
++++ b/hci/src/hci_hal_h4.c
+
 -     assert(false && "Unknown HCI message type");
      
 +     //assert(false && "Unknown HCI message type");
