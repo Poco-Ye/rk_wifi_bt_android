@@ -61,7 +61,7 @@ GPIO_SWPORTA_DDR 0x0004 W 0x00000000 Port A data direction register
 4、设备扫不到其它手机
 
 天线有问题，可以通话扫描inquiry scan的时间来补偿
-
+```
 inquiry window  inquiry interval
 
 0x0012             0x0800      11.25ms  1.28s
@@ -83,7 +83,7 @@ le scan
 le scan window   le scan interval
 
 16                 352         10ms     0.22s   
-
+```
 
 
 
