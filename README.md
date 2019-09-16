@@ -26,7 +26,7 @@ GPIO_SWPORTA_DDR 0x0004 W 0x00000000 Port A data direction register
 
  &uart_bt {
          status = "okay";
-#-        dma-names = "!tx", "!rx";      //打开dma
+//-        dma-names = "!tx", "!rx";      //打开dma
 +        dma-names = "tx", "rx";
          pinctrl-0 = <&uart0_xfer &uart0_cts>;
 +       dmas=<&dmac_peri 1>,<dmac_peri 2>; //不同芯片的这个dma配置不同，需要查看芯片手册，可以参考串口的手册
