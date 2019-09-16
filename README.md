@@ -21,6 +21,10 @@ GPIO_SWPORTA_DDR 0x0004 W 0x00000000 Port A data direction register
 
 2、概率性打不开蓝牙，替换8250驱动，dma打开，博通默认打开流控
 ```
+097  1466  1493 E bt_hci_h4: event_uart_has_bytes Unknown HCI message type 0x0 (min=0x2 max=0x4). Aborting...
+07-03 07:20:24.099  1466  1493 F libc    : system/bt/hci/src/hci_hal_h4.c:241: event_uart_has_bytes: assertion "f
+```
+```
 --- a/arch/arm/boot/dts/rk3288-box.dts
 +++ b/arch/arm/boot/dts/rk3288-box.dts
 @@ -351,8 +351,9 @@
