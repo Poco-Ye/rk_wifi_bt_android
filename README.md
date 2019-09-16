@@ -1,6 +1,8 @@
 1、io命令的例子io -4 -w 0xff7b0004 0x00ff000f   一定要0x 不然会报错
 
-io -4 -r 0x20088004                 io -4 -l 12 0xff770024
+io -4 -r 0x20088004    
+
+io -4 -l 12 0xff770024
 
 先找mapping  再找group
 
