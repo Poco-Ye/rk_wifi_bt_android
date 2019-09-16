@@ -8,11 +8,7 @@ io -4 -l 12 0xff770024
 
 例子3288
 
-GPIO0 0xff750000
-
-GPIO1 0xff780000
-
-GPIO2 0xff790000
+GPIO0 0xff750000 GPIO1 0xff780000 GPIO2 0xff790000
 
 组织列表，首先group第一个开始的就是DR（数据）寄存器，然后是DDR（方向）寄存器
 
