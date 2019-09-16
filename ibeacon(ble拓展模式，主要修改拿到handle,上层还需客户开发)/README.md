@@ -1,3 +1,5 @@
+如果还不行就找一下redmine 还有就是打下面的补丁
+
 ```
 diff --git a/src/com/android/bluetooth/btservice/AdapterService.java b/src/com/android/bluetooth/btservice/AdapterService.java
 index 0c3e501..bf2eb5a 100644
