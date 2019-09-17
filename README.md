@@ -86,6 +86,7 @@ le scan window   le scan interval
 ```
 
 5、.config方法找代码，这样驱动会好
+
 先找到对应的CONFIG_XXX，再到相应的目录进行grep
 
 或者反过来找，先在module上面找到grep "CONFIG*" -nr  再进行查找.confg 如果没有make menuconfig把Kconfig加入进去.config
