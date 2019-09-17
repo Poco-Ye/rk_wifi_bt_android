@@ -17,7 +17,12 @@ GPIO_SWPORTA_DR 0x0000 W 0x00000000 Port A data register
 GPIO_SWPORTA_DDR 0x0004 W 0x00000000 Port A data direction register
 
 这个就是group表 io -4 0xff750000  读的就是引脚的电平  io -4 0xff750004  读的就是引脚的方向
-
+```
+三步走
+第一步：找mapping
+第二步：找group
+第三步：dts找引脚
+```
 
 2、概率性打不开蓝牙，替换8250驱动，dma打开，博通默认打开流控
 ```
