@@ -97,6 +97,19 @@ le scan window   le scan interval
 
 SSV6XXX_SDIO mmc2:0001:1: sdio read reg write address failed (-110) 驱动读模组reg出现错误  data线有问题
 
+这个可以打开log来看
+```
+--- a/drivers/mmc/host/rk_sdmmc_dbg.c
++++ b/drivers/mmc/host/rk_sdmmc_dbg.c
+@@ -11,6 +11,6 @@
+
+ #include "rk_sdmmc_dbg.h"
+
+-u32 mmc_debug_level= MMC_DBG_BOOT|MMC_DBG_ERROR;
+-char dbg_flag[]="mmc0mmc1mmc2";
++u32 mmc_debug_level= MMC_DBG_BOOT|MMC_DBG_ALL;
++char dbg_flag[]="mmc2";
+```
 
 
 
