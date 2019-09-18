@@ -93,7 +93,9 @@ le scan window   le scan interval
 
 
 
+5、mmc2: new high speed SDIO card at address 0001 扫卡是可以了 说明cmd线是好的
 
+SSV6XXX_SDIO mmc2:0001:1: sdio read reg write address failed (-110) 驱动读模组reg出现错误  data线有问题
 
 
 
