@@ -110,7 +110,13 @@ SSV6XXX_SDIO mmc2:0001:1: sdio read reg write address failed (-110) 驱动读模
 +u32 mmc_debug_level= MMC_DBG_BOOT|MMC_DBG_ALL;
 +char dbg_flag[]="mmc2";
 ```
+6、iwlist看一下支不支持 monitor mode，monitor mode主要用来抓包需要模组商给新的驱动
 
+ifconfig wlan0 down
+
+iwconfig wlan0 mode monitor
+
+ifconfig wlan0 up
 
 
 
