@@ -119,6 +119,7 @@ iwconfig wlan0 mode monitor
 ifconfig wlan0 up
 
 
+7、am start -a android.bluetooth.adapter.action.REQUEST_DISCOVERABLE
 
 
 
