@@ -119,8 +119,37 @@ iwconfig wlan0 mode monitor
 ifconfig wlan0 up
 
 
-7、am start -a android.bluetooth.adapter.action.REQUEST_DISCOVERABLE
+7、am start -a android.bluetooth.adapter.action.REQUEST_DISCOVERABLE打开被发现
 
+8、PMU对wifi蓝牙的作用
+```
+直接在dts上找regulator-name
+cat sys/class/regulator/regulator.6/name(例如)
+cd  sys/class/regulator/regulator.6/name
+cat *
+
+PMU提供DCDC电压（3.3~4.2V）给模组的VBAT  提供LDO 电压（1.8V或者3.3V给VCCIO） 同时也设置CPU IO（串口和sdio）
+域电压1.8或者3.3V 还有LPO 32.768K给模组 
+sdio_vref = <1800>; //1800mv or 3300mv
+如果3288 wifi概率性起不来（312x sdio_vref没有作用），就需要检查一下vccio设置的对不对
+diff --git a/rk3288-ennoconn.dts b/rk3288-ennoconn.dts
+index 068c32f..aaee757 100644
+--- a/rk3288-ennoconn.dts
++++ b/rk3288-ennoconn.dts
+                                regulator-min-microvolt = <1800000>;
+-                               regulator-max-microvolt = <3300000>;
++                               regulator-max-microvolt = <1800000>;
+                                regulator-name = "vcc_wl";
+                                
+diff --git a/rk3288-evb.dtsi b/rk3288-evb.dtsi
+--- a/rk3288-evb.dtsi
++++ b/rk3288-evb.dtsi
+@@ -205,7 +205,7 @@
+                compatible = "wlan-platdata";
+                wifi_chip_type = "rtl8821cs";
+-               sdio_vref = <3300>;
++               sdio_vref = <1800>;
+```
 
 
 
