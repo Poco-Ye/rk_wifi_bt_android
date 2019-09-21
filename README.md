@@ -150,6 +150,33 @@ diff --git a/rk3288-evb.dtsi b/rk3288-evb.dtsi
 -               sdio_vref = <3300>;
 +               sdio_vref = <1800>;
 ```
+9、sdio高速降成低速
+```
+wifi驱动是可以从上从上往下掉编译成.ko的，具体看obj-的宏，每个版本不一样
+CONFIG_AP6XXX=m
+其它就是看
+driver/wireless/rockchip_wlan/rkwifi/bcmdhd/dhd_linux.c
+CONFIG_WIFI_LOAD_DRIVER_WHEN_KERNEL_BOOTUP（优先级第二）
+CONFIG_WIFI_BUILD_MODULE（优先级最高）
+
+&sdio0 {
+ clock-frequency = <50000000>;  //降成50M
+ clock-freq-min-max = <200000 50000000>;
+ supports-sdio;
+ bus-width = <4>;
+ disable-wp;
+ cap-sd-highspeed; //这个要加，sdio3.0的能力
+ cap-sdio-irq;
+ keep-power-in-suspend;
+ mmc-pwrseq = <&sdio_pwrseq>;
+ non-removable;
+ num-slots = <1>;
+ pinctrl-names = "default";
+ pinctrl-0 = <&sdio0_bus4 &sdio0_cmd &sdio0_clk>;
+ //sd-uhs-sdr104;   //这个要关掉，sdr104是208M的意思，我们CPU最多150M
+ status = "okay";
+};
+```
 
 
 
