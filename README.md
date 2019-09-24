@@ -25,7 +25,7 @@ GPIO_SWPORTA_DDR 0x0004 W 0x00000000 Port A data direction register
 第四步：reganalyzer分析
 ```
 
-2、概率性打不开蓝牙，替换8250驱动，dma打开，博通默认打开流控
+2、概率性打不开蓝牙，替换8250驱动，dma打开，博通默认打开流控，或者文件传输出问题
 ```
 097  1466  1493 E bt_hci_h4: event_uart_has_bytes Unknown HCI message type 0x0 (min=0x2 max=0x4). Aborting...
 07-03 07:20:24.099  1466  1493 F libc    : system/bt/hci/src/hci_hal_h4.c:241: event_uart_has_bytes: assertion "f
@@ -49,6 +49,9 @@ GPIO_SWPORTA_DDR 0x0004 W 0x00000000 Port A data direction register
 -     assert(false && "Unknown HCI message type");
      
 +     //assert(false && "Unknown HCI message type");
+```
+```
+传输文件也是替换驱动，之类，绝大多少是因为波特率不准造成的，更换波特率比较好，类似2M
 ```
 
 3、苹果br/edr inquiry不到或者连不到设备蓝牙，苹果手机会过滤掉作source的设备，改成作sink就行 
