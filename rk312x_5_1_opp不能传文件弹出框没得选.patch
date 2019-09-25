@@ -1,0 +1,61 @@
+diff --git a/src/com/android/bluetooth/opp/BluetoothOppIncomingFileConfirmActivity.java b/src/com/android/bluetooth/opp/BluetoothOppIncomingFileConfirmActivity.java
+index 3a39439..e98e7fa 100644
+--- a/src/com/android/bluetooth/opp/BluetoothOppIncomingFileConfirmActivity.java
++++ b/src/com/android/bluetooth/opp/BluetoothOppIncomingFileConfirmActivity.java
+@@ -112,6 +112,7 @@ public class BluetoothOppIncomingFileConfirmActivity extends AlertActivity imple
+         p.mNegativeButtonText = getString(R.string.incoming_file_confirm_cancel);
+         p.mNegativeButtonListener = this;
+         setupAlert();
++    mAlert.getButton(DialogInterface.BUTTON_POSITIVE).performClick();
+         if (V) Log.v(TAG, "mTimeout: " + mTimeout);
+         if (mTimeout) {
+             onTimeout();
+diff --git a/src/com/android/bluetooth/opp/BluetoothOppNotification.java b/src/com/android/bluetooth/opp/BluetoothOppNotification.java
+index ac28efb..fc64acf 100644
+--- a/src/com/android/bluetooth/opp/BluetoothOppNotification.java
++++ b/src/com/android/bluetooth/opp/BluetoothOppNotification.java
+@@ -498,19 +498,21 @@ class BluetoothOppNotification {
+             Intent intent = new Intent(Constants.ACTION_INCOMING_FILE_CONFIRM);
+             intent.setClassName(Constants.THIS_PACKAGE_NAME, BluetoothOppReceiver.class.getName());
+             intent.setDataAndNormalize(contentUri);
++        mContext.sendBroadcast(intent, null);
+
+             n.when = timeStamp;
+             n.color = mContext.getResources().getColor(
+                     com.android.internal.R.color.system_notification_accent_color);
+-            n.setLatestEventInfo(mContext, title, caption, PendingIntent.getBroadcast(mContext, 0,
+-                    intent, 0));
+-
++            //n.setLatestEventInfo(mContext, title, caption, PendingIntent.getBroadcast(mContext, 0,
++            //        intent, 0));
++            
+             intent = new Intent(Constants.ACTION_HIDE);
+             intent.setClassName(Constants.THIS_PACKAGE_NAME, BluetoothOppReceiver.class.getName());
+             intent.setDataAndNormalize(contentUri);
+-            n.deleteIntent = PendingIntent.getBroadcast(mContext, 0, intent, 0);
++        mContext.sendBroadcast(intent, null);
++            //n.deleteIntent = PendingIntent.getBroadcast(mContext, 0, intent, 0);
+
+-            mNotificationMgr.notify(id, n);
++            //mNotificationMgr.notify(id, n);
+         }
+         cursor.close();
+     }
+diff --git a/src/com/android/bluetooth/opp/BluetoothOppReceiver.java b/src/com/android/bluetooth/opp/BluetoothOppReceiver.java
+index f4c8d9c..26d0dbd 100644
+--- a/src/com/android/bluetooth/opp/BluetoothOppReceiver.java
++++ b/src/com/android/bluetooth/opp/BluetoothOppReceiver.java
+@@ -119,12 +119,12 @@ public class BluetoothOppReceiver extends BroadcastReceiver {
+             in.setDataAndNormalize(uri);
+             context.startActivity(in);
+
+-            NotificationManager notMgr = (NotificationManager)context
++            /*NotificationManager notMgr = (NotificationManager)context
+                     .getSystemService(Context.NOTIFICATION_SERVICE);
+             if (notMgr != null) {
+                 notMgr.cancel((int)ContentUris.parseId(intent.getData()));
+                 if (V) Log.v(TAG, "notMgr.cancel called");
+-            }
++            }*/
+         } else if (action.equals(BluetoothShare.INCOMING_FILE_CONFIRMATION_REQUEST_ACTION)) {
+             if (V) Log.v(TAG, "Receiver INCOMING_FILE_NOTIFICATION");
