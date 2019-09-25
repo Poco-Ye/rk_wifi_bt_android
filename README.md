@@ -184,8 +184,9 @@ CONFIG_WIFI_BUILD_MODULE（优先级最高）
 10、复用关系查找
 ```
 用io指令找出来不对，但是脑子联想到gpio的request那边去了，智商降低
-应该过滤rockchip-pinctrl（kernel log 驱动还没起来就运行了）
+应该过滤rockchip-pinctrl（kernel log ）
 复用是pinctrl子系统去做的，不是request函数...看到iomux 不对 都是设成gpio的，就很慌，用io -w 去搞，并不是解决的办法...
+如果rockchip-pinctrl找不到复用问题，iomux又都是gpio，那就是没有运行...
 
 [    2.188799] rockchip-pinctrl 20008000.pinctrl: pin gpio0-3 already requested by 20056000.i2c; cannot claim for 10218000.rksdmmc
 [    2.188817] rockchip-pinctrl 20008000.pinctrl: pin-3 (10218000.rksdmmc) status -22
