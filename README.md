@@ -181,6 +181,28 @@ CONFIG_WIFI_BUILD_MODULE（优先级最高）
 };
 ```
 
+10、复用关系查找
+```
+用io指令找出来不对，但是脑子联想到gpio的request那边去了，智商降低
+应该过滤rockchip-pinctrl
+复用是pinctrl子系统去做的，不是request函数...看到iomux 不对 都是设成gpio的，就很慌，用io -w 去搞，并不是解决的办法...
+
+[    2.188799] rockchip-pinctrl 20008000.pinctrl: pin gpio0-3 already requested by 20056000.i2c; cannot claim for 10218000.rksdmmc
+[    2.188817] rockchip-pinctrl 20008000.pinctrl: pin-3 (10218000.rksdmmc) status -22
+[    2.188831] rockchip-pinctrl 20008000.pinctrl: could not request pin 3 on device rockchip-pinctrl
+[    2.190136] rockchip-pinctrl 20008000.pinctrl: pin gpio0-3 already requested by 20056000.i2c; cannot claim for 10218000.rksdmmc
+[    2.190154] rockchip-pinctrl 20008000.pinctrl: pin-3 (10218000.rksdmmc) status -22
+[    2.190167] rockchip-pinctrl 20008000.pinctrl: could not request pin 3 on device rockchip-pinctrl
+[    2.190215] rockchip-pinctrl 20008000.pinctrl: pin gpio0-3 already requested by 20056000.i2c; cannot claim for 10218000.rksdmmc
+[    2.190230] rockchip-pinctrl 20008000.pinctrl: pin-3 (10218000.rksdmmc) status -22
+[    2.190242] rockchip-pinctrl 20008000.pinctrl: could not request pin 3 on device rockchip-pinctrl
+[    1.064171] rockchip-pinctrl 20008000.pinctrl: pin gpio2-20 already requested by 2005a000.i2c; cannot claim for 2008c000.eth
+
+这样就可以看的到gpio0-3 already requested by 20056000.i2c
+               gpio2-20 already requested by 2005a000.i2c
+               
+然后改一下dts就可以               
+```
 
 
 
