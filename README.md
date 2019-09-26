@@ -204,7 +204,7 @@ CONFIG_WIFI_BUILD_MODULE（优先级最高）
                
 然后改一下dts就可以               
 ```
-
+11、mmc驱动扫描接口一般指有三个emmc节点接flash sdmmc节点接tf卡 sdio节点接wifi 其中sdmmc和sdio一样可以用的，当没有tf卡时，wifi经常用sdmmc
 
 
 
