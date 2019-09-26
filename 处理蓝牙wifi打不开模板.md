@@ -1,6 +1,8 @@
 太多这种问题了每次都要我手动敲不好
 
 ```
+蓝牙模板一：
+修改文件/etc/bluetooth/bt_stack.conf
 diff --git a/bt_stack.conf b/bt_stack.conf
 index 711fe51..280d4bd 100644
 --- a/bt_stack.conf
@@ -13,9 +15,22 @@ index 711fe51..280d4bd 100644
 
  # BtSnoop log output file
  BtSnoopFileName=/sdcard/btsnoop_hci.log
+ 
+ 
+改完后chmod 777  /etc/bluetooth/bt_stack.conf
+关闭再打开蓝牙
+复现问题提供一下/sdcard/btsnoop_hci.log
+
+测量一下LPO引脚有没有32.768k clk提供还有频偏，PMU 配置LDO提供的 VDDIO引脚的电平，VBAT引脚电平，BT_RTS_N使能引脚电平
+
+echo 0 > /sys/class/rfkill/rfkill0/state
+echo 1 > /sys/class/rfkill/rfkill0/state
+BT_RTS_N引脚有无电平变化
+ 
 ```
 
 ```
+蓝牙模板二：
 diff --git a/bt_stack.conf b/bt_stack.conf
 index 711fe51..0d62aed 100644
 --- a/bt_stack.conf
@@ -64,4 +79,15 @@ index 711fe51..0d62aed 100644
 +TRC_SMP=6
 +TRC_BTAPP=6
 +TRC_BTIF=6
+
+
+改完后chmod 777  /etc/bluetooth/bt_stack.conf
+关闭再打开蓝牙
+复现问题提供一下/sdcard/btsnoop_hci.log
+
+测量一下LPO引脚有没有32.768k clk提供还有频偏，PMU 配置LDO提供的 VDDIO引脚的电平，VBAT引脚电平，BT_RTS_N使能引脚电平
+
+echo 0 > /sys/class/rfkill/rfkill0/state
+echo 1 > /sys/class/rfkill/rfkill0/state
+BT_RTS_N引脚有无电平变化
 ```
