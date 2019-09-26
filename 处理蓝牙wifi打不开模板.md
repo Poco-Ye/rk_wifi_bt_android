@@ -21,7 +21,7 @@ index 711fe51..280d4bd 100644
 关闭再打开蓝牙
 复现问题提供一下/sdcard/btsnoop_hci.log
 
-测量一下LPO引脚有没有32.768k clk提供还有频偏，PMU 配置LDO提供的 VDDIO引脚的电平，VBAT引脚电平，BT_RTS_N使能引脚电平
+测量一下LPO引脚有没有32.768k clk提供还有频偏，PMU 配置LDO提供的 VDDIO引脚的电平，VBAT引脚电平，BT_RTS_N使能引脚电平，还有晶体频偏
 
 echo 0 > /sys/class/rfkill/rfkill0/state
 echo 1 > /sys/class/rfkill/rfkill0/state
@@ -84,9 +84,23 @@ index 711fe51..0d62aed 100644
 关闭再打开蓝牙
 复现问题提供一下/sdcard/btsnoop_hci.log
 
-测量一下LPO引脚有没有32.768k clk提供还有频偏，PMU 配置LDO提供的 VDDIO引脚的电平，VBAT引脚电平，BT_RTS_N使能引脚电平
+测量一下LPO引脚有没有32.768k clk提供还有频偏，PMU 配置LDO提供的 VDDIO引脚的电平，VBAT引脚电平，BT_RTS_N使能引脚电平，还有晶体频偏
 
 echo 0 > /sys/class/rfkill/rfkill0/state
 echo 1 > /sys/class/rfkill/rfkill0/state
 BT_RTS_N引脚有无电平变化
 ```
+
+```
+wifi模板一：
+测量一下LPO 引脚有无32.768k clk 还有频偏，测量WL_REG_ON电平 ，VCCIO电平 ,VBAT电平，还有晶体频偏
+
+echo 0 > /sys/class/rkwifi/power
+echo 1 > /sys/class/rkwifi/power
+
+测量一下有无电平变化WL_REG_ON
+```
+
+
+
+
