@@ -181,7 +181,7 @@ CONFIG_WIFI_BUILD_MODULE（优先级最高）
 };
 ```
 
-10、复用关系查找
+10、复用关系查找（发现有复用可以将复用模块status设置成为disabled）
 ```
 用io指令找出来不对，但是脑子联想到gpio的request那边去了，智商降低
 应该过滤rockchip-pinctrl（kernel log ）
