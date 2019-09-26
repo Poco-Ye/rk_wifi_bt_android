@@ -206,5 +206,11 @@ CONFIG_WIFI_BUILD_MODULE（优先级最高）
 ```
 11、mmc驱动扫描接口一般指有三个emmc节点接flash sdmmc节点接tf卡 sdio节点接wifi 其中sdmmc和sdio一样可以用的，当没有tf卡时，wifi经常用sdmmc
 
+12、PCM
+```
+复现问题之前运行hcidump -w xxx.cfa &
+复现问题提供xxx.cfa
+用逻辑分析仪抓一下PCM_IN PCM_OUT PCM_SYNC PCM_CLK的波形
 
-
+蓝牙sbc推送数据接口是1.5M的串口
+```
