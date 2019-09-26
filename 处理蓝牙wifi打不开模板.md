@@ -80,7 +80,6 @@ index 711fe51..0d62aed 100644
 +TRC_BTAPP=6
 +TRC_BTIF=6
 
-
 改完后chmod 777  /etc/bluetooth/bt_stack.conf
 关闭再打开蓝牙
 复现问题提供一下/sdcard/btsnoop_hci.log
