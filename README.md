@@ -155,7 +155,7 @@ diff --git a/rk3288-evb.dtsi b/rk3288-evb.dtsi
 ```
 9、sdio高速降成低速
 ```
-wifi驱动是可以从上从上往下掉编译成.ko的，具体看obj-的宏，每个版本不一样
+wifi驱动是可以从上往下调编译成.ko的，具体看obj-的宏，每个版本不一样
 CONFIG_AP6XXX=m
 其它就是看
 driver/wireless/rockchip_wlan/rkwifi/bcmdhd/dhd_linux.c
