@@ -1,0 +1,57 @@
+diff --git a/drivers/net/wireless/rockchip_wlan/rkwifi/rk_wifi_config.c b/drivers/net/wireless/rockchip_wlan/rkwifi/rk_wifi_config.c
+index dce8eb1..db94e7e 100755
+--- a/drivers/net/wireless/rockchip_wlan/rkwifi/rk_wifi_config.c
++++ b/drivers/net/wireless/rockchip_wlan/rkwifi/rk_wifi_config.c
+@@ -67,6 +72,11 @@ if (chip == WIFI_AP6335) {
+ 	sprintf(nvram, "%s%s", ANDROID_FW_PATH, "nvram_AP6335.txt");
+ }
+ 
++if (chip == WIFI_AP6354) {
++    sprintf(fw, "%s%s", ANDROID_FW_PATH, "fw_bcm4354a1_ag.bin");
++        sprintf(nvram, "%s%s", ANDROID_FW_PATH, "nvram_ap6354.txt");
++}
++
+ if (chip == WIFI_AP6476) {
+     sprintf(fw, "%s%s", ANDROID_FW_PATH, "fw_RK901.bin");
+ 	sprintf(nvram, "%s%s", ANDROID_FW_PATH, "nvram_AP6476.txt");
+diff --git a/drivers/net/wireless/rockchip_wlan/wifi_sys/rkwifi_sys_iface.c b/drivers/net/wireless/rockchip_wlan/wifi_sys/rkwifi_sys_iface.c
+index 795d4b8..d9f05c8 100755
+--- a/drivers/net/wireless/rockchip_wlan/wifi_sys/rkwifi_sys_iface.c
++++ b/drivers/net/wireless/rockchip_wlan/wifi_sys/rkwifi_sys_iface.c
+@@ -52,6 +57,11 @@ static ssize_t wifi_chip_read(struct class *cls, struct class_attribute *attr, c
+ 	    printk("Current WiFi chip is AP6335.\n");
+ 	}
+ 
++        if(type == WIFI_AP6354) {
++            count = sprintf(_buf, "%s", "AP6354");
++            printk("Current WiFi chip is AP6354.\n");
++        }
++
+ 	if(type == WIFI_AP6441) {
+ 	    count = sprintf(_buf, "%s", "AP6441");
+ 	    printk("Current WiFi chip is AP6441.\n");
+diff --git a/include/linux/rfkill-wlan.h b/include/linux/rfkill-wlan.h
+index 6e85cf9..3fd89a4 100755
+--- a/include/linux/rfkill-wlan.h
++++ b/include/linux/rfkill-wlan.h
+@@ -47,9 +47,11 @@ enum {
+     WIFI_AP6234,
+     WIFI_AP6330,
+     WIFI_AP6335,
++    WIFI_AP6354,
+     WIFI_AP6441,
+     WIFI_AP6476,
+     WIFI_AP6493,
+diff --git a/net/rfkill/rfkill-wlan.c b/net/rfkill/rfkill-wlan.c
+index 75d7fe4..a49bd30 100755
+--- a/net/rfkill/rfkill-wlan.c
++++ b/net/rfkill/rfkill-wlan.c
+@@ -115,6 +117,8 @@ int get_wifi_chip_type(void)
+         type = WIFI_AP6330;
+     } else if (strcmp(wifi_chip_type_string, "ap6335") == 0) {
+         type = WIFI_AP6335;
++    } else if (strcmp(wifi_chip_type_string, "ap6354") == 0) {
++        type = WIFI_AP6354;
+     } else if (strcmp(wifi_chip_type_string, "ap6441") == 0) {
+         type = WIFI_AP6441;
+     } else if (strcmp(wifi_chip_type_string, "ap6476") == 0) {
