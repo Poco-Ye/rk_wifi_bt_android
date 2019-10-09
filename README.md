@@ -226,5 +226,9 @@ priority=1
 }
 wpa_supplicant  -iwlan0  -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf
 svc wifi enable
-adb reboot后即可连接.
+adb reboot
+没有加密或者wep或者使用指令，没有办法，一般都是要使用wpa的使用以上该改法
+iwlist scanning | grep ESSID
+iw dev wlan0 scan |grep SSID
+iw dev wlan0 connect "HUAWEI P10" key 0:3143531435
 ```
