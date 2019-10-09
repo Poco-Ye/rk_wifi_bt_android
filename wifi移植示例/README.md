@@ -1,4 +1,4 @@
-下层匹配主要就是根据DTS上的chip_type下不同的patch
+博通下层匹配主要就是根据DTS上的chip_type下不同的patch，rtk直接跑不同的驱动就可以了
 ```
 driver/rfkill/rfkill-wlan.c
 of_property_read_string(node, "wifi_chip_type", &strings);
@@ -20,7 +20,7 @@ of_property_read_string(node, "wifi_chip_type", &strings);
 
 
 
-上层匹配主要就是根据pid vid的chip_type加载不同的.ko就是相应模块的wifi驱动
+博通和rtk上层匹配主要就是根据pid vid的chip_type加载不同的.ko就是相应模块的wifi驱动
 
 ```
 hardware/libhardware_legacy/wifi/rk_wifi_ctrl.c
