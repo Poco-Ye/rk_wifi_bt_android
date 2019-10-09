@@ -214,3 +214,17 @@ CONFIG_WIFI_BUILD_MODULE（优先级最高）
 
 蓝牙sbc推送数据接口是1.5M的串口
 ```
+13、android 命令连接wifi
+```
+svc wifi enable
+svc wifi disable
+在/data/misc/wifi/wpa_supplicant.conf添加
+network={
+ssid="*******"     #表示wifi热点名
+psk="*******"      #表示密码
+priority=1
+}
+wpa_supplicant  -iwlan0  -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf
+svc wifi enable
+adb reboot后即可连接.
+```
