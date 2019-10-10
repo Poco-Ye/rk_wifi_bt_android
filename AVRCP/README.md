@@ -1,7 +1,7 @@
 
 A2DP上的CID是AVCTP，AVCTP 包括AVRCP
 
-在AVCTP上，你会看到只有command和response，不会再有其它，一目了然，就是一个命令控制
+在AVCTP上，你会看到只有command和response，不会再有其它，比较好看，就是一个命令控制
 
 TG就是target的意思，这个是被控制端，不用去区分host还是controller,只需要看音频是谁走向谁就知道谁是TG了
 
