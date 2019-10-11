@@ -1,0 +1,33 @@
+公司一个量产项目 要过BT BQB认证，
+过认证实验室 反馈 AVRCP1.4是废弃版本，可选择升级到1.5版本或 降级1.3版本再送测
+
+我们想通过降版本到1.3的方式来通过认证，请协助提供一下 软件修改方式 ，谢谢！
+
+wifi蓝牙模块为 ap6255
+之所以要过这个profile,是因为会连接蓝牙耳机，通过蓝牙耳机来进行音量大小调节
+
+
+
+diff --git a/stack/avrc/avrc_sdp.c b/stack/avrc/avrc_sdp.c
+index da265236..499c99e7 100644
+--- a/stack/avrc/avrc_sdp.c
++++ b/stack/avrc/avrc_sdp.c
+@@ -202,7 +202,8 @@ UINT16 AVRC_AddRecord(UINT16 service_uuid, char *p_service_name,
+     UINT16      count = 1;
+     UINT8       index = 0;
+     UINT16      class_list[2];
+-
++
++    profile_version = AVRC_REV_1_3;
+
+     AVRC_TRACE_API("AVRC_AddRecord uuid: %x", service_uuid);
+
+@@ -228,7 +229,7 @@ UINT16 AVRC_AddRecord(UINT16 service_uuid, char *p_service_name,
+     {
+         avrc_proto_desc_list[index].num_params = 1;
+         avrc_proto_desc_list[index].protocol_uuid = UUID_PROTOCOL_AVCTP;
+-        avrc_proto_desc_list[index].params[0] = AVCT_REV_1_4;
++        avrc_proto_desc_list[index].params[0] = AVCT_REV_1_3;
+         avrc_proto_desc_list[index].params[1] = 0;
+     }
+     result &= SDP_AddProtocolList(sdp_handle, AVRC_NUM_PROTO_ELEMS,
