@@ -243,7 +243,9 @@ CONFIG_RTL8188FU=y
 
 ```
 15、wifi config.txt配置
+```
 adb push config.txt /system/etc/firmware/
 txglom_mode=0
 dhd_slpauto=0
 kso_enable=0
+```
