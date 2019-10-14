@@ -255,3 +255,9 @@ txglom_mode=0
 dhd_slpauto=0
 kso_enable=0
 ```
+16、编译modules
+```
+cd kernel
+make ARCH=arm64 CONFIG_RTL8821AU=m -C ./
+M=./drivers/net/wireless/rockchip_wlan/rtl8812au modules
+```
