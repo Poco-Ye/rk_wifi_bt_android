@@ -46,8 +46,9 @@ EXPORT_SYMBOL(rockchip_wifi_exit_module_rtkwifi);
 #endif
 #endif
 ```
+有三种配置
 
-1、所以编译进去内核需要CONFIG_WIFI_LOAD_DRIVER_WHEN_KERNEL_BOOTUP =y 
+1、所以编译进去内核需要CONFIG_WIFI_LOAD_DRIVER_WHEN_KERNEL_BOOTUP =y CONFIG_WIFI_BUILD_MODULE=n
 
 还有dts上面，不然驱动就不会跑
 ```
@@ -56,7 +57,7 @@ EXPORT_SYMBOL(rockchip_wifi_exit_module_rtkwifi);
 +               wifi_chip_type = "rtl8812au";
 ```
 
-2、CONFIG_WIFI_LOAD_DRIVER_WHEN_KERNEL_BOOTU =n  echo 1 > /sys/class/rkwifi/driver
+2、编译进内核手动挂 CONFIG_WIFI_LOAD_DRIVER_WHEN_KERNEL_BOOTU =n  CONFIG_WIFI_BUILD_MODULE=n  echo 1 > /sys/class/rkwifi/driver
 
 然后也不编译成为module，这个时候就可以在
 drivers/net/wireless/rockchip_wlan/wifi_sys/rkwifi_sys_iface.c
@@ -120,7 +121,7 @@ enum {
 
 ```
 
-3、CONFIG_WIFI_BUILD_MODULE=y CONFIG_WIFI_LOAD_DRIVER_WHEN_KERNEL_BOOTU =y
+3、编译成模块手动挂 CONFIG_WIFI_BUILD_MODULE=y CONFIG_WIFI_LOAD_DRIVER_WHEN_KERNEL_BOOTU =y
 ```
 为啥有时候module也不会加载，dts配置type不对，还是因为CONFIG_WIFI_LOAD_DRIVER_WHEN_KERNEL_BOOTU设置了的原因，
 前面运行直接返回了
