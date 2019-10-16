@@ -17,7 +17,7 @@ int rockchip_wifi_init_module_rtkwifi(void)
 }
 ```
 
-wifi驱动没有是因为前面就被返回了，这个地方真的是可以的，所以dts上wifi type的设置有了两个功能
+wifi驱动没有跑是因为前面就被返回了，这个地方真的是可以的，所以dts上wifi type的设置有了两个功能
 
 1、下载patch
 
