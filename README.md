@@ -261,3 +261,8 @@ cd kernel
 make ARCH=arm64 CONFIG_RTL8821AU=m -C ./
 M=./drivers/net/wireless/rockchip_wlan/rtl8812au modules
 ```
+17、getConnectionState
+```
+不能用BluetoothAdapter.java的getConnectionState去获取手机的连接状态，
+要用BluetoothA2dpSink 下面的api去获取。
+```
