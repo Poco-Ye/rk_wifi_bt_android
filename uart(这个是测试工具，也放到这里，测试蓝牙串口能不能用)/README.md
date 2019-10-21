@@ -1,3 +1,4 @@
+ ```
  Use the following format to run the HS-UART TEST PROGRAM
  ts_uart v1.1
  For sending data:
@@ -16,3 +17,4 @@
  ts_uart m init.rc 1500000 0 0 0 /dev/ttyS0
  receive, data must be 0x55
  ts_uart r init.rc 1500000 0 0 0 /dev/ttyS0
+```
