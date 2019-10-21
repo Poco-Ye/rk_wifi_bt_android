@@ -63,6 +63,10 @@ SCO over PCM
 arecord -Dhw:1,0 -r 8000 -c 2 -f S16_LE |aplay -r 8000 -c 2 -f S16_LE // 音箱端播放远程电话的声音
 arecord -D 2mic_loopback -r 8000 -f S16_LE -c 2 |aplay -D hw:1,0 -r 8000 -c 2 -f S16_LE // 将音箱端的录音推送到远程电话
 
+这个是linux的，介绍一下，目前蓝牙声卡就是hw:1,0 ，arecord就是录制的意思，哈，一个管道，这边取来那边播，apaly就是播放的意思，
+apaly播放会直接默认播放到声卡2，系统设置的，蓝牙声卡接的可不是喇叭，2mic_loopback是什么鬼，就是声卡2麦克风的意思
+
+
 
 a) bluealsa-aplay -v --profile-sco bt_mac （ 配对手机的蓝牙MAC 地址， 格式为D8:1D:72:1C:26:DC） // 音箱端播放远程电话的声音
 b) arecord -r 8000 -f S16_LE -c 2|aplay -D bluealsa:HCI=hci0,DEV= bt mac,PROFILE=sco -t raw -r 8000 -f S16_LE -c 2
@@ -71,7 +75,7 @@ b) arecord -r 8000 -f S16_LE -c 2|aplay -D bluealsa:HCI=hci0,DEV= bt mac,PROFILE
 c) aplay -D bluealsa:HCI=hci0,DEV=bt_mac,PROFILE=sco /data/test /Front_Right.wav
 ```
 
-
+我们用声卡1和声卡2就很好分析了
 
 
 
