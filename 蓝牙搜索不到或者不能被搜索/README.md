@@ -76,7 +76,9 @@ index b0cf8566..574fb14f 100644
 ```
 
 不能被搜索到或者连不上天线信号不好：
+
 1、am start -a android.bluetooth.adapter.action.REQUEST_DISCOVERABLE
+
 开启可被发现
 ```
 cat /data/misc/bluedroid/bt_config.conf 可找到DiscoveryTimeout有设置就不用再设
