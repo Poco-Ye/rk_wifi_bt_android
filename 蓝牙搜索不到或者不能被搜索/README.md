@@ -1,8 +1,9 @@
-```
+
 蓝牙搜索和配对过程主要有两种
 
 一种是BR/EDR的 一种是BLE的 频道是不一样的 可以理解成两个设备
 
+```
 BR/EDR 的搜索是主动的方式，往空中散发inquiry ID packet，对端回inquiry result packet
 BLE的搜索是被动的方式，就是扫描空中散发的广播包，然后发connection indication packet进行连接
 
@@ -29,9 +30,10 @@ hcitool -i hci0 lescan
 hciconfig hci0 noscan
 
 android默认只有inquirying、inquiry scan、lescan没有le adv，搜索不到就是指的是BR/EDR设备搜索不到
+```
 
 1、搜索不到，天线信号不好，增加inquiry时间
-
+```
 diff --git a/btif/src/btif_dm.c b/btif/src/btif_dm.c
 index f54b6427..43dda023 100644
 --- a/btif/src/btif_dm.c
@@ -49,10 +51,10 @@ index f54b6427..43dda023 100644
 
 nquriy Time = N*1.28 sec,  15 * 1.28 =19.2s 默认是12.8s
 N Range:1 ~ 48  ， time range: 1.28s~61.44s
-
+```
 
 2、天线信号不好，增加发现设备时间
-
+```
 diff --git a/include/bt_target.h b/include/bt_target.h
 index b0cf8566..574fb14f 100644
 --- a/include/bt_target.h
@@ -71,15 +73,16 @@ index b0cf8566..574fb14f 100644
 
 
 
-
+```
 
 不能被搜索到或者连不上天线信号不好：
 1、am start -a android.bluetooth.adapter.action.REQUEST_DISCOVERABLE
 开启可被发现
+```
 cat /data/misc/bluedroid/bt_config.conf 可找到DiscoveryTimeout有设置就不用再设
-
+```
 2、
-
+```
 --- a/include/bt_target.h
 +++ b/include/bt_target.h
 @@ -367,7 +367,7 @@
