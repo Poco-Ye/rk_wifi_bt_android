@@ -267,12 +267,12 @@ M=./drivers/net/wireless/rockchip_wlan/rtl8812au modules
 要用BluetoothA2dpSink 下面的api去获取。
 ```
 
-18、PCM声音调试
+18、PCM声音调试(sclk和pclk)
 ```
 a:确定sco链路建立，蓝牙进入sniff mode可以很好体现，抓sniff可以看到链路建立，
 也可以用ellisys空中看看有没有，有嘈杂声音肯定就是有数据的了
 
-b:确认sync clk 和sclk由声卡(dts配置)提供还是模组提供，谁作master，断开电阻测试
+b:确认sync clk 和pclk由声卡(dts配置)提供还是模组提供，谁作master，断开电阻测试
 不能两边都不给clk也不能两边都给clk,必须是一边设置为主另一边设置为从
 
 c:确认声卡(dts配置)clk是否匹配，比如两边设置匹配为 512k 8k或者两边设置匹配为256k 8k 或者512k 16k 都行，
