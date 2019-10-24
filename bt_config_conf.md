@@ -1,3 +1,4 @@
+```
 rk322x_box:/data/misc/bluedroid # cat bt_config.conf
 [Info]
 FileSource = Empty
@@ -38,4 +39,5 @@ LE_KEY_LCSRK = 00000000d16d041a63ca185d20860b9e56d6357151f50c9a
 其它设备[30:74:96:74:f0:c3]我的华为手机，有物理地址，还要名字和服务
 LinkKey = 861abb6fe0895a361fe9054be651ca3b（回连密匙）
 
+```
 
