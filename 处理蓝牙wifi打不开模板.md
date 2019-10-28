@@ -1,5 +1,7 @@
 太多这种问题了每次都要我手动敲不好
 
+
+注意没有/sdcard/btsnoop_hci.log的话(sdcard不可用)，一定要用/data/misc/bluedroid/btsnoop_hci.log，selinux在init.rc就授权
 ```
 蓝牙模板一：
 修改文件/etc/bluetooth/bt_stack.conf
@@ -90,6 +92,15 @@ echo 0 > /sys/class/rfkill/rfkill0/state
 echo 1 > /sys/class/rfkill/rfkill0/state
 BT_RTS_N引脚有无电平变化
 ```
+```
+蓝牙模板三：
+setprop  persist.bluetooth.btsnoopenable  true
+
+setprop  persist.bluetooth.btsnooppath   /sdcard/btsnoop_hci.log
+
+关开蓝牙
+复现问题提供一下
+/sdcard/btsnoop_hci.log
 
 ```
 wifi模板一：
