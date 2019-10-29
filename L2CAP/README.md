@@ -10,7 +10,7 @@
 
 其它普通的CID是PSM连接，都必须先用PSM进行 connect request 获得对端的PMS CID（比如0x0043） CID不是固定的，需要用psm request去拿 
 
-然后，所有的协议管理是由SDP管理的，这个只是一个表，存放协议的版本、厂商、PSM
+然后，所有的协议管理是由SDP管理的，这个只是一个表，存放协议的版本、厂商、PSM（如果表里不支持的PSM，host就不会进行PSM request进行连接）
 
 可以理解为CID 0x0001 去拿到其它CID 
 
