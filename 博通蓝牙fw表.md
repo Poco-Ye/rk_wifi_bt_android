@@ -19,5 +19,16 @@ static const fw_auto_detection_entry_t fw_auto_detection_table[] = {
 };
 ```
 
-
+```
+    p_entry = (fw_auto_detection_entry_t *)fw_auto_detection_table;
+    while (p_entry->chip_id != NULL)
+    {
+        if (strstr(p_chip_id_str, p_entry->chip_id)!=NULL)
+        {
+            strcpy(p_chip_id_str,p_entry->updated_chip_id);
+            break;
+        }
+        p_entry++;
+    }
+```
 
