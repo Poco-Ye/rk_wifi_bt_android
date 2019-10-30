@@ -120,11 +120,19 @@ page scan window page scan interval
 
 ```
 
+```
+le scan code位置
+
+jni_app/Bluetooth/src/com/android/bluetooth/gatt/ScanManager.java
+
 BLE的LE扫描参数是这个cmd下发的（200b）
 
 Command: HCI_LE_Set_Scan_Parameters
 
+le scan = 16 *0.625 = 10ms 
+le scan interval = 352 * 0.625 =220 ms = 0.22s 
 
+比较好的le参数
 
 
 还有连上突然2s断开的问题。。。。
@@ -132,7 +140,7 @@ Command: HCI_LE_Set_Scan_Parameters
 还有能配对却不能连接的问题。。。。
 
 待续
-
+```
 
 
 
