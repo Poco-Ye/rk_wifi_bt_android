@@ -294,5 +294,8 @@ WIFI断线，得先确认RF指标是OK， 26M频偏 32.768KHZ 波形和电压峰
 realtek:  cat  include/rtw_version.h
 broadcom: cat  include/epivers.h
 ```
-
+21、le scan code位置
+```
+jni_app/Bluetooth/src/com/android/bluetooth/gatt/ScanManager.java
+```
 
