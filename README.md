@@ -289,3 +289,10 @@ f:按照config的大端，是正常顺序,包括在reganalyzer上的分析
 ```
 WIFI断线，得先确认RF指标是OK， 26M频偏 32.768KHZ 波形和电压峰峰值。先找代理商做指标测试
 ```
+20、查看wifi驱动版本
+```
+realtek:  cat  include/rtw_version.h
+broadcom: cat  include/epivers.h
+```
+
+
