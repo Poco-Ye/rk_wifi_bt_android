@@ -32,7 +32,7 @@ hciconfig hci0 noscan
 android默认只有inquirying、inquiry scan、lescan没有le adv，搜索不到就是指的是BR/EDR设备搜索不到
 ```
 
-1、搜索不到，天线信号不好，增加inquiry时间
+1、你的机子上搜索不到别人的EDR设备，天线信号不好，增加inquiry时间
 ```
 diff --git a/btif/src/btif_dm.c b/btif/src/btif_dm.c
 index f54b6427..43dda023 100644
@@ -53,7 +53,7 @@ nquriy Time = N*1.28 sec,  15 * 1.28 =19.2s 默认是12.8s
 N Range:1 ~ 48  ， time range: 1.28s~61.44s
 ```
 
-2、天线信号不好，增加发现设备时间
+2、还是一样拿不到别人的EDR设备名字，还没到配对这一步，天线信号不好，增加发现设备时间
 ```
 diff --git a/include/bt_target.h b/include/bt_target.h
 index b0cf8566..574fb14f 100644
@@ -83,7 +83,7 @@ index b0cf8566..574fb14f 100644
 ```
 cat /data/misc/bluedroid/bt_config.conf 可找到DiscoveryTimeout有设置就不用再设
 ```
-2、
+2、修改被别人发现的EDR的扫描和配对的时间参数
 ```
 --- a/include/bt_target.h
 +++ b/include/bt_target.h
@@ -119,3 +119,21 @@ page scan window page scan interval
 如果还是不行请找模组代理商进行RF测试或者替换fw
 
 ```
+
+BLE的LE扫描参数是这个cmd下发的（200b）
+
+Command: HCI_LE_Set_Scan_Parameters
+
+
+
+
+还有连上突然2s断开的问题。。。。
+
+还有能配对却不能连接的问题。。。。
+
+待续
+
+
+
+
+
