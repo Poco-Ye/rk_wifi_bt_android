@@ -1,3 +1,4 @@
+```
 1. bluedroid
 (1)add: #define BTA_AV_SINK_INCLUDED TRUE
         #define USE_AUDIO_TRACK TRUE
@@ -20,3 +21,4 @@ device/rockchip/common/overlay/packages/apps/Bluetooth/res/values/config.xml
 and then:
 mmm packages/apps/Bluetooth/  -j8 
 
+```
