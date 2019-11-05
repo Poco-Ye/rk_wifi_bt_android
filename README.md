@@ -299,3 +299,5 @@ broadcom: cat  include/epivers.h
 jni_app/Bluetooth/src/com/android/bluetooth/gatt/ScanManager.java
 ```
 
+22、hw_lpm_enable
+
