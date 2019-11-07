@@ -301,3 +301,4 @@ jni_app/Bluetooth/src/com/android/bluetooth/gatt/ScanManager.java
 
 22、hw_lpm_enable
 
+23、ap6236 默认sdk用不了ble，200d返回的连接参数与sdk不符，不支持le enhance connect
