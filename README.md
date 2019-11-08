@@ -302,3 +302,12 @@ jni_app/Bluetooth/src/com/android/bluetooth/gatt/ScanManager.java
 22、hw_lpm_enable
 
 23、ap6236 默认sdk用不了ble，200d返回的连接参数与sdk不符，不支持le enhance connect
+
+24、overlay具有重写的作用，但不具备覆盖的作用，所以配置的config.xml一定要确认packages和device overlay
+```
+默认打开wifi
+device/rockchip/common/overlay/frameworks/base/packages/SettingsProvider/res/values/defaults.xml
+<bool name="def_wifi_display_on">true</bool>
+<bool name="def_wifi_on">true</bool>
+```
+
