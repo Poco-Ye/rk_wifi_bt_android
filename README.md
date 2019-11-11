@@ -260,6 +260,8 @@ kso_enable=0
 cd kernel
 make ARCH=arm64 CONFIG_RTL8821AU=m -C ./
 M=./drivers/net/wireless/rockchip_wlan/rtl8812au modules
+
+make ARCH=arm64 CONFIG_AP6XXX=m -C ./ M=./drivers/net/wireless/rockchip_wlan/rkwifi  modules
 ```
 17、getConnectionState
 ```
