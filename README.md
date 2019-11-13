@@ -123,7 +123,11 @@ ifconfig wlan0 up
 
 
 7、am start -a android.bluetooth.adapter.action.REQUEST_DISCOVERABLE打开被发现
+```
+　　service call bluetooth_manager 8  关闭蓝牙
 
+　　service call bluetooth_manager 6  打开蓝牙
+```
 8、PMU对wifi蓝牙的作用
 ```
 直接在dts上找regulator-name
