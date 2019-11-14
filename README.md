@@ -316,14 +316,12 @@ device/rockchip/common/overlay/frameworks/base/packages/SettingsProvider/res/val
 <bool name="def_wifi_display_on">true</bool>
 <bool name="def_wifi_on">true</bool>
 ```
-25、GKI
+25、GKI(例如p_msg->hdr.event = BTA_DM_API_SET_NAME_EVT)
 ```
 ** Function         bta_sys_sendmsg
 **
 ** Description      Send a GKI message to BTA.  This function is designed to
 **                  optimize sending of messages to BTA.  It is called by BTA
 **                  API functions and call-in functions.
-**
-**
 ** Returns          void
 ```
