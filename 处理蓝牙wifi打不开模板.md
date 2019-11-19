@@ -118,7 +118,14 @@ echo 1 > /sys/class/rkwifi/power
  find /d/ -name pinmux-pins 
  cat  pinmux-pins| grep mmc (sdio有时就是不知道用哪一个  有时候是sdio节点 有时候又sdmmc节点 这个要看看)
  
- 扫描不到经常是模组晶振频偏问题
+ wifi扫描不到经常是模组晶振频偏问题
+ 
+ CONFIG_WIFI_LOAD_DRIVER_WHEN_KERNEL_BOOTUP =n (编译入kernel不是编译模块 去掉module init，extern出去 在sys接口上调用)
+ echo 1 > /sys/class/rkwifi/driver
+ 
+ 查看打印出来的log看看问题
+ 
+ 
 ```
 
 
