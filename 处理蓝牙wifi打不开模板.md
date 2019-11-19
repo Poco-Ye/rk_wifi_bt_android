@@ -103,6 +103,8 @@ setprop  persist.bluetooth.btsnooppath   /sdcard/btsnoop_hci.log
 /sdcard/btsnoop_hci.log
 
 ```
+
+```
 wifi模板一：
 测量一下LPO 引脚有无32.768k clk 还有频偏，测量WL_REG_ON电平 ，VCCIO电平 ,VBAT电平，还有晶体频偏
 
@@ -110,6 +112,13 @@ echo 0 > /sys/class/rkwifi/power
 echo 1 > /sys/class/rkwifi/power
 
 测量一下有无电平变化WL_REG_ON
+
+ cat /d/clk/clk_summary (只有在节点上有clock name的才会显示，没有的就没有，比如设置clock frequency)
+ 
+ find /d/ -name pinmux-pins 
+ cat  pinmux-pins| grep mmc (sdio有时就是不知道用哪一个  有时候是sdio节点 有时候又sdmmc节点 这个要看看)
+ 
+ 扫描不到经常是模组晶振频偏问题
 ```
 
 
