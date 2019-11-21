@@ -324,3 +324,32 @@ device/rockchip/common/overlay/frameworks/base/packages/SettingsProvider/res/val
 **                  API functions and call-in functions.
 ** Returns          void
 ```
+26、蓝牙串口终极问题
+```
+非常神奇版本或者非常神奇硬件
+我们的串口是一个大坑，波特率是非常不准，所以115200 1M 1.5M 2M 都要试一下
+
+diff --git a/bluetooth/libbt/src/userial_vendor.c b/bluetooth/libbt/src/userial_vendor.c
+index 6fc9e58..a0823c7 100755
+--- a/bluetooth/libbt/src/userial_vendor.c
++++ b/bluetooth/libbt/src/userial_vendor.c
+@@ -252,7 +252,7 @@ int userial_vendor_open(tUSERIAL_CFG *p_cfg)
+
+     tcgetattr(vnd_userial.fd, &vnd_userial.termios);
+     cfmakeraw(&vnd_userial.termios);
+-    vnd_userial.termios.c_cflag |= (CRTSCTS | stop_bits);
++    vnd_userial.termios.c_cflag |=stop_bits;
+     tcsetattr(vnd_userial.fd, TCSANOW, &vnd_userial.termios);
+     tcflush(vnd_userial.fd, TCIOFLUSH);
+
+编译后将CTS RTS 接地，115200 1M 1.5M 2M 都要试一下，试一下
+
+```
+
+
+
+
+
+
+
+
