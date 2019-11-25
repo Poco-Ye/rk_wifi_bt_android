@@ -348,6 +348,17 @@ index 6fc9e58..a0823c7 100755
 RTK接的3线的，正常模组的RTS直接接地，只接了HOST的RTS，那这种解法相当于去掉host流控和HOST RTS接地，这个可以
 
 ```
+27、pmu 32.768k选择
+```
+比如PMU rk818
+        wireless-bluetooth {
+                compatible = "bluetooth-platdata";
+                clocks = <&rk818 1>;        // pmu 32.768k 这个要加上
+                clock-names = "ext_clock";  // pmu 32.768k 这个要加上
+                //wifi-bt-power-toggle;
+                uart_rts_gpios = <&gpio2 19 GPIO_ACTIVE_LOW>; /* GPIO2_C3 */
+
+```
 
 
 
