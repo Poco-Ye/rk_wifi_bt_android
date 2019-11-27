@@ -359,6 +359,13 @@ RTK接的3线的，正常模组的RTS直接接地，只接了HOST的RTS，那这
                 uart_rts_gpios = <&gpio2 19 GPIO_ACTIVE_LOW>; /* GPIO2_C3 */
 
 ```
+28、heartbeat
+```
+fw没打开heartbeat，上层打开就会心跳计数异常退出
+fw打开 上层也打开 会出现长时间概率性断开回连
+fw打开fw 上层没有打开 会出现连上反复回连
+请联系rtk在config关掉heartbeat，一般只有tv的fw才会有带这个mesh的功能
+```
 
 
 
