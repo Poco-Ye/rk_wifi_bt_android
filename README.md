@@ -311,7 +311,12 @@ jni_app/Bluetooth/src/com/android/bluetooth/gatt/ScanManager.java
 
 22、hw_lpm_enable
 
-23、ap6236 默认sdk用不了ble，200d返回的连接参数与sdk不符，不支持le enhance connect
+23、AP6236 无法连接BLE设备
+```
+ap6236 默认sdk用不了ble，200d返回的连接参数与sdk不符，不支持le enhance connect，会pageing timeout
+参考redmine:231381
+
+```
 
 24、overlay具有重写的作用，但不具备覆盖的作用，所以配置的config.xml一定要确认packages和device overlay
 ```
