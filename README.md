@@ -388,6 +388,10 @@ bus width:      3 (8 bits)
 timing spec:    8 (mmc high-speed SDR200)
 signal voltage: 0 (1.80 V)
 ```
+30、特别是8.1的系统蓝牙传文件问题
+```
+不小心点了传不了的设备，然后再点能传的设备就传不了，我们系统的bug，参考bttransamefile.patch或者psm的那个patch
+```
 
 
 
