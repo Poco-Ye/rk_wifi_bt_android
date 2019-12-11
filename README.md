@@ -212,6 +212,14 @@ CONFIG_WIFI_BUILD_MODULE（优先级最高）
 然后改一下dts就可以               
 ```
 11、mmc驱动扫描接口一般指有三个emmc节点接flash sdmmc节点接tf卡 sdio节点接wifi 其中sdmmc和sdio一样可以用的，当没有tf卡时，wifi经常用sdmmc
+```
+确定wifi是哪个mmc接口, 30000000 30010000 30020000一共有三个
+dwmmc_rockchip 30010000.rksdmmc: dw_mci_init_slot: fmin=200000, fmax=37500000 [mmc2]
+mmc2: new high speed SDIO card at address 0001
+
+dmesg |grep 30010000 就可以确认
+
+```
 
 12、PCM
 ```
@@ -395,6 +403,7 @@ signal voltage: 0 (1.80 V)
 ```
 不小心点了传不了的设备，然后再点能传的设备就传不了，我们系统的bug，参考bttransamefile.patch或者psm的那个patch
 ```
+
 
 
 
