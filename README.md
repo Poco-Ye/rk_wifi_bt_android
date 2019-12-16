@@ -403,6 +403,7 @@ signal voltage: 0 (1.80 V)
 ```
 不小心点了传不了的设备，然后再点能传的设备就传不了，我们系统的bug，参考bttransamefile.patch或者psm的那个patch
 ```
+31、双wifi的问题，一个作sta，另一个作ap，有什么问题先使用dual-wifi补丁，还不行就更换wifi驱动
 
 
 
