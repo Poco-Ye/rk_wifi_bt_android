@@ -412,6 +412,25 @@ HOST进入休眠RTS拉高，停止传输，退出休眠拉低，再次进行传�
 ```
 33、usb底层驱动下载android文件系统得fw得方法是通过request_firmware函数
 
+34、流控稳定RTS先拉高100ms再拉低
+```
+#if defined(CONFIG_AP6210) || defined(CONFIG_AP6335)
+            gpio_direction_output(rts->io, rts->enable);
+            msleep(100);
+            gpio_direction_output(rts->io, !rts->enable);
+        }
+#endif
+当开启time out有问题的时候，就需要怀疑流控有问题，就要把这个宏重新自己测试，比如6255也遇到这个问题了
+```
+35、有时候打的开wifi，有时候打不开，WIFI打开蓝牙才能打开，蓝牙有时后又打不开
+```
+这个换模组的时候，虽然驱动不用换，但是kernel的配置是需要重新设置的（如果不换就会产生这个问题，应用在驱动和RFKILL配置不对）
+
+也有可能wifi DMA sdio通信出现问题，特别是这种换模块的
+在.config上面配置
+CONFIG_MMC_DW_IDMAC = n
+```
+
 
 
 
