@@ -405,15 +405,26 @@ signal voltage: 0 (1.80 V)
 ```
 31、双wifi的问题，一个作sta，另一个作ap，有什么问题先使用dual-wifi补丁，还不行就更换wifi驱动
 
-32、逻辑分析仪抓博通wake BT引脚，CTS引脚
+32、蓝牙休眠问题，逻辑分析仪抓博通wake BT引脚，CTS引脚
 ```
-首先wake BT全程必须保持高电平，否则会不断重启蓝牙,不断唤醒的话和0XFC27 fw有关
-HOST进入休眠RTS拉高，停止传输，退出休眠拉低，再次进行传输
+蓝牙休眠是由FW主导的，不是你host，所以下的0xfc27命令才是模组相关休眠的参数，包括低电平有效还是高电平有效，
+进入休眠时会不会告诉host这些，或者是模式，可以看到
+static bt_lpm_param_t lpm_param =
+{
+    LPM_SLEEP_MODE,
+    LPM_IDLE_THRESHOLD,
+    LPM_HC_IDLE_THRESHOLD,
+.....
+uint8_t hw_lpm_enable(uint8_t turn_on)
+这个函数在博通的hardware，有默认的LPM模式，host的控制在RFKILL，包括proc/bluetooth/sleep节点
+
+首先wake BT全程必须保持高电平，否则会不断重启蓝牙（如果是低电平有效的话，除非你关掉LPM）,不断唤醒的话和0XFC27 fw有关
+HOST进入休眠RTS拉高，停止传输，退出休眠拉低，再次进行传输，这些都是host的行为，关键还是0xfc27的命令
 #define HCI_VSC_WRITE_SLEEP_MODE                0xFC27
 ```
 33、usb底层驱动下载android文件系统得fw得方法是通过request_firmware函数
 
-34、换模组流控稳定RTS先拉高100ms再拉低
+34、蓝牙串口的锅-换模组流控稳定RTS先拉高100ms再拉低
 ```
 #if defined(CONFIG_AP6210) || defined(CONFIG_AP6335)
             gpio_direction_output(rts->io, rts->enable);
