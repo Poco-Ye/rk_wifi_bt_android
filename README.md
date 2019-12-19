@@ -410,6 +410,7 @@ signal voltage: 0 (1.80 V)
 首先wake BT全程必须保持高电平，否则会不断重启蓝牙
 HOST进入休眠RTS拉高，停止传输，退出休眠拉低，再次进行传输
 ```
+33、usb底层驱动下载android文件系统得fw得方法是通过request_firmware函数
 
 
 
