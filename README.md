@@ -407,8 +407,9 @@ signal voltage: 0 (1.80 V)
 
 32、逻辑分析仪抓博通wake BT引脚，CTS引脚
 ```
-首先wake BT全程必须保持高电平，否则会不断重启蓝牙
+首先wake BT全程必须保持高电平，否则会不断重启蓝牙,不断唤醒的话和0XFC27 fw有关
 HOST进入休眠RTS拉高，停止传输，退出休眠拉低，再次进行传输
+#define HCI_VSC_WRITE_SLEEP_MODE                0xFC27
 ```
 33、usb底层驱动下载android文件系统得fw得方法是通过request_firmware函数
 
