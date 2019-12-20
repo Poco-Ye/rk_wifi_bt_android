@@ -407,6 +407,20 @@ signal voltage: 0 (1.80 V)
 
 32、蓝牙休眠问题，逻辑分析仪抓博通wake BT引脚，CTS引脚
 ```
+RTK休眠（怎么休眠还得fw来改方式）
+1. Non-link mode
+1) 放6s 之后就会自动进入LPS。
+2) Page Scan、Inquiry Scan、LE Adv、LE Scan 这四个状态下的interval 不能小于0x80。
+2. Link mode
+1) Sniff 、Page Scan、Inquiry Scan、LE Adv、LE Scan 这四个状态下的interval 不能小于
+0x80。
+2) 两条Link 不能够进入LPS。
+3) 有eSCO、SCO 不会进入LPS。
+4) 先进入Sniff Mode 才能进入LPS，如果Sniff Mode 进不去就不会进LPS，Sniff 参数
+建议: Nsniff attempt 设置为大于1 的值(Sniff Mode Command)。
+
+博通休眠（怎么休眠还得fw来改方式）
+
 蓝牙休眠是由FW主导的，不是你host，所以下的0xfc27命令才是模组相关休眠的参数，包括低电平有效还是高电平有效，
 进入休眠时会不会告诉host这些，或者是模式，可以看到
 static bt_lpm_param_t lpm_param =
