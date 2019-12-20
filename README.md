@@ -421,6 +421,19 @@ uint8_t hw_lpm_enable(uint8_t turn_on)
 首先wake BT全程必须保持高电平，否则会不断重启蓝牙（如果是低电平有效的话，除非你关掉LPM）,不断唤醒的话和0XFC27 fw有关
 HOST进入休眠RTS拉高，停止传输，退出休眠拉低，再次进行传输，这些都是host的行为，关键还是0xfc27的命令
 #define HCI_VSC_WRITE_SLEEP_MODE                0xFC27
+
+/* BT_WAKE Polarity - 0=Active Low, 1= Active High */
+#ifndef LPM_BT_WAKE_POLARITY
+#define LPM_BT_WAKE_POLARITY            1    /* maguro */
+#endif
+
+/* HOST_WAKE Polarity - 0=Active Low, 1= Active High */
+#ifndef LPM_HOST_WAKE_POLARITY
+#define LPM_HOST_WAKE_POLARITY 1 /* maguro */
+#endif
+
+总之不管是极性怎么样，先断开负载，wake bt就测试host的脚  bt wake host就测试bt的脚，
+一直直线突然一定会有像心脏一样的唤醒的脉冲，没有就有问题
 ```
 33、usb底层驱动下载android文件系统得fw得方法是通过request_firmware函数
 
