@@ -1,9 +1,10 @@
+```
 07-16 06:38:27.806 E/bt_osi_alarm( 1404): timer_create_internal unable to create timer with clock 9: Unknown error 524
 
 07-16 06:38:27.806 E/bt_osi_alarm( 1404): The kernel might not have support for timer_create(CLOCK_BOOTTIME_ALARM): https://lwn.net/Articles/429925/
 
 07-16 06:38:27.807 E/bt_osi_alarm( 1404): See following patches: https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/log/?qt=grep&q=CLOCK_BOOTTIME_ALARM
-
+```
 
 
 ```
