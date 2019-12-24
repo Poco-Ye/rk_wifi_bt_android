@@ -106,7 +106,7 @@ setprop  persist.bluetooth.btsnooppath   /sdcard/btsnoop_hci.log
 
 ```
 wifi模板一：
-测量一下LPO 引脚有无32.768k clk 还有频偏，测量WL_REG_ON电平 ，VCCIO电平 ,VBAT电平，还有晶体频偏
+测量一下LPO 引脚有无32.768k clk 还有频偏，测量WL_REG_ON电平 ，VDDIO电平 ,VBAT电平，还有晶体频偏
 
 echo 0 > /sys/class/rkwifi/power
 echo 1 > /sys/class/rkwifi/power
