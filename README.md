@@ -138,10 +138,10 @@ cat sys/class/regulator/regulator.6/name(例如)
 cd  sys/class/regulator/regulator.6/name
 cat *
 
-PMU提供DCDC电压（3.3~4.2V）给模组的VBAT  提供LDO 电压（1.8V或者3.3V给VCCIO） 同时也设置CPU IO（串口和sdio）
+PMU提供DCDC电压（3.3~4.2V）给模组的VDD  提供LDO 电压（1.8V或者3.3V给VDDIO） 同时也设置CPU IO（串口和sdio）
 域电压1.8或者3.3V 还有LPO 32.768K给模组 
 sdio_vref = <1800>; //1800mv or 3300mv
-如果3288 wifi概率性起不来（312x sdio_vref没有作用），就需要检查一下vccio设置的对不对
+如果3288 wifi概率性起不来（312x sdio_vref没有作用），就需要检查一下vddio设置的对不对
 diff --git a/rk3288-ennoconn.dts b/rk3288-ennoconn.dts
 index 068c32f..aaee757 100644
 --- a/rk3288-ennoconn.dts
