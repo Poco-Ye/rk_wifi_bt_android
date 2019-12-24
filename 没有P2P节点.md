@@ -1,5 +1,9 @@
+```
 01-21 16:50:49.604 1617 1617 E wpa_supplicant: Could not read interface p2p0 flags: No such device
 01-21 16:50:49.605 1617 1617 I wpa_supplicant: nl80211: Driver does not support authentication/association or connect commands
+```
+
+特别是RTK的驱动
 ```
 应该是p2p0 接口没创建，上层需要p2p0 接口，否则WIFI启动不了。
 diff --git a/Makefile b/Makefile
