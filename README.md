@@ -142,6 +142,10 @@ PMU提供DCDC电压（3.3~4.2V）给模组的VDD  提供LDO 电压（1.8V或者3
 域电压1.8或者3.3V 还有LPO 32.768K给模组 
 sdio_vref = <1800>; //1800mv or 3300mv
 如果3288 wifi概率性起不来（312x sdio_vref没有作用），就需要检查一下vddio设置的对不对
+模组（单片机）一共有两个电源口，一个是VDD还有一个是VDDIO，VDD正常都是3.3V或者以上的，基本不用管，VDDIO可以配置
+如下就是配置vcc_wl配置VDDIO的电压（配置模组的IO电压），但是，CPU的sdio或者uart是否也要配置IO的电压，然后一起对应的上
+经常遇到说串口不稳定，串口的域电压在哪里配置，WIFI的域电压在sdio_vref
+
 diff --git a/rk3288-ennoconn.dts b/rk3288-ennoconn.dts
 index 068c32f..aaee757 100644
 --- a/rk3288-ennoconn.dts
