@@ -473,6 +473,12 @@ HOST进入休眠RTS拉高，停止传输，退出休眠拉低，再次进行传�
 在.config上面配置
 CONFIG_MMC_DW_IDMAC = n
 ```
+37、蓝牙不同版本的处理，特别是8.1之后
+```
+首先蓝牙的配置find ./ -name "*conf*"可以找到配置，主要在hardware 和system/bt 几乎配置都可以了解的到
+8.1关于log上过滤会多出另一条蓝牙hardware进程，android.hardware.bluetooth@1.0-impl: BluetoothHci::initialize()
+要找到它
+```
 
 
 
