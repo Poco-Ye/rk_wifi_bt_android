@@ -481,6 +481,7 @@ find ./ -name "*include*"
 8.1关于log上过滤会多出另一条蓝牙hardware进程，android.hardware.bluetooth@1.0-impl: BluetoothHci::initialize()
 要找到它
 ```
+38、AP6330是26M的晶振,AP6255是37.4M的晶振
 
 
 
