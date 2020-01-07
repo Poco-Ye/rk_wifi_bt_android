@@ -483,7 +483,7 @@ find ./ -name "*include*"
 ```
 38、AP6330是26M的晶振,AP6255是37.4M的晶振
 
-
+39、cfa log上进行cmd (opcode group) 分类，是一个非常好的进阶和选择
 
 
 
