@@ -103,6 +103,14 @@ setprop  persist.bluetooth.btsnooppath   /sdcard/btsnoop_hci.log
 /sdcard/btsnoop_hci.log
 
 ```
+蓝牙模板四：
+```
+将模组的PCM_IN PCM_OUT PCM_SYNC PCM_CLK 与声卡的连接断开，然后将模组的PCM_IN PCM_OUT进行短接
+
+再用微信或者app语音测试，进行回环测试，手机上能否自己说话自己听到
+
+用示波器抓一下PCM_SYNC PCM_CLK 两端,是否有clk，是声卡那边提供还是模组那边提供,clk的频率和峰峰值
+```
 
 ```
 wifi模板一：
