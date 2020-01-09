@@ -111,7 +111,12 @@ setprop  persist.bluetooth.btsnooppath   /sdcard/btsnoop_hci.log
 
 用示波器抓一下PCM_SYNC PCM_CLK 两端,是否有clk，是声卡那边提供还是模组那边提供,clk的频率和峰峰值
 ```
+蓝牙模板五：
+```
+使能脚电压和模组VDDIO电压是否一致，CPU sdio或者uart域电压和模组VDDIO电压是否一致
 
+保证使能引脚 模组VDDIO   CPU sdio或者uart域电压 一致
+```
 ```
 wifi模板一：
 测量一下LPO 引脚有无32.768k clk 还有频偏，测量WL_REG_ON电平 ，VDDIO电平 ,VBAT电平，还有晶体频偏
