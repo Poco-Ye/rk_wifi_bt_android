@@ -511,7 +511,7 @@ simple pairing mode打开
 ```
 43、蓝牙wifi以太网抓包
 ```
-hcidump -w xxx.cfa &(linux android的没有)
+hcidump -w xxx.cfa &(linux android的没有工具看前面模板改)
 tcpdump -i eth0 -s 0 -w /data/xxx.pcap &
 tcpdump -i wlan0 -s 0 -w /data/xxx.pcap &
 ```
