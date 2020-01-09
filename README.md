@@ -499,7 +499,7 @@ IO域电压，模组使能引脚和sdio或者uart不在同一个域，或者sdio
                         regulator-name = "vcc_io";
                         regulator-min-microvolt = <3300000>;
 ```
-
+41、AP6398S 对硬件要求很高， 给32.768KHZ 放大在100ms内不能角度，如果PMU提供RTC可以实测一下， 可断开外部从RTC芯片飞线过验证看。
 
 
 
