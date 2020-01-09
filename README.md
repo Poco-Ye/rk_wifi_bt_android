@@ -485,6 +485,20 @@ find ./ -name "*include*"
 
 39、cfa log上进行cmd (opcode group) 分类，是一个非常好的进阶和选择
 
+40、io-domains供电问题，域电压是由PMU或者外部提供，不是由cpu提供，cpu上配置pmu和自己的寄存器匹配域电压，模组上不用配置，给多少就是多少
+```
+IO域电压，模组使能引脚和sdio或者uart不在同一个域，或者提供的IO电压
+-               vccio4-supply = <&rk805_ldo1_reg>;
++               vccio4-supply = <&rk805_dcdc4_reg>;
+                vccio5-supply = <&rk805_dcdc4_reg>;
+-               sdio_vref = <1800>;
++               sdio_vref = <3300>;
+                WIFI,poweren_gpio = <&gpio1 GPIO_C2 GPIO_ACTIVE_HIGH>;
+                
+                rk805_dcdc4_reg: regulator@3 {
+                        regulator-name = "vcc_io";
+                        regulator-min-microvolt = <3300000>;
+```
 
 
 
