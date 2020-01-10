@@ -1,3 +1,45 @@
+按照这里提供 按照这里提供
+```
+-------------
+external/bluetooth/bluedroid/include/bt_target.h
+--- a/include/bt_target.h
+++ b/include/bt_target.h
+-1339,7 +1339,7 and USER_HW_DISABLE_API macros / * feature discovery, multi-adv etc.
+/
+#ifndef BLE_VND_INCLUDED
+-#define BLE_VND_INCLUDED FALSE
++#define BLE_VND_INCLUDED TRUE
+#endif
+frameworks/base/core/res/res/values/config.xml
+config_bluetooth_le_peripheral_mode_supported = true
+如果device/rockchip/common/overlay/packages/apps/Bluetooth/res/values/config.xml中也有定义config_bluetooth_le_peripheral_mode_supported的话，也要修改
+mmm packages/apps/Bluetooth/ -B
+--- a/core/java/android/bluetooth/BluetoothAdapter.java
++++ b/core/java/android/bluetooth/BluetoothAdapter.java
+@@ -570,7 +570,7 @@ public final class BluetoothAdapter {
+      */
+     public BluetoothLeAdvertiser getBluetoothLeAdvertiser() {
+         if (!getLeAccess()) return null;
+-        if (!isMultipleAdvertisementSupported() && !isPeripheralModeSupported()) {
++        if (/*!isMultipleAdvertisementSupported() &&*/ !isPeripheralModeSupported()) {
+             Log.e(TAG, "Bluetooth LE advertising not supported");
+             return null;
+         }
+-------------
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
 如果还不行就找一下redmine 还有就是打下面的补丁
 
 ```
