@@ -470,6 +470,9 @@ HOST进入休眠RTS拉高，停止传输，退出休眠拉低，再次进行传�
 这个换模组的时候，虽然驱动不用换，但是kernel的配置是需要重新设置的（如果不换就会产生这个问题，应用在驱动和RFKILL配置不对）
 
 也有可能wifi DMA sdio通信出现问题，特别是这种换模块的
+dwmmc_rockchip ff500000.rksdmmc: dw_mci_submit_data_dma: fall back to PIO mode for current transfer
+
+wifi驱动主要看mmc 和 使用mmc的wifi驱动 ，其中一个有问题都会不行，一般问题会出在mmc上面，接口用不了
 在.config上面配置
 CONFIG_MMC_DW_IDMAC = n
 ```
