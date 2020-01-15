@@ -132,6 +132,23 @@ Command: HCI_LE_Set_Scan_Parameters
 le scan = 16 *0.625 = 10ms 
 le scan interval = 352 * 0.625 =220 ms = 0.22s 
 
+
+如9.0的修改
+--- a/src/com/android/bluetooth/gatt/ScanManager.java
++++ b/src/com/android/bluetooth/gatt/ScanManager.java
+@@ -512,8 +512,8 @@ public class ScanManager {
+         private static final int SCAN_MODE_BATCH_LOW_POWER_INTERVAL_MS = 150000;
+         private static final int SCAN_MODE_BATCH_BALANCED_WINDOW_MS = 1500;
+         private static final int SCAN_MODE_BATCH_BALANCED_INTERVAL_MS = 15000;
+-        private static final int SCAN_MODE_BATCH_LOW_LATENCY_WINDOW_MS = 1500;
+-        private static final int SCAN_MODE_BATCH_LOW_LATENCY_INTERVAL_MS = 5000;
++        private static final int SCAN_MODE_BATCH_LOW_LATENCY_WINDOW_MS = 10;
++        private static final int SCAN_MODE_BATCH_LOW_LATENCY_INTERVAL_MS = 220;
+
+         // The logic is AND for each filter field.
+         private static final int LIST_LOGIC_TYPE = 0x1111111;
+         
+
 比较好的le参数
 
 
