@@ -1,0 +1,37 @@
+diff --git a/bluetooth/libbt/src/hardware.c b/bluetooth/libbt/src/hardware.c
+index e0b9882..f9901bf 100755
+--- a/bluetooth/libbt/src/hardware.c
++++ b/bluetooth/libbt/src/hardware.c
+@@ -59,6 +59,8 @@
+ #define BTHWDBG(param, ...) {}
+ #endif
+
++#define BTM_SCO_CODEC_CVSD 0x0001
++static int hw_set_SCO_codec(uint16_t codec);
+ #define FW_PATCHFILE_EXTENSION      ".hcd" 
+ #define FW_PATCHFILE_EXTENSION_LEN  4
+ #define FW_PATCHFILE_PATH_MAXLEN    248 /* Local_Name length of return of
+@@ -1342,7 +1344,7 @@ void hw_sco_config(void)
+      *  configuration till SCO/eSCO is being established;
+      *  i.e. in hw_set_audio_state() call.
+      */
+-
++    hw_set_SCO_codec(BTM_SCO_CODEC_CVSD);
+     if (bt_vendor_cbacks)
+     {
+         bt_vendor_cbacks->scocfg_cb(BT_VND_OP_RESULT_SUCCESS);
+@@ -1479,11 +1481,12 @@ static int hw_set_SCO_codec(uint16_t codec)
+         else
+         {
+             /* Disable mSBC */
+-            *p++ = (SCO_CODEC_PARAM_SIZE - 2); /* set the parameter size */
++            *p++ = (SCO_CODEC_PARAM_SIZE); /* set the parameter size */
+             UINT8_TO_STREAM(p,0); /* disable */
++            UINT8_TO_STREAM(p,codec); /* set codec */
+
+             /* set the totall size of this packet */
+-            p_buf->len = HCI_CMD_PREAMBLE_SIZE + SCO_CODEC_PARAM_SIZE - 2;
++            p_buf->len = HCI_CMD_PREAMBLE_SIZE + SCO_CODEC_PARAM_SIZE;
+
+             p_set_SCO_codec_cback = hw_set_CVSD_codec_cback;
+             if ((codec != SCO_CODEC_CVSD) && (codec != SCO_CODEC_NONE))
