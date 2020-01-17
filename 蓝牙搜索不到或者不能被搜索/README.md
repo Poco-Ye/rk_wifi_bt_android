@@ -133,21 +133,46 @@ le scan = 16 *0.625 = 10ms
 le scan interval = 352 * 0.625 =220 ms = 0.22s 
 
 
-如9.0的修改
+diff --git a/stack/btm/btm_ble_int.h b/stack/btm/btm_ble_int.h
+index 3b16abb2..5550088b 100644
+--- a/stack/btm/btm_ble_int.h
++++ b/stack/btm/btm_ble_int.h
+@@ -62,8 +62,8 @@
+ #define BTM_BLE_GAP_DISC_SCAN_WIN      18         /* scan_window = 11.25 ms= 0x0010 * 0.625 ms */
+ #define BTM_BLE_GAP_ADV_INT            512        /* Tgap(gen_disc) = 1.28 s= 512 * 0.625 ms */
+ #define BTM_BLE_GAP_LIM_TIMEOUT_MS     (180 * 1000) /* Tgap(lim_timeout) = 180s max */
+-#define BTM_BLE_LOW_LATENCY_SCAN_INT   8000       /* Interval(scan_int) = 5s= 8000 * 0.625 ms */
+-#define BTM_BLE_LOW_LATENCY_SCAN_WIN   8000       /* scan_window = 5s= 8000 * 0.625 ms */
++#define BTM_BLE_LOW_LATENCY_SCAN_INT   352       /* Interval(scan_int) = 5s= 8000 * 0.625 ms */
++#define BTM_BLE_LOW_LATENCY_SCAN_WIN   16       /* scan_window = 5s= 8000 * 0.625 ms */
+
+
+ #define BTM_BLE_GAP_ADV_FAST_INT_1         48         /* TGAP(adv_fast_interval1) = 30(used) ~ 60 ms  = 48 *0.625 */
+  
+
+
+
+
+一般是上面那个有用，下面这个我也没去找过
+
+diff --git a/src/com/android/bluetooth/gatt/ScanManager.java b/src/com/android/bluetooth/gatt/ScanManager.java
+index 8b2f6d93..5dde85d9 100644
 --- a/src/com/android/bluetooth/gatt/ScanManager.java
 +++ b/src/com/android/bluetooth/gatt/ScanManager.java
-@@ -512,8 +512,8 @@ public class ScanManager {
-         private static final int SCAN_MODE_BATCH_LOW_POWER_INTERVAL_MS = 150000;
-         private static final int SCAN_MODE_BATCH_BALANCED_WINDOW_MS = 1500;
-         private static final int SCAN_MODE_BATCH_BALANCED_INTERVAL_MS = 15000;
--        private static final int SCAN_MODE_BATCH_LOW_LATENCY_WINDOW_MS = 1500;
--        private static final int SCAN_MODE_BATCH_LOW_LATENCY_INTERVAL_MS = 5000;
-+        private static final int SCAN_MODE_BATCH_LOW_LATENCY_WINDOW_MS = 10;
-+        private static final int SCAN_MODE_BATCH_LOW_LATENCY_INTERVAL_MS = 220;
+@@ -365,8 +365,8 @@ public class ScanManager {
+         private static final int SCAN_MODE_LOW_POWER_INTERVAL_MS = 5000;
+         private static final int SCAN_MODE_BALANCED_WINDOW_MS = 2000;
+         private static final int SCAN_MODE_BALANCED_INTERVAL_MS = 5000;
+-        private static final int SCAN_MODE_LOW_LATENCY_WINDOW_MS = 5000;
+-        private static final int SCAN_MODE_LOW_LATENCY_INTERVAL_MS = 5000;
++        private static final int SCAN_MODE_LOW_LATENCY_WINDOW_MS = 10;
++        private static final int SCAN_MODE_LOW_LATENCY_INTERVAL_MS = 220;
 
-         // The logic is AND for each filter field.
-         private static final int LIST_LOGIC_TYPE = 0x1111111;
-         
+         /**
+          * Onfound/onlost for scan settings
+
+  
+  
 
 比较好的le参数
 
