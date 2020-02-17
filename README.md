@@ -1,3 +1,17 @@
+WIFI FTP
+
+ftp://ftp3.realtek.com
+
+账号:RTL8188E 密码: M6b3Er
+
+BT FTP
+
+ftp://ftp3.realtek.com
+
+bt	V9nW2h
+
+
+
 看上层代码的诀窍是只看后面函数不看前面的类，查看复用以0A 0B 0C 0D 1A..系列为查询比如GRF_GPIO1A_IOMUX 0x0010
 
 1、io命令的例子io -4 -w 0xff7b0004 0x00ff000f   一定要0x 不然会报错
