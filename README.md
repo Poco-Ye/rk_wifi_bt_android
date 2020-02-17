@@ -2,13 +2,13 @@ WIFI FTP
 
 ftp://ftp3.realtek.com
 
-账号:RTL8188E 密码: M6b3Er
+RTL8188E    M6b3Er
 
 BT FTP
 
 ftp://ftp3.realtek.com
 
-bt	V9nW2h
+bt	    V9nW2h
 
 
 
