@@ -548,6 +548,24 @@ libbt-vendor_usb.so
 libbt-vendor_uart.so
 ==>lib_handle = dlopen("libbt-vendor.so",RTLD_NOW)
 
+45、回连问题
+以前我们有看到经常的simple paring 还有code request 连接 或者是le link key连接  各种各样的安全方式都有
+但是总是离不开两个东西，一：地址  二：key
+回连不上，就算这两个东西改了
+蓝牙是两个设备连接的，所以地址和key是成对存在，谁改了都行
+说说地址：
+特别是le地址和br/edr地址，理论上是有两个的，正常来说，看模组的设置来说，只有一个地方改地址，剩下一个给le addr用的只有set random addr这条指令
+单从snoop是看不到本地的le addr，空中包就可以看到了，所以：我们默认，没有下random addr指令，le地址就是和br/edr地址一致
+ble回连不上，原因经常有两个
+1、下发了random addr指令，导致每次重启le addr会变，对端保存不认识你，自然回连不上
+2、模组addr变了，比如ota升级，恢复出厂设置，一样回连不上，想要回连就必须保存地址不变
+3、bt_cnfig.conf被删了，上面保存着连接的密码，没有自然回连不上
+
+br/edr回连不上
+1、模组addr变了，比如ota升级，恢复出厂设置，一样回连不上，想要回连就必须保存地址不变
+2、bt_cnfig.conf被删了，上面保存着连接的密码，没有自然回连不上
+
+可参考蓝牙地址.md
 ```
 
 
