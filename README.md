@@ -1,8 +1,10 @@
 WIFI FTP
 
-ftp://ftp3.realtek.com
+http://rsc.realtek.com
 
-账号RTL8188E 密码M6b3Er
+帐号：rockchip_lch 密码：rockchip123
+
+这个上面一样放到ftp3.realtek.com  这个上面放了android各种wifi 蓝牙资源  不同账户和密码拿的东西不一样
 
 BT FTP
 
