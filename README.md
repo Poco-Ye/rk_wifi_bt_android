@@ -549,8 +549,9 @@ libbt-vendor.so
 libbt-vendor_usb.so
 libbt-vendor_uart.so
 ==>lib_handle = dlopen("libbt-vendor.so",RTLD_NOW)
-
+```
 45、回连问题
+```
 以前我们有看到经常的simple paring 还有code request 连接 或者是le link key连接  各种各样的安全方式都有
 但是总是离不开两个东西，一：地址  二：key
 回连不上，就是这两个东西改了，或者模组下的fw被改了
