@@ -1,3 +1,5 @@
+SDK编译问题，直接修改build.sh的all选项，涵盖了所有的部分，可以屏蔽或者加echo，可以单项测试
+
 WIFI FTP
 
 http://rsc.realtek.com
