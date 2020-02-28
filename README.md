@@ -534,32 +534,8 @@ hcidump -w xxx.cfa &(linux android的没有工具看前面模板改)
 tcpdump -i eth0 -s 0 -w /data/xxx.pcap &
 tcpdump -i wlan0 -s 0 -w /data/xxx.pcap &
 ```
-44、蓝牙库的加载
-```
-libbluetooth_jni.so 
-==>System.loadLibrary("bluetooth_jni") ==>jniRegisterNativeMethods(env, "com/android/bluetooth/avrcp/Avrcp",sMethods, NELEM(sMethods));
-==>src/com/android/bluetooth/avrcp/Avrcp.java==>class Avrcp {  static {classInitNative();}
 
-bluetooth.default.so
-bluetooth_rtk.default.so
-==>hw_get_module("bluetooth", (hw_module_t const**)&module) ==> hardware/libhardware/hardware.c ==> handle=dlopen(path, RTLD_NOW)
-==> hmi=(struct hw_module_t *)dlsym(handle, sym)
-
-libbt-vendor.so
-libbt-vendor_usb.so
-libbt-vendor_uart.so
-==>lib_handle = dlopen("libbt-vendor.so",RTLD_NOW)
-
-RTK库版本问题
-hardware/realtek/rtkbt$ grep 20170109 -nr
-code/libbt-vendor/uart/src/hardware.c:30:#define RTKBT_RELEASE_NAME "20170109_TV_ANDROID_7.x"
-code/libbt-vendor/uart/src/bt_vendor_rtk.c:29:#define RTKBT_RELEASE_NAME "20170109_TV_ANDROID_7.x"
-code/libbt-vendor/usb/src/bt_vendor_rtk.c:28:#define RTKBT_RELEASE_NAME "20170109_TV_ANDROID_7.x"
-system/etc/bluetooth/rtkbt.conf:1:# RELEASE NAME: 20170109_TV_ANDROID_7.x
-rtkbt.mk:1:# RELEASE NAME: 20170109_TV_ANDROID_7.x
-
-```
-45、回连问题
+44、回连问题
 ```
 以前我们有看到经常的simple paring 还有code request 连接 或者是le link key连接  各种各样的安全方式都有
 但是总是离不开两个东西，一：地址  二：key
