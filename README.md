@@ -549,6 +549,15 @@ libbt-vendor.so
 libbt-vendor_usb.so
 libbt-vendor_uart.so
 ==>lib_handle = dlopen("libbt-vendor.so",RTLD_NOW)
+
+RTK库版本问题
+hardware/realtek/rtkbt$ grep 20170109 -nr
+code/libbt-vendor/uart/src/hardware.c:30:#define RTKBT_RELEASE_NAME "20170109_TV_ANDROID_7.x"
+code/libbt-vendor/uart/src/bt_vendor_rtk.c:29:#define RTKBT_RELEASE_NAME "20170109_TV_ANDROID_7.x"
+code/libbt-vendor/usb/src/bt_vendor_rtk.c:28:#define RTKBT_RELEASE_NAME "20170109_TV_ANDROID_7.x"
+system/etc/bluetooth/rtkbt.conf:1:# RELEASE NAME: 20170109_TV_ANDROID_7.x
+rtkbt.mk:1:# RELEASE NAME: 20170109_TV_ANDROID_7.x
+
 ```
 45、回连问题
 ```
