@@ -17,3 +17,28 @@ OPP：1.0
 a2dp是1.2版本。
 
 android7.1的avrcp是1.4版本。
+
+
+android8.1
+
+FTP :  默认没有
+
+DI ：默认没有
+
+IOPT : 默认没有
+
+GAVDP：1.3
+
+HFP：1.7，需实现pcm音频驱动
+
+HID：1.0
+
+HSP：1.2，需实现pcm音频驱动
+
+MAP：默认没有
+
+OPP：1.0
+
+a2dp是1.2
+
+avrcp是1.3
