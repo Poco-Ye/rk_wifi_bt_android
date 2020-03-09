@@ -105,6 +105,22 @@ setprop  persist.bluetooth.btsnooppath   /sdcard/btsnoop_hci.log
 ```
 蓝牙模板四：
 ```
+diff --git a/include/vnd_rksdk.txt b/include/vnd_rksdk.txt
+index 811cf25..7fef04e 100644
+--- a/include/vnd_rksdk.txt
++++ b/include/vnd_rksdk.txt
+@@ -15,8 +15,8 @@ BT_WAKE_VIA_PROC = TRUE
+ SCO_PCM_ROUTING = 0
+ SCO_PCM_IF_CLOCK_RATE = 2
+ SCO_PCM_IF_FRAME_TYPE = 0
+-SCO_PCM_IF_SYNC_MODE = 0
+-SCO_PCM_IF_CLOCK_MODE = 0
++SCO_PCM_IF_SYNC_MODE = 1
++SCO_PCM_IF_CLOCK_MODE = 1
+ PCM_DATA_FMT_SHIFT_MODE = 0
+ PCM_DATA_FMT_FILL_BITS = 0
+ PCM_DATA_FMT_FILL_METHOD = 0
+
 将模组的PCM_IN PCM_OUT PCM_SYNC PCM_CLK 与声卡的连接断开，然后将模组的PCM_IN PCM_OUT进行短接
 
 再用微信或者app语音测试，进行回环测试，手机上能否自己说话自己听到
