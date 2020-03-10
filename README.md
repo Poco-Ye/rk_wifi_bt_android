@@ -1,3 +1,6 @@
+关于dmesg或者logcat |grep -e -e -e 的问题可以研究各种嵌入式各个部分的问题，关于.repo/repo/repo sync -c xxx -no-tags和git stash gis stash pop可以管理嵌入式各个部分的问题
+
+
 SDK编译问题，直接修改build.sh的all选项，涵盖了所有的部分，可以屏蔽或者加echo，可以单项测试
 
 WIFI FTP
