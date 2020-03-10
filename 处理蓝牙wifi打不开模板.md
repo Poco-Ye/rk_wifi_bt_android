@@ -1,6 +1,17 @@
 太多这种问题了每次都要我手动敲不好
 
 
+logcat -c 
+然后关闭再打开蓝牙
+ps |grep bluetooth
+logcat |grep (bluetooth的id)
+
+logcat -c 
+然后关闭再打开蓝牙
+logcat |grep $(ps |grep bluetooth |busybox awk '{print $2}') > logcat_bt.txt
+
+
+
 注意没有/sdcard/btsnoop_hci.log的话(sdcard不可用)，一定要用/data/misc/bluedroid/btsnoop_hci.log，selinux在init.rc就授权
 ```
 蓝牙模板一：
