@@ -7,8 +7,11 @@ ps |grep bluetooth
 logcat |grep (bluetooth的id)
 
 logcat -c 
-然后关闭再打开蓝牙
-logcat |grep $(ps |grep bluetooth |busybox awk '{print $2}') > logcat_bt.txt
+cd /data  到data目录下
+然后关闭再打开蓝牙，打开蓝牙后的瞬间，快速运行如下命令
+logcat -v time|grep $(ps |grep bluetooth |busybox awk '{print $2}') > logcat_bt.txt &
+
+问题出现后，将logcat_bt.txt提供一下
 
 
 
