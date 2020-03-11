@@ -7,6 +7,36 @@ logcat -c
 ps |grep bluetooth
 logcat |grep (bluetooth的id)
 
+
+
+注意没有/sdcard/btsnoop_hci.log的话(sdcard不可用)，
+一定要用/data/misc/bluedroid/btsnoop_hci.log，selinux在init.rc就授权
+
+蓝牙模板一：
+修改文件/etc/bluetooth/bt_stack.conf
+diff --git a/bt_stack.conf b/bt_stack.conf
+index a0afcb54..14d76f54 100644
+--- a/bt_stack.conf
++++ b/bt_stack.conf
+@@ -1,12 +1,12 @@
+ # Enable BtSnoop logging function
+ # valid value : true, false
+-BtSnoopLogOutput=false
++BtSnoopLogOutput=true
+
+ # BtSnoop log output file
+-BtSnoopFileName=/data/misc/bluetooth/logs/btsnoop_hci.log
++BtSnoopFileName=/sdcard/btsnoop_hci.log
+
+ # Preserve existing BtSnoop log before overwriting
+-BtSnoopSaveLog=false
++BtSnoopSaveLog=true
+ 
+改完后chmod 644 /etc/bluetooth/bt_stack.conf
+关闭再打开蓝牙，每打开一次蓝牙产生新的btsnoop_hci.log
+复现问题后，不要再动蓝牙开关(再次打开蓝牙后会产生新的btsnoop_hci.log就看不到问题)提供一下/sdcard/btsnoop_hci.log
+
+
 logcat -c 
 cd /data  到data目录下
 然后关闭再打开蓝牙，打开蓝牙后的瞬间，快速运行如下命令
@@ -16,28 +46,6 @@ logcat -v time|grep $(ps |grep bluetooth |busybox awk '{print $2}') > logcat_bt.
 
 
 
-注意没有/sdcard/btsnoop_hci.log的话(sdcard不可用)，
-一定要用/data/misc/bluedroid/btsnoop_hci.log，selinux在init.rc就授权
-
-蓝牙模板一：
-修改文件/etc/bluetooth/bt_stack.conf
-diff --git a/bt_stack.conf b/bt_stack.conf
-index 711fe51..280d4bd 100644
---- a/bt_stack.conf
-+++ b/bt_stack.conf
-@@ -1,6 +1,6 @@
- # Enable BtSnoop logging function
- # valid value : true, false
--BtSnoopLogOutput=false
-+BtSnoopLogOutput=true
-
- # BtSnoop log output file
- BtSnoopFileName=/sdcard/btsnoop_hci.log
- 
- 
-改完后chmod 777  /etc/bluetooth/bt_stack.conf
-关闭再打开蓝牙
-复现问题提供一下/sdcard/btsnoop_hci.log
 
 测量一下LPO引脚有没有32.768k clk提供还有频偏，PMU 配置LDO提供的 VDDIO引脚的电平，VBAT引脚电平，BT_RTS_N使能引脚电平，还有晶体频偏
 
