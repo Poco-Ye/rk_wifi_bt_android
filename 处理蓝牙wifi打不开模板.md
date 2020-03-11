@@ -13,7 +13,7 @@ logcat |grep (bluetooth的id)
 一定要用/data/misc/bluedroid/btsnoop_hci.log，selinux在init.rc就授权
 
 蓝牙模板一：
-修改文件/etc/bluetooth/bt_stack.conf
+修改文件/system/etc/bluetooth/bt_stack.conf
 diff --git a/bt_stack.conf b/bt_stack.conf
 index a0afcb54..14d76f54 100644
 --- a/bt_stack.conf
@@ -32,7 +32,6 @@ index a0afcb54..14d76f54 100644
 -BtSnoopSaveLog=false
 +BtSnoopSaveLog=true
  
-改完后chmod 644 /etc/bluetooth/bt_stack.conf
 关闭再打开蓝牙，每打开一次蓝牙产生新的btsnoop_hci.log
 复现问题后，不要再动蓝牙开关(再次打开蓝牙后会产生新的btsnoop_hci.log就看不到问题)提供一下/sdcard/btsnoop_hci.log
 
@@ -122,9 +121,8 @@ setprop  persist.bluetooth.btsnoopenable  true
 
 setprop  persist.bluetooth.btsnooppath   /sdcard/btsnoop_hci.log
 
-关开蓝牙
-复现问题提供一下
-/sdcard/btsnoop_hci.log
+关闭再打开蓝牙，每打开一次蓝牙产生新的btsnoop_hci.log
+复现问题后，不要再动蓝牙开关(再次打开蓝牙后会产生新的btsnoop_hci.log就看不到问题)提供一下/sdcard/btsnoop_hci.log
 
 ```
 蓝牙模板四：
