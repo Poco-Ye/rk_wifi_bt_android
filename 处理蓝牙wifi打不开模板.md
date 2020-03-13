@@ -12,8 +12,9 @@ logcat |grep (bluetooth的id)
 注意没有/sdcard/btsnoop_hci.log的话(sdcard不可用)，
 一定要用/data/misc/bluedroid/btsnoop_hci.log，selinux在init.rc就授权
 ```
-蓝牙模板hardware
+
 ```
+蓝牙模板hardware
 diff --git a/include/vnd_rk30sdk.txt b/include/vnd_rk30sdk.txt
 index 16491f6..59c7ec1 100644
 --- a/include/vnd_rk30sdk.txt
