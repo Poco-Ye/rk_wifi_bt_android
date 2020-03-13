@@ -11,7 +11,30 @@ logcat |grep (bluetooth的id)
 
 注意没有/sdcard/btsnoop_hci.log的话(sdcard不可用)，
 一定要用/data/misc/bluedroid/btsnoop_hci.log，selinux在init.rc就授权
+```
+蓝牙模板hardware
+```
+diff --git a/include/vnd_rk30sdk.txt b/include/vnd_rk30sdk.txt
+index 16491f6..59c7ec1 100644
+--- a/include/vnd_rk30sdk.txt
++++ b/include/vnd_rk30sdk.txt
+@@ -4,12 +4,11 @@ UART_TARGET_BAUD_RATE = 1500000
+ FW_PATCH_SETTLEMENT_DELAY_MS = 200
+ USERIAL_VENDOR_SET_BAUD_DELAY_US = 200000
+ LPM_IDLE_TIMEOUT_MULTIPLE = 5
+-BTVND_DBG = FALSE
+-BTHW_DBG = FALSE
+-VNDUSERIAL_DBG = FALSE
+-UPIO_DBG = FALSE
++BTVND_DBG = TRUE
++BTHW_DBG = TRUE
++VNDUSERIAL_DBG = TRUE
++UPIO_DBG = TRUE
 
+logcat |grep -e bt_hwcfg -e bt_vendor -e bt_userial_vendor -e bt_upio
+
+```
+```
 蓝牙模板一：
 修改文件/system/etc/bluetooth/bt_stack.conf
 diff --git a/bt_stack.conf b/bt_stack.conf
