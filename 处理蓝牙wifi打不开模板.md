@@ -151,6 +151,8 @@ setprop  persist.bluetooth.btsnooppath   /sdcard/btsnoop_hci.log
 ```
 蓝牙模板四：
 ```
+最好用逻辑分析仪抓波形
+
 diff --git a/include/vnd_rksdk.txt b/include/vnd_rksdk.txt
 index 811cf25..7fef04e 100644
 --- a/include/vnd_rksdk.txt
