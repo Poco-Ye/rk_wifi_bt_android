@@ -249,6 +249,7 @@ dmesg |grep 30010000 就可以确认
 
 12、PCM
 ```
+最好用逻辑分析仪抓波形
 复现问题之前运行hcidump -w xxx.cfa &
 复现问题提供xxx.cfa
 用逻辑分析仪抓一下PCM_IN PCM_OUT PCM_SYNC PCM_CLK的波形
@@ -311,6 +312,8 @@ make ARCH=arm64 CONFIG_AP6XXX=m -C ./ M=./drivers/net/wireless/rockchip_wlan/rkw
 
 18、PCM声音调试(pclk和sclk)
 ```
+最好用逻辑分析仪抓波形
+
 a:确定sco链路建立，蓝牙进入sniff mode可以很好体现，抓sniff可以看到链路建立，
 也可以用ellisys空中看看有没有，有嘈杂声音肯定就是有数据的了
 
