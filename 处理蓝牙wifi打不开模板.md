@@ -129,9 +129,17 @@ index 711fe51..0d62aed 100644
 +TRC_BTAPP=6
 +TRC_BTIF=6
 
-改完后chmod 777  /etc/bluetooth/bt_stack.conf
-关闭再打开蓝牙
-复现问题提供一下/sdcard/btsnoop_hci.log
+关闭再打开蓝牙，每打开一次蓝牙产生新的btsnoop_hci.log
+复现问题后，不要再动蓝牙开关(再次打开蓝牙后会产生新的btsnoop_hci.log就看不到问题)提供一下/sdcard/btsnoop_hci.log
+
+logcat -c 
+cd /data  到data目录下
+然后关闭再打开蓝牙，打开蓝牙后的瞬间，快速运行如下命令
+logcat -v time|grep $(ps |grep bluetooth |busybox awk '{print $2}') > logcat_bt.txt &
+
+问题出现后，将logcat_bt.txt提供一下
+
+
 
 测量一下LPO引脚有没有32.768k clk提供还有频偏，PMU 配置LDO提供的 VDDIO引脚的电平，VBAT引脚电平，BT_RTS_N使能引脚电平，还有晶体频偏
 
