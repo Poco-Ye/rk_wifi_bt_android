@@ -567,6 +567,11 @@ br/edr回连不上
 
 可参考蓝牙地址.md
 ```
+45、wifi扫不到AP,8.0之前可以将CONFIG_VTS_SUPPORT配置关掉
+--- a/drivers/net/wireless/rockchip_wlan/rkwifi/bcmdhd/Makefile
++++ b/drivers/net/wireless/rockchip_wlan/rkwifi/bcmdhd/Makefile
+-CONFIG_VTS_SUPPORT := y
++CONFIG_VTS_SUPPORT := n
 
 
 
