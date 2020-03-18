@@ -574,6 +574,24 @@ br/edr回连不上
 -CONFIG_VTS_SUPPORT := y
 +CONFIG_VTS_SUPPORT := n
 ```
+46、关于带宽
+```
+带宽是无线物理属性，频带宽度（载波能力）
+蓝牙BR/EDR  2.4G  79个通道  1M带宽   
+调制有DM1 DM3 DM5  有带M字的就是FEC2/3(相当于传3次相同的东西) DH1 DH3 DH5 没有FEC 传的快 
+最大3DH5一般是2M小b最快了，传命令一般是DM1几十K小b  传数据一般是3DH5(比如a2dp数据)一般是1.多M小b吞吐
+
+蓝牙BLE     2.4G  40个通道  2M带宽    1M PHY 和2M PHY都是几百K小b吞吐
+
+
+WIFI 802.11a/b/g  2.4G   20M带宽  一般13个通道（不同国家不同，可能增加或减少通道）  一般几十M小b吞吐
+
+WIFI 802.11a/b/g  /n/ac  2.4G/5G  20M/40M带宽  一般13个通道，还有5G通道（iwlist wlan0 channel可以查看，
+通道可以通过国家码在wifi驱动设置）    一般100M小b以上吞吐，5G一般几百M小b吞吐         
+
+
+WIFI比蓝牙带宽大，传的多，蓝牙主要专注于功耗
+```
 
 
 
