@@ -45,6 +45,8 @@ status = "okay";
 除了dts改，最大限制也要从50改成150
 
 修改限制也可以直接修改到sdio clk
+
+直接限制最大为2M
 ```
 diff --git a/drivers/mmc/core/sdio.c b/drivers/mmc/core/sdio.c
 index 010ea232612..6a3cc51356b 100644
