@@ -594,6 +594,18 @@ WIFI 802.11a/b/g  /n/ac  2.4G/5G  20M/40M带宽  一般13个通道，还有5G通
 
 WIFI比蓝牙带宽大，传的多，蓝牙主要专注于功耗
 ```
-
+46、确认用的32位还是64位的.so
+```
+，如果是64会先找lib64，get module的函数就会有
+#if defined(__LP64__)
+#define HAL_LIBRARY_PATH1 "/system/lib64/hw"
+#define HAL_LIBRARY_PATH2 "/vendor/lib64/hw"
+#define HAL_LIBRARY_PATH3 "/odm/lib64/hw"
+实例就是32位
+getprop |grep ro.product.cpu.abilist
+[ro.product.cpu.abilist]: [armeabi-v7a,armeabi]
+[ro.product.cpu.abilist32]: [armeabi-v7a,armeabi]
+[ro.product.cpu.abilist64]: []
+```
 
 
