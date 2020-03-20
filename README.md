@@ -212,6 +212,8 @@ CONFIG_WIFI_BUILD_MODULE（优先级最高）
  //sd-uhs-sdr104;   //这个要关掉，sdr104是208M的意思，我们CPU最多150M
  status = "okay";
 };
+
+查看sdio速率修改.md
 ```
 
 10、复用关系查找（发现有复用可以将复用模块status设置成为disabled）
