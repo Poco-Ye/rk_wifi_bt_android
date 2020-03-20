@@ -607,5 +607,14 @@ getprop |grep ro.product.cpu.abilist
 [ro.product.cpu.abilist32]: [armeabi-v7a,armeabi]
 [ro.product.cpu.abilist64]: []
 ```
+47、io子系统
+```
+find /d/ -name "*pinmux*"
+cat pinmux-pins
+pin 97 (gpio3-1): 30010000.rksdmmc (GPIO UNCLAIMED) function sdio-1 group sdio1-cmd
+echo 97 > /sys/class/gpio/export
+echo 97 > /sys/class/gpio/gpio97/direction
+echo 1 >/sys/class/gpio/gpio97/value
+```
 
 
