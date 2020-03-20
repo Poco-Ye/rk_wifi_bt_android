@@ -609,6 +609,7 @@ getprop |grep ro.product.cpu.abilist
 ```
 47、io子系统
 ```
+这段可以检查包括复用关系和控制IO进行导通性测试
 find /d/ -name "*pinmux*"
 cat pinmux-pins
 pin 97 (gpio3-1): 30010000.rksdmmc (GPIO UNCLAIMED) function sdio-1 group sdio1-cmd
