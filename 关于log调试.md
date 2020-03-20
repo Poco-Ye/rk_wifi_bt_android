@@ -35,7 +35,7 @@ kernel/include/linux/kern_levels.h
 
 cat /proc/sys/kernel/printk
 7417
-ehco 4 >/proc/sys/kernel/printk
+echo 4 >/proc/sys/kernel/printk
 4417
 
 这个东西其实是过滤的作用，并不是说软件上打的log丢失了，没有丢失，没有丢失，而是不显示在终端，
