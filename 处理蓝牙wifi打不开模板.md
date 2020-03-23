@@ -147,8 +147,8 @@ echo 0 > /sys/class/rfkill/rfkill0/state
 echo 1 > /sys/class/rfkill/rfkill0/state
 BT_RTS_N引脚有无电平变化
 ```
-```
 蓝牙模板三：
+```
 setprop  persist.bluetooth.btsnoopenable  true
 
 setprop  persist.bluetooth.btsnooppath   /sdcard/btsnoop_hci.log
@@ -158,6 +158,17 @@ setprop  persist.bluetooth.btsnooppath   /sdcard/btsnoop_hci.log
 
 ```
 蓝牙模板四：
+```
+setprop persist.bluetooth.btsnooplogmode full
+
+setprop  persist.bluetooth.btsnooppath   /sdcard/btsnoop_hci.log
+
+关闭再打开蓝牙，每打开一次蓝牙产生新的btsnoop_hci.log
+复现问题后，不要再动蓝牙开关(再次打开蓝牙后会产生新的btsnoop_hci.log就看不到问题)提供一下/sdcard/btsnoop_hci.log
+```
+
+
+蓝牙模板五：
 ```
 最好用逻辑分析仪抓波形
 
@@ -183,7 +194,7 @@ index 811cf25..7fef04e 100644
 
 用示波器抓一下PCM_SYNC PCM_CLK 两端,是否有clk，是声卡那边提供还是模组那边提供,clk的频率和峰峰值
 ```
-蓝牙模板五：
+蓝牙模板六：
 ```
 使能脚电压和模组VDDIO电压是否一致，CPU sdio或者uart域电压和模组VDDIO电压是否一致
 
