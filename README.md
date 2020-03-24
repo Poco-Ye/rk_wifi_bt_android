@@ -342,10 +342,17 @@ f:按照config的大端，是正常顺序,包括在reganalyzer上的分析
 WIFI断线，得先确认RF指标是OK， 26M频偏 32.768KHZ 波形和电压峰峰值。先找代理商做指标测试
 板子在其它环境可以正常连接吗， 用WIFI分析仪APK扫描一下周围的环境。 只有一台或概率性有问题建议让代理商再做一下RF测试。让代理商到现场去录一下连接的封包sniffer。
 ```
-20、查看wifi驱动版本
+20、查看wifi/蓝牙驱动版本
 ```
 realtek:  cat  include/rtw_version.h
 broadcom: cat  include/epivers.h
+
+realtek:
+grep 20170109 -nr
+code/libbt-vendor/uart/src/hardware.c:30:#define RTKBT_RELEASE_NAME "20170109_TV_ANDROID_7.x"
+code/libbt-vendor/uart/src/bt_vendor_rtk.c:29:#define RTKBT_RELEASE_NAME "20170109_TV_ANDROID_7.x"
+code/libbt-vendor/usb/src/bt_vendor_rtk.c:28:#define RTKBT_RELEASE_NAME "20170109_TV_ANDROID_7.x"
+rtkbt.mk:1:# RELEASE NAME: 20170109_TV_ANDROID_7.x
 ```
 21、le scan code位置
 ```
