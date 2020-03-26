@@ -626,7 +626,6 @@ echo 1 >/sys/class/gpio/gpio97/value
 ```
 48、路径
 ```
-find ./ -name "*default*"
 find ./ -name "*vendor*"
 find ./ -name "*bluetooth*"
 Bluetooth.apk
