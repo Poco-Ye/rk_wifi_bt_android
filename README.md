@@ -630,5 +630,9 @@ find ./ -name "*vendor*"
 find ./ -name "*bluetooth*"
 Bluetooth.apk
 ```
-
+49、蓝牙类型修改
+```
+device/rockchip/common/bluetooth/bdroid_buildcfg.h
+http://bluetooth-pentest.narod.ru/software/bluetooth_class_of_device-service_generator.html
+```
 
