@@ -635,4 +635,11 @@ Bluetooth.apk
 device/rockchip/common/bluetooth/bdroid_buildcfg.h
 http://bluetooth-pentest.narod.ru/software/bluetooth_class_of_device-service_generator.html
 ```
+50、关于休眠出现问题
+```
+确认模块在休眠时的控制IO电压 电源IO电压 还有有CLK在休眠时与唤醒之后的状态有哪些不同
+
+rockchip-suspend节点修改唤醒功能
+PMU 配置各个域regulators 修改休眠供电问题
+```
 
