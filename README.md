@@ -642,4 +642,15 @@ http://bluetooth-pentest.narod.ru/software/bluetooth_class_of_device-service_gen
 rockchip-suspend节点修改唤醒功能
 PMU 配置各个域regulators 修改休眠供电问题
 ```
+51、android10.0跑进去hw init就死掉
+```
+--- a/src/upio.c
++++ b/src/upio.c
+ #ifndef PROC_BTWRITE_TIMER_TIMEOUT_MS
+-#define PROC_BTWRITE_TIMER_TIMEOUT_MS   8000
++#define PROC_BTWRITE_TIMER_TIMEOUT_MS   0
+ #endif
+```
+
+
 
