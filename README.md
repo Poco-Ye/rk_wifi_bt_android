@@ -651,6 +651,18 @@ PMU 配置各个域regulators 修改休眠供电问题
 +#define PROC_BTWRITE_TIMER_TIMEOUT_MS   0
  #endif
 ```
-
+52、反编译
+```
+#01 pc 0000000000005950  /vendor/lib64/libbt-vendor.so (upio_set+856) (BuildId: ffd0371b5ff24da2f3eedb08b584ee56)
+#02 pc 00000000000031d0  /vendor/lib64/libbt-vendor.so (op+280) (BuildId: ffd0371b5ff24da2f3eedb08b584ee56)
+发现错误，这里打印执行文件错误位置，一个执行文件就一个buildid
+prebuilts/gcc/linux-x86/aarch64/gcc-linaro-6.3.1-2017.05-x86_64_aarch64-linux-gnu/bin/aarch64-linux-gnu-readelf -a ~/poco/libbt-vendor.so > ~/poco/readelf.txt  可以查看buildid
+prebuilts/gcc/linux-x86/aarch64/gcc-linaro-6.3.1-2017.05-x86_64_aarch64-linux-gnu/bin/aarch64-linux-gnu-objdump -dx ~/poco/libbt-vendor.so > ~/poco/objdump.txt  可以查看错误位置地址5950
+5950:       940001b4        bl      6020 <timer_settime@plt>
+错误就是timer_settime
+或prebuilts/gcc/linux-x86/aarch64/gcc-linaro-6.3.1-2017.05-x86_64_aarch64-linux-gnu/bin/aarch64-linux-gnu-addr2line 5950 -e ~/poco/libbt-vendor.so -f -C -s  直接查看位置
+找到if (timer_settime(lpm_proc_cb.timer_id, 0, &ts, 0) == 0) {
+这个方法就是用来找代码位置的
+```
 
 
