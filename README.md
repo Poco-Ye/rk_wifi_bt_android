@@ -664,5 +664,9 @@ prebuilts/gcc/linux-x86/aarch64/gcc-linaro-6.3.1-2017.05-x86_64_aarch64-linux-gn
 找到if (timer_settime(lpm_proc_cb.timer_id, 0, &ts, 0) == 0) {
 这个方法就是用来找代码位置的
 ```
+53、有关ble app开发出现问题
+```
+客户开发BLE APP须自行查找问题，平台是google上更新标准接口的，可以安装Nrf connect测试发送接收，平台问题以nrf connect为准
+```
 
 
