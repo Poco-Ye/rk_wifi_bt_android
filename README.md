@@ -668,5 +668,24 @@ prebuilts/gcc/linux-x86/aarch64/gcc-linaro-6.3.1-2017.05-x86_64_aarch64-linux-gn
 ```
 客户开发BLE APP须自行查找问题，平台是google上更新标准接口的，可以安装Nrf connect测试发送接收，平台问题以nrf connect为准
 ```
+54、wifi fw下载
+```
+第一个函数是dhd_update_fw_nv_path，第二个函数是dhd_bus_download_firmware
+/* try to download image and nvram to the dongle */
+	if  (dhd->pub.busstate == DHD_BUS_DOWN && dhd_update_fw_nv_path(dhd)) {
+		DHD_INFO(("%s download fw %s, nv %s, conf %s\n",
+			__FUNCTION__, dhd->fw_path, dhd->nv_path, dhd->conf_path));
+		ret = dhd_bus_download_firmware(dhd->pub.bus, dhd->pub.osh,
+  
+  wl_android_priv_cmd   
+  #define CMD_SETFWPATH		"SETFWPATH"
+
+  默认是rfkill的type和wifi的设备id来匹配
+  p2p或者ap下载是上层通过SETFWPATH的cmd控制下载p2p fw
+  比如：
+  ./etc/firmware/fw_bcm43455c0_ag_p2p.bin
+  ./etc/firmware/fw_bcm43455c0_ag_apsta.bin
+  ./etc/firmware/fw_bcm43455c0_ag.bin
+```
 
 
