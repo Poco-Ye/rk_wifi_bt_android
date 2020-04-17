@@ -690,5 +690,6 @@ prebuilts/gcc/linux-x86/aarch64/gcc-linaro-6.3.1-2017.05-x86_64_aarch64-linux-gn
 55、蓝牙profile路径
 ```
 device/rockchip/common/overlay/packages/apps/Bluetooth/res/values/config.xml
+packages/apps/Bluetooth/res/values/config.xml
 ```
 
