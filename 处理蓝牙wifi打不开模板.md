@@ -143,7 +143,9 @@ logcat -v time|grep $(ps |grep bluetooth |busybox awk '{print $2}') > logcat_bt.
 
 
 
-测量一下LPO引脚有没有32.768k clk提供还有频偏，PMU 配置LDO提供的 VDDIO引脚的电平，VBAT引脚电平，BT_RTS_N使能引脚电平，还有晶体频偏
+测量一下LPO引脚有没有32.768k clk提供还有频偏，
+PMU 配置LDO提供的 VDDIO引脚的电平，VBAT引脚电平，BT_RTS_N使能引脚电平，还有晶体频偏
+检查一下域电压是否一致，IO导通性也测试一下
 
 echo 0 > /sys/class/rfkill/rfkill0/state
 echo 1 > /sys/class/rfkill/rfkill0/state
@@ -196,12 +198,7 @@ index 811cf25..7fef04e 100644
 
 用示波器抓一下PCM_SYNC PCM_CLK 两端,是否有clk，是声卡那边提供还是模组那边提供,clk的频率和峰峰值
 ```
-蓝牙模板六：
-```
-使能脚电压和模组VDDIO电压是否一致，CPU sdio或者uart域电压和模组VDDIO电压是否一致
 
-保证使能引脚 模组VDDIO   CPU sdio或者uart域电压 一致
-```
 ```
 wifi模板一：
 测量一下LPO 引脚有无32.768k clk 还有频偏，测量WL_REG_ON电平 ，VDDIO电平 ,VBAT电平，还有晶体频偏
