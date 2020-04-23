@@ -70,7 +70,9 @@ logcat -v time|grep $(ps |grep bluetooth |busybox awk '{print $2}') > logcat_bt.
 
 
 
-测量一下LPO引脚有没有32.768k clk提供还有频偏，PMU 配置LDO提供的 VDDIO引脚的电平，VBAT引脚电平，BT_RTS_N使能引脚电平，还有晶体频偏
+测量一下LPO引脚有没有32.768k clk提供还有频偏，
+PMU 配置LDO提供的 VDDIO引脚的电平，VBAT引脚电平，BT_RTS_N使能引脚电平，还有晶体频偏
+检查一下域电压是否一致，IO导通性也测试一下
 
 echo 0 > /sys/class/rfkill/rfkill0/state
 echo 1 > /sys/class/rfkill/rfkill0/state
