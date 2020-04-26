@@ -694,4 +694,20 @@ device/rockchip/common/overlay/packages/apps/Bluetooth/res/values/config.xml
 packages/apps/Bluetooth/res/values/config.xml
 overlay 单项覆盖，没有立项则不会抹掉
 ```
-
+56、8250串口打开打印
+```
+--- a/drivers/tty/serial/8250/8250.h
++++ b/drivers/tty/serial/8250/8250.h
+@@ -219,7 +219,7 @@ static inline int serial_index(struct uart_port *port)
+-#if 0
++#if 1
+ #define DEBUG_INTR(fmt...)     printk(fmt)
+diff --git a/drivers/tty/serial/8250/8250_port.c b/drivers/tty/serial/8250/8250_port.c
+index 14665c0..5f1739a 100644
+--- a/drivers/tty/serial/8250/8250_port.c
++++ b/drivers/tty/serial/8250/8250_port.c
+@@ -46,7 +46,7 @@
+-#if 0
++#if 1
+ #define DEBUG_AUTOCONF(fmt...) printk(fmt)
+```
