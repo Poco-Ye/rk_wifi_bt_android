@@ -615,7 +615,7 @@ getprop |grep ro.product.cpu.abilist
 [ro.product.cpu.abilist32]: [armeabi-v7a,armeabi]
 [ro.product.cpu.abilist64]: []
 ```
-47、io子系统
+47、复用关系快速确定
 ```
 这段可以检查包括复用关系和控制IO进行导通性测试
 find /d/ -name "*pinmux*"
@@ -624,6 +624,15 @@ pin 97 (gpio3-1): 30010000.rksdmmc (GPIO UNCLAIMED) function sdio-1 group sdio1-
 echo 97 > /sys/class/gpio/export
 echo 97 > /sys/class/gpio/gpio97/direction
 echo 1 >/sys/class/gpio/gpio97/value
+
+上面一种方法有点局限性，有时侯软件可能显示正常，但是实际不是如此
+IO指令快速方法
+先找到引脚是哪个，比如3 29
+GPIO3?[?]，
+29/8=3余5 
+0就是A 1就是B 2就是C 3就是D 一共也只有32（0~31）只分组脚
+3=D 余5 就直接填 ，3 8 就是 GPIO3B[0]  所以余数可以直接填
+所以就是GPIO3D[5]，将这个“GPIO3D[5]”放到datasheet上面查找，一下子就能找到，然后用reganalyzer工具立马可以分析出
 ```
 48、路径
 ```
@@ -711,3 +720,5 @@ index 14665c0..5f1739a 100644
 +#if 1
  #define DEBUG_AUTOCONF(fmt...) printk(fmt)
 ```
+
+
