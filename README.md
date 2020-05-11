@@ -720,5 +720,8 @@ index 14665c0..5f1739a 100644
 +#if 1
  #define DEBUG_AUTOCONF(fmt...) printk(fmt)
 ```
-
+57、wifi长时间休眠断线
+```
+系统休眠后，wifi没有数据传输的时候（数据传输不确定性），wifi休眠长时间没有数据传输肯定会断开的
+```
 
