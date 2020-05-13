@@ -525,6 +525,7 @@ find ./ -name "*include*"
 
 40、io-domains供电问题，域电压是由PMU或者外部提供，不是由cpu提供，cpu上配置pmu和自己的寄存器匹配域电压，模组上不用配置，给多少就是多少
 ```
+看一下rk808的接线，就一目了然，就是配置输出电压而已，已经接好了的
 IO域电压，模组使能引脚和sdio或者uart不在同一个域，或者sdio和uart两端IO电压不一致
 -               vccio4-supply = <&rk805_ldo1_reg>;
 +               vccio4-supply = <&rk805_dcdc4_reg>;
