@@ -1,0 +1,150 @@
+android9.0 蓝牙端PCM配制,一般蓝牙与主控连接，蓝牙作从，蓝牙与codec,蓝牙作主。本补丁是蓝牙与3399 连接，蓝牙作从。
+hardware/broadcom/libbt/include/vnd_rksdk.txt
+
+
+Bt Maseter mode
+########################################################################################################################
+#在排查问题时，可能需要配制蓝牙为主，断线PCM 4线，用摄子短接IN/OUT 数据线， 模块连接蓝牙耳机，耳机端说话能听到回声，则证明蓝牙功能OK
++SCO_PCM_IF_SYNC_MODE = 1
++SCO_PCM_IF_CLOCK_MODE = 1
+
+sdk_project@aaaaa:~/9.0sdk/RK3399_Android_Pie_release_20190220/system/bt/device/include$ git diff .
+diff --git a/device/include/esco_parameters.h b/device/include/esco_parameters.h
+index b79948d..7dbf87c 100644
+--- a/device/include/esco_parameters.h
++++ b/device/include/esco_parameters.h
+@@ -57,7 +57,7 @@ typedef uint8_t esco_coding_format_t;
+ typedef uint8_t esco_pcm_data_format_t;
+ 
+ // SCO Data Path
+-#define ESCO_DATA_PATH_PCM 1                /* 0x01-0xFE (PCM Chan) */
++#define ESCO_DATA_PATH_PCM 4               /* 0x01-0xFE (PCM Chan) */
+ #define ESCO_DATA_PATH_HCI ((uint8_t)0x00)  /* HCI-0, 0x01-0xFE (PCM Chan) */
+ #define ESCO_DATA_PATH_TEST ((uint8_t)0xFF) /* 0xFF-Audio Test */
+ typedef uint8_t esco_data_path_t;
+##########################################################################################################################
+
+
+
+
+
+BT Salve mode
+##########################################################################################################################
++SCO_PCM_IF_SYNC_MODE = 0
++SCO_PCM_IF_CLOCK_MODE = 0
+
+sdk_project@aaaaa:~/9.0sdk/RK3399_Android_Pie_release_20190220/system/bt/device/include$ git diff .
+diff --git a/device/include/esco_parameters.h b/device/include/esco_parameters.h
+index b79948d..7dbf87c 100644
+--- a/device/include/esco_parameters.h
++++ b/device/include/esco_parameters.h
+@@ -57,7 +57,7 @@ typedef uint8_t esco_coding_format_t;
+ typedef uint8_t esco_pcm_data_format_t;
+ 
+ // SCO Data Path
+-#define ESCO_DATA_PATH_PCM 1                /* 0x01-0xFE (PCM Chan) */
++#define ESCO_DATA_PATH_PCM 6               /* 0x01-0xFE (PCM Chan) */
+ #define ESCO_DATA_PATH_HCI ((uint8_t)0x00)  /* HCI-0, 0x01-0xFE (PCM Chan) */
+ #define ESCO_DATA_PATH_TEST ((uint8_t)0xFF) /* 0xFF-Audio Test */
+ typedef uint8_t esco_data_path_t;
+##########################################################################################################################
+ 
+ 
+ 
+
+配制从模式，logcat | grep "config" 确认生效
+05-18 17:52:12.801 D/bt_hwcfg(  253): Target name = [BCM4359C0]
+05-18 17:52:12.801 D/bt_hwcfg(  253): ###AMPAK FW Auto detection patch version = [v1.1 20161117]###
+05-18 17:52:12.801 D/bt_hwcfg(  253): Updated Target name = [BCM4359C0]
+05-18 17:52:12.801 I/bt_hwcfg(  253): Found patchfile: /vendor/etc/firmware//BCM4359C0.hcd
+05-18 17:52:13.487 I/bt_hwcfg(  253): bt vendor lib: set UART baud 115200
+05-18 17:52:13.688 D/bt_hwcfg(  253): Settlement delay -- 200 ms
+05-18 17:52:13.688 I/bt_hwcfg(  253): Setting fw settlement delay to 200 
+05-18 17:52:13.893 I/bt_hwcfg(  253): bt vendor lib: set UART baud 1500000
+05-18 17:52:14.094 I/bt_hwcfg(  253): Controller OTP bdaddr C0:84:7D:4E:AD:F9
+05-18 17:52:14.094 I/bt_hwcfg(  253): vendor lib fwcfg completed ### LPM_SLEEP_MODE = 0
+05-18 17:52:14.094 E/bt_hwcfg(  253): wrong codec is use in hw_sco_i2spcm_config, goes default NBS
+05-18 17:52:14.094 I/bt_hwcfg(  253): I2SPCM config {0x0, 0x0, 0x0, 0x2}
+05-18 17:52:14.095 I/bt_hwcfg(  253): SCO PCM configure {0x0, 0x2, 0x0, 0x0, 0x0}
+05-18 17:52:14.096 I/bt_hwcfg(  253): SCO PCM data format {0x0, 0x0, 0x0, 0x0, 0x0}
+05-18 17:52:14.098 I/bt_hwcfg(  253): sco I2S/PCM config result 0 [0-Success, 1-Fail]
+
+
+
+
+若不同手机若有兼容性问题，可放开所有日志，确认是否上层重新协商codec参数。
+diff --git a/include/vnd_rksdk.txt b/include/vnd_rksdk.txt
+index 811cf25..7fef04e 100644
+--- a/include/vnd_rksdk.txt
++++ b/include/vnd_rksdk.txt
+@@ -15,8 +15,8 @@ BT_WAKE_VIA_PROC = TRUE
+ SCO_PCM_ROUTING = 0
+ SCO_PCM_IF_CLOCK_RATE = 2
+ SCO_PCM_IF_FRAME_TYPE = 0
+-SCO_PCM_IF_SYNC_MODE = 0
+-SCO_PCM_IF_CLOCK_MODE = 0
++SCO_PCM_IF_SYNC_MODE = 1
++SCO_PCM_IF_CLOCK_MODE = 1
+ PCM_DATA_FMT_SHIFT_MODE = 0
+ PCM_DATA_FMT_FILL_BITS = 0
+ PCM_DATA_FMT_FILL_METHOD = 0
+diff --git a/src/bt_vendor_brcm.c b/src/bt_vendor_brcm.c
+index 01e89a2..30fcd2f 100644
+--- a/src/bt_vendor_brcm.c
++++ b/src/bt_vendor_brcm.c
+@@ -26,6 +26,11 @@
+ 
+ #define LOG_TAG "bt_vendor"
+ 
++#undef NDEBUG
++#define LOG_NDEBUG 0
++#define LOG_NIDEBUG 0
++#define LOG_NDDEBUG 0
++
+ #include <utils/Log.h>
+ #include <string.h>
+ #include "bt_vendor_brcm.h"
+diff --git a/src/hardware.c b/src/hardware.c
+index 1cc30a9..0a462d0 100644
+--- a/src/hardware.c
++++ b/src/hardware.c
+@@ -28,6 +28,11 @@
+ 
+ #define LOG_TAG "bt_hwcfg"
+ 
++#undef NDEBUG
++#define LOG_NDEBUG 0
++#define LOG_NIDEBUG 0
++#define LOG_NDDEBUG 0
++
+ #include <utils/Log.h>
+ #include <sys/types.h>
+ #include <stdbool.h>
+ 
+ 
+
+
+BT_VND_OP_SCO_CFG
+    hw_sco_config
+		hw_sco_i2spcm_config(SCO_CODEC_NONE)
+		
+		
+BT_VND_OP_SET_AUDIO_STATE
+		  hw_set_audio_state
+		       hw_set_SCO_codec
+			        hw_set_CVSD_codec_cback
+					hw_set_MSBC_codec_cback
+					    hw_sco_i2spcm_config_from_command
+						      hw_sco_i2spcm_config
+							        hw_sco_i2spcm_cfg_cback
+
+
+
+目前有遇到codec协议配制mSBC(WBS)，可通过协议看出来
+#ifndef BTIF_HF_CLIENT_FEATURES
+#define BTIF_HF_CLIENT_FEATURES                                                \
+  (BTA_HF_CLIENT_FEAT_ECNR | BTA_HF_CLIENT_FEAT_3WAY |                         \
+   BTA_HF_CLIENT_FEAT_CLI | BTA_HF_CLIENT_FEAT_VREC | BTA_HF_CLIENT_FEAT_VOL | \
+-   BTA_HF_CLIENT_FEAT_ECS | BTA_HF_CLIENT_FEAT_ECC | BTA_HF_CLIENT_FEAT_CODEC)
++   BTA_HF_CLIENT_FEAT_ECS | BTA_HF_CLIENT_FEAT_ECC )
+#endif

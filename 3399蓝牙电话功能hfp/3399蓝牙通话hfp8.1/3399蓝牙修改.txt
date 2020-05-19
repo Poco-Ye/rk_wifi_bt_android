@@ -1,0 +1,43 @@
+#在排查问题时，可能需要配制蓝牙为主，断线PCM 4线，用摄子短接IN/OUT 数据线， 看QQ电话另端能听到清晰回声，证明蓝牙OK
+修改了文件device/rockchip/common/overlay/packages/apps/Bluetooth/res/values/config.xml
+如下：
+<bool name="profile_supported_hs_hfp">true</bool>
+
+
+diff --git a/include/vnd_rksdk.txt b/include/vnd_rksdk.txt
+index 811cf25..e37efa7 100644
+--- a/include/vnd_rksdk.txt
++++ b/include/vnd_rksdk.txt
+@@ -5,18 +5,18 @@ UART_TARGET_BAUD_RATE = 1500000
+-SCO_PCM_IF_CLOCK_RATE = 2
++SCO_PCM_IF_CLOCK_RATE = 1
+ SCO_PCM_IF_FRAME_TYPE = 0
+-SCO_PCM_IF_SYNC_MODE = 0
+-SCO_PCM_IF_CLOCK_MODE = 0
++SCO_PCM_IF_SYNC_MODE = 1
++SCO_PCM_IF_CLOCK_MODE = 1
+ PCM_DATA_FMT_SHIFT_MODE = 0
+ PCM_DATA_FMT_FILL_BITS = 0
+ PCM_DATA_FMT_FILL_METHOD = 0
+
+hcq@ubuntu:~/8.1/hardware/broadcom/libbt/src$ git diff .
+diff --git a/src/hardware.c b/src/hardware.c
+index 8563f83..9a1b45e 100644
+--- a/src/hardware.c
++++ b/src/hardware.c
+@@ -978,7 +980,7 @@ void hw_config_cback(void *p_mem)
+                 ALOGI("vendor lib fwcfg completed");
+                 bt_vendor_cbacks->dealloc(p_buf);
+                 bt_vendor_cbacks->fwcfg_cb(BT_VND_OP_RESULT_SUCCESS);
+-
++               hw_sco_config();
+                 hw_cfg_cb.state = 0;
+
+
+				 
+logcat | grep "config" 
+
+I/bt_hwcfg( 1100): SCO PCM configure {0x0, 0x1, 0x0, 0x1, 0x1} 这个是蓝牙作主配制。
+
+
+QQ电话后，可先测一下BT_SYNC （8K）BT_PCM_CLK(256K) BT_PCM_OUT 是否有信号
