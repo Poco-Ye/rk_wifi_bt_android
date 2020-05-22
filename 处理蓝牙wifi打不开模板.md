@@ -208,6 +208,20 @@ echo 1 > /sys/class/rkwifi/power
 
 测量一下有无电平变化WL_REG_ON
 
+如果是4.4的内核，那就只有echo 0 > /sys/class/rkwifi/power能生效
+有sdio_pwrseq节点，/drivers/core/mmc sdio模块启动会控制拉高WL_REG_ON,如果能拉高，就会控制PMU输出32K
+sdio_pwrseq: sdio-pwrseq {
+         compatible = "mmc-pwrseq-simple";
+         clocks = <&rk808 1>;
+         clock-names = "ext_clock";
+         pinctrl-names = "default";
+         pinctrl-0 = <&wifi_enable_h>;
+         reset-gpios = <&gpio0 10 GPIO_ACTIVE_LOW>; /* GPIO0_B2 */
+     };
+
+打不开wifi，设置reset-gpios = <&gpio0 10 GPIO_ACTIVE_HIGH>; 测试一下。还不行检查一下引脚导通性或者是否被复用
+
+
  cat /d/clk/clk_summary (只有在节点上有clock name的才会显示，没有的就没有，比如设置clock frequency)
  
  find /d/ -name pinmux-pins 
