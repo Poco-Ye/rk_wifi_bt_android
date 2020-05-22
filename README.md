@@ -729,3 +729,18 @@ index 14665c0..5f1739a 100644
 ```
 确认本地播放，播放声音怪异是串口波特率和流控的问题
 ```
+59、关于WIFI开启使能脚延时的问题
+```
+没有，这个东西，就是热插拔，wifi上电的瞬间，产生中断，wifi就相当于是一个SD卡，然后立马就去读取，很大可能会失败，sdmmc默认都有card-detect-delay进行消抖，sdio很少会失败，但是RTK的模组经常上电不稳定，需要消抖，card-detect-delay = <1200>，延时1.2s为实例
+--- a/arch/arm64/boot/dts/rockchip/rk3368-r88.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3368-r88.dts
+@@ -448,6 +448,7 @@
+        pinctrl-0 = <&sdio0_bus4 &sdio0_cmd &sdio0_clk>;
+        sd-uhs-sdr104;
+        supports-sdio;
++       card-detect-delay = <1200>;
+        status = "okay";
+ };
+
+```
+
