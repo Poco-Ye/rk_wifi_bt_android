@@ -1,0 +1,272 @@
+diff --git a/Makefile b/Makefile
+index cdf6e2f..2e00dd7 100755
+--- a/Makefile
++++ b/Makefile
+@@ -25,6 +25,10 @@ EXTRA_CFLAGS += -I$(src)/hal/phydm
+ 
+ EXTRA_LDFLAGS += --strip-debug
+ 
++
++CONFIG_ANDROID_4_2 = n
++CONFIG_ANDROID_4_4_Kernel_3_0 = y
++
+ CONFIG_AUTOCFG_CP = n
+ 
+ ########################## WIFI IC ############################
+@@ -91,7 +95,7 @@ CONFIG_RTW_SDIO_PM_KEEP_POWER = y
+ ###################### MP HW TX MODE FOR VHT #######################
+ CONFIG_MP_VHT_HW_TX_MODE = n
+ ###################### Platform Related #######################
+-CONFIG_PLATFORM_I386_PC = y
++CONFIG_PLATFORM_I386_PC = n
+ CONFIG_PLATFORM_ANDROID_X86 = n
+ CONFIG_PLATFORM_ANDROID_INTEL_X86 = n
+ CONFIG_PLATFORM_JB_X86 = n
+@@ -116,7 +120,7 @@ CONFIG_PLATFORM_ARM_TCC8920_JB42 = n
+ CONFIG_PLATFORM_ARM_TCC8930_JB42 = n
+ CONFIG_PLATFORM_ARM_RK2818 = n
+ CONFIG_PLATFORM_ARM_RK3066 = n
+-CONFIG_PLATFORM_ARM_RK3188 = n
++CONFIG_PLATFORM_ARM_RK3188 = y
+ CONFIG_PLATFORM_ARM_URBETTER = n
+ CONFIG_PLATFORM_ARM_TI_PANDA = n
+ CONFIG_PLATFORM_MIPS_JZ4760 = n
+@@ -284,6 +288,7 @@ MODULE_NAME = 8188ee
+ endif
+ EXTRA_CFLAGS += -DCONFIG_RTL8188E
+ 
++
+ _HAL_INTFS_FILES +=	hal/HalPwrSeqCmd.o \
+ 					hal/$(RTL871X)/Hal8188EPwrSeq.o\
+  					hal/$(RTL871X)/$(RTL871X)_xmit.o\
+@@ -408,6 +413,7 @@ ifeq ($(CONFIG_SDIO_HCI), y)
+ MODULE_NAME = 8812as
+ endif
+ 
++
+ _HAL_INTFS_FILES +=  hal/HalPwrSeqCmd.o \
+ 					hal/$(RTL871X)/Hal8812PwrSeq.o \
+ 					hal/$(RTL871X)/Hal8821APwrSeq.o\
+@@ -1407,8 +1413,18 @@ EXTRA_CFLAGS += -DCONFIG_LITTLE_ENDIAN -DCONFIG_PLATFORM_ANDROID -DCONFIG_PLATFO
+ EXTRA_CFLAGS += -DCONFIG_IOCTL_CFG80211 -DRTW_USE_CFG80211_STA_EVENT
+ EXTRA_CFLAGS += -DCONFIG_CONCURRENT_MODE
+ # default setting for Power control
+-EXTRA_CFLAGS += -DRTW_ENABLE_WIFI_CONTROL_FUNC
++EXTRA_CFLAGS += -DCONFIG_P2P_IPS
+ EXTRA_CFLAGS += -DRTW_SUPPORT_PLATFORM_SHUTDOWN
++
++ifeq ($(CONFIG_ANDROID_4_2), y)
++EXTRA_CFLAGS += -DCONFIG_ANDROID_4_2 -DCONFIG_MINIMAL_MEMORY_USAGE
++else
++ifeq ($(CONFIG_ANDROID_4_4_Kernel_3_0), y)
++else
++EXTRA_CFLAGS += -DCONFIG_RADIO_WORK
++endif
++endif
++
+ # default setting for Special function
+ ARCH := arm
+ CROSS_COMPILE := /home/android_sdk/Rockchip/Rk3188/prebuilts/gcc/linux-x86/arm/arm-eabi-4.6/bin/arm-eabi-
+@@ -1808,7 +1824,7 @@ endif
+ 
+ endif
+ 
+-USER_MODULE_NAME ?=
++USER_MODULE_NAME ?= 8723bs
+ ifneq ($(USER_MODULE_NAME),)
+ MODULE_NAME := $(USER_MODULE_NAME)
+ endif
+diff --git a/core/rtw_ieee80211.c b/core/rtw_ieee80211.c
+old mode 100644
+new mode 100755
+index 8a76427..fac5eb8
+--- a/core/rtw_ieee80211.c
++++ b/core/rtw_ieee80211.c
+@@ -1372,6 +1372,13 @@ func_exit:
+ }
+ 
+ extern char *rtw_initmac;
++#ifndef CONFIG_ANDROID_4_2
++extern int rk29sdk_wifi_mac_addr(unsigned char *buf);
++#endif
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(3, 1, 0)) 
++#include <linux/rfkill-wlan.h>
++#endif
++
+ /**
+  * rtw_macaddr_cfg - Decide the mac address used
+  * @out: buf to store mac address decided
+@@ -1396,7 +1403,32 @@ void rtw_macaddr_cfg(u8 *out, const u8 *hw_mac_addr)
+ 
+ 		goto err_chk;
+ 	}
+-
++	
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(3, 1, 0))     
++        if (!rockchip_wifi_mac_addr(mac)) {
++                printk("=========> get mac address from flash=[%02x:%02x:%02x:%02x:%02x:%02x]\n", mac[0], mac[1],
++                mac[2], mac[3], mac[4], mac[5]);
++                //_rtw_memcpy(mac_addr, mac, ETH_ALEN);
++                goto err_chk;
++        }
++#else
++#ifndef CONFIG_ANDROID_4_2
++{
++        u8 macbuf[30] = {0};
++        if (!rk29sdk_wifi_mac_addr(macbuf)) {
++                int jj,kk;
++                printk("=========> get mac address from flash %s\n", macbuf);
++                for( jj = 0, kk = 0; jj < ETH_ALEN; jj++, kk += 3 )
++                    mac[jj] = key_2char2num(macbuf[kk], macbuf[kk+ 1]);
++                goto err_chk;
++        }
++}
++#endif
++#endif
++	
++	
++	
++	
+ 	/* platform specified */
+ #ifdef CONFIG_PLATFORM_INTEL_BYT
+ 	if (rtw_get_mac_addr_intel(mac) == 0)
+diff --git a/os_dep/linux/sdio_intf.c b/os_dep/linux/sdio_intf.c
+old mode 100644
+new mode 100755
+index 6f23226..120673b
+--- a/os_dep/linux/sdio_intf.c
++++ b/os_dep/linux/sdio_intf.c
+@@ -1007,7 +1007,7 @@ static int rtw_sdio_resume(struct device *dev)
+ 
+ }
+ 
+-static int __init rtw_drv_entry(void)
++static int rtw_drv_entry(void)
+ {
+ 	int ret = 0;
+ 
+@@ -1052,7 +1052,7 @@ exit:
+ 	return ret;
+ }
+ 
+-static void __exit rtw_drv_halt(void)
++static void rtw_drv_halt(void)
+ {
+ 	RTW_PRINT("module exit start\n");
+ 
+@@ -1088,5 +1088,85 @@ int rtw_sdio_set_power(int on)
+ }
+ #endif /* CONFIG_PLATFORM_INTEL_BYT */
+ 
++
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(3, 1, 0))
++#include <linux/rfkill-wlan.h>
++extern int get_wifi_chip_type(void);
++#else
++extern int rk29sdk_wifi_power(int on);
++#endif
++
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(3, 1, 0))
++int rockchip_wifi_init_module_rtkwifi(void)
++#else
++int rockchip_wifi_init_module(void)
++#endif
++{
++#ifdef CONFIG_WIFI_LOAD_DRIVER_WHEN_KERNEL_BOOTUP
++    int type = get_wifi_chip_type();
++    if (type < WIFI_AP6XXX_SERIES || type == WIFI_ESP8089) return 0;
++#endif
++    printk("\n");
++    printk("=======================================================\n");
++    printk("==== Launching Wi-Fi driver! (Powered by Rockchip) ====\n");
++    printk("=======================================================\n");
++    printk("Realtek 8723BS SDIO WiFi driver (Powered by Rockchip) init.\n");
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(3, 1, 0))
++    rockchip_wifi_power(1);
++    rockchip_wifi_set_carddetect(1);
++#else
++   rk29sdk_wifi_power(1);
++#endif
++
++    return rtw_drv_entry();
++}
++
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(3, 1, 0))
++void rockchip_wifi_exit_module_rtkwifi(void)
++#else
++void rockchip_wifi_exit_module(void)
++#endif
++{
++#ifdef CONFIG_WIFI_LOAD_DRIVER_WHEN_KERNEL_BOOTUP
++    int type = get_wifi_chip_type();
++    if (type < WIFI_AP6XXX_SERIES || type == WIFI_ESP8089) return;
++#endif
++    printk("\n");
++    printk("=======================================================\n");
++    printk("==== Dislaunching Wi-Fi driver! (Powered by Rockchip) ====\n");
++    printk("=======================================================\n");
++    printk("Realtek 8723BS SDIO WiFi driver (Powered by Rockchip) init.\n");
++    rtw_drv_halt();
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(3, 1, 0))
++    rockchip_wifi_set_carddetect(0);
++    rockchip_wifi_power(0);
++#else
++    rk29sdk_wifi_power(0);
++#endif
++}
++
++#ifdef CONFIG_WIFI_BUILD_MODULE
+ module_init(rtw_drv_entry);
+ module_exit(rtw_drv_halt);
++#else
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(3, 1, 0))
++#ifdef CONFIG_WIFI_LOAD_DRIVER_WHEN_KERNEL_BOOTUP
++late_initcall(rockchip_wifi_init_module_rtkwifi);
++module_exit(rockchip_wifi_exit_module_rtkwifi);
++#else
++EXPORT_SYMBOL(rockchip_wifi_init_module_rtkwifi);
++EXPORT_SYMBOL(rockchip_wifi_exit_module_rtkwifi);
++#endif
++#else
++#ifdef CONFIG_ANDROID_4_2
++module_init(rockchip_wifi_init_module);
++module_exit(rockchip_wifi_exit_module);
++#else
++EXPORT_SYMBOL(rockchip_wifi_init_module);
++EXPORT_SYMBOL(rockchip_wifi_exit_module);
++#endif
++#endif
++#endif
++
++//module_init(rtw_drv_entry);
++//module_exit(rtw_drv_halt);
+diff --git a/platform/platform_ops.c b/platform/platform_ops.c
+old mode 100644
+new mode 100755
+index 95da669..8830883
+--- a/platform/platform_ops.c
++++ b/platform/platform_ops.c
+@@ -23,11 +23,22 @@
+  *	0:	power on successfully
+  *	others: power on failed
+  */
++#ifdef __KERNEL__
++#include <linux/version.h>
++#endif
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(3, 1, 0))
++#include <linux/rfkill-wlan.h>
++extern unsigned int oob_irq;
++extern int rockchip_wifi_get_oob_irq(void);
++#endif
+ int platform_wifi_power_on(void)
+ {
+ 	int ret = 0;
+ 
+-
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(3, 1, 0))
++        oob_irq = rockchip_wifi_get_oob_irq();
++        printk("%s: rockchip_wifi_get_oob_irq :%d\n", __func__, oob_irq);
++#endif
+ 	return ret;
+ }
+ 
