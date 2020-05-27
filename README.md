@@ -761,3 +761,26 @@ reason=6
 #define WLAN_REASON_CLASS2_FRAME_FROM_NONAUTH_STA 6
 wpa/external/wpa_supplicant_8/wpa_supplicant/src/common/ieee802_11_defs.h
 ```
+62、ap相同ssid password相同，mac地址不同，切换断线问题
+```
+sdk_project@aaaaa:~/9.0sdk/Rk3368_Android9.0_MID_SDK_V1.0_20190411/kernel/drivers/net/wireless/rockchip_wlan/rkwifi/bcmdhd$ git diff .
+diff --git a/drivers/net/wireless/rockchip_wlan/rkwifi/bcmdhd/Makefile b/drivers/net/wireless/rockchip_wlan/rkwifi/bcmdhd/Makefile
+index 2550ff6..bffb92c 100644
+--- a/drivers/net/wireless/rockchip_wlan/rkwifi/bcmdhd/Makefile
++++ b/drivers/net/wireless/rockchip_wlan/rkwifi/bcmdhd/Makefile
+@@ -23,7 +23,7 @@ DHDCFLAGS = -Wall -Wstrict-prototypes -Dlinux -DBCMDRIVER                 \
+        -DKEEP_ALIVE -DPKT_FILTER_SUPPORT -DPNO_SUPPORT -DDHDTCPACK_SUPPRESS  \
+        -DDHD_DONOT_FORWARD_BCMEVENT_AS_NETWORK_PKT                           \
+        -DMULTIPLE_SUPPLICANT -DTSQ_MULTIPLIER -DMFP                          \
+-       -DWL_EXT_IAPSTA -DSUPPORT_P2P_GO_PS                                   \
++       -DWL_EXT_IAPSTA -DSUPPORT_P2P_GO_PS -DROAM_ENABLE                                   \
+        -DENABLE_INSMOD_NO_FW_LOAD -DDHD_UNSUPPORT_IF_CNTS                    \
+        -Idrivers/net/wireless/rockchip_wlan/rkwifi/bcmdhd \
+        -Idrivers/net/wireless/rockchip_wlan/rkwifi/bcmdhd/include
+
+roam_off=0 //开启driver roam 功能
+roam_trigger=-65 //当信号达到-65dBm达到漫游触发threshold.
+roam_scan_period=10 //隔10s scan 一次信号，可以适当改大，过多扫描会影响性能。
+roam_delta=5 //信号在大于threshold 5dBm,即-70dBm启动漫游 //这些参考都是可以自己去设置
+adb push config.txt /system/etc/firmware/
+```
