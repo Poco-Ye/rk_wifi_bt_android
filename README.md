@@ -747,3 +747,17 @@ index 14665c0..5f1739a 100644
 ```
 抓两条进程
 ```
+61、wifi断连原因与802.11线索
+```
+t: wlan0: WPA: Group rekeying completed with 74:85:c4:64:92:a0 [GTK=CCMP]
+2020-05-27 03:46:44.850 6451-6451/? I/wpa_supplicant: wlan0: WPA: Group rekeying completed with 74:85:c4:64:92:a0 [GTK=CCMP]
+2020-05-27 03:46:44.858 6451-6451/? I/wpa_supplicant: wlan0: WPA: Group rekeying completed with 74:85:c4:64:92:a0 [GTK=CCMP]
+2020-05-27 03:46:44.865 6451-6451/? I/wpa_supplicant: wlan0: WPA: Group rekeying completed with 74:85:c4:64:92:a0 [GTK=CCMP]
+2020-05-27 03:46:44.873 6451-6451/? I/wpa_supplicant: wlan0: WPA: Group rekeying completed with 74:85:c4:64:92:a0 [GTK=CCMP]
+2020-05-27 03:46:57.862 6451-6451/? I/wpa_supplicant: wlan0: WPA: Group rekeying completed with 74:85:c4:64:92:a0 [GTK=CCMP]
+2020-05-27 03:46:57.887 6451-6451/? I/wpa_supplicant: wlan0: CTRL-EVENT-DISCONNECTED bssid=74:85:c4:64:92:a0 reason=6
+
+reason=6
+#define WLAN_REASON_CLASS2_FRAME_FROM_NONAUTH_STA 6
+wpa/external/wpa_supplicant_8/wpa_supplicant/src/common/ieee802_11_defs.h
+```
