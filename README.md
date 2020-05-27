@@ -784,3 +784,11 @@ roam_scan_period=10 //隔10s scan 一次信号，可以适当改大，过多扫�
 roam_delta=5 //信号在大于threshold 5dBm,即-70dBm启动漫游 //这些参考都是可以自己去设置
 adb push config.txt /system/etc/firmware/
 ```
+63、HID driver
+```
+HID driver
+如果需要使用Bluetooth HID，必须支持uhid driver；确认打开需要支持的HID配置
+Kernel对一些HID有支持，请尽可能全部打开。
+CONFIG_UHID=y
+CONFIG_HID_xxx=y
+```
