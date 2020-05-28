@@ -65,7 +65,12 @@ GPIO_SWPORTA_DDR 0x0004 W 0x00000000 Port A data direction register
 -        dma-names = "!tx", "!rx";      //打开dma
 +        dma-names = "tx", "rx";
          pinctrl-0 = <&uart0_xfer &uart0_cts>;
-+       dmas=<&dmac_peri 1>,<dmac_peri 2>; //不同芯片的这个dma配置不同，需要查看芯片手册，可以参考串口的手册的指导
++       dmas=<&dmac_peri 1>,<dmac_peri 2>; //不同芯片的这个dma配置不同，需要查看芯片手册，可以参考手册的DMA部分指导
+
+&dmac_peri要根据手册确认外设属于哪个DMAC，来选择，一般DMAC1是dmac_peri，
+DMAC0是dmac_bus。
+3399是0和1 3288是 1 和2
+
  };
 
 --- a/hci/src/hci_hal_h4.c
