@@ -797,3 +797,15 @@ Kernel对一些HID有支持，请尽可能全部打开。
 CONFIG_UHID=y
 CONFIG_HID_xxx=y
 ```
+64、OGF/OCF 蓝牙指令(OCF10位 OGF6位)
+```
+vol2 partE 7
+cmd就是OGF往左移动两位,补两位给OCF，但是这两位OCF基本用不上
+0x08左移两位   变成0x20  比如最常用的200d 发起le连接 2001写le mask  LE Controller Commands
+0x06左移两位   变成0x18  这个cmd 用的少 没见过  Testing Commands  
+0x05左移两位   变成0x14  这个cmd 用的也少  没见过 Status Parameters Commands 
+0x04左移两位   变成0x10   比如 1001 读芯片的信息 Informational Parameters Commands 
+0x03左移两位   变成0x0c  比如0x0c03  reset指令 0x0c14读芯片型号  HCI Control and Baseband Commands 
+0x02左移两位   变成0x08  比如0803  进入sniff mode  LINK POLICY COMMANDS 
+0x01左移两位   变成0x04  比如最经典的0x0405 发起connect  0x0401  hci inquirying  执行inquiry  Link Control commands 
+```
