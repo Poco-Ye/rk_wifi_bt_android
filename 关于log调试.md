@@ -87,4 +87,42 @@ TAG需要有xxx的含义好调试，如果没有定义就是""
 有TAG好的
 
 我们的目标就是找TAG
+
+
+我们遇到新的问题，是PLOG打不了DEBUG的log，还有Log.d 也有可能没有打出log
+
+
+
+这部分的实现模块是system/core/liblog  最终实现函数是printf
+
+听说有 setprop log.tag.TAG 'D'  这种方式，可以保证debug的log 打出来
+
+具体实现就要分析log模块了，目前PLOG也打不出。。。其它模块只能是重新#define LOG_TAG并调用模块函数
+
+
+system/core/liblog/logger_write.c
+  93 static android_LogPriority filterCharToPri (char c)
+  94 {
+  95     android_LogPriority pri;
+  96
+  97     c = tolower(c);
+  98
+  99     if (c >= '0' && c <= '9') {
+ 100         if (c >= ('0'+ANDROID_LOG_SILENT)) {
+ 101             pri = ANDROID_LOG_VERBOSE;
+ 102         } else {
+ 103             pri = (android_LogPriority)(c - '0');
+ 104         }
+ 105     } else if (c == 'v') {
+ 106         pri = ANDROID_LOG_VERBOSE;
+ 107     } else if (c == 'd') {
+ 108         pri = ANDROID_LOG_DEBUG;
+ 109     } else if (c == 'i') {
+ 110         pri = ANDROID_LOG_INFO;
+ 111     } else if (c == 'w') {
+ 112         pri = ANDROID_LOG_WARN;
+ 113     } else if (c == 'e') {
+ 114         pri = ANDROID_LOG_ERROR;
+
+
 ```
