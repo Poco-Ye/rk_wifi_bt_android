@@ -6,11 +6,6 @@
 SDK编译问题，直接修改build.sh的all选项，涵盖了所有的部分，可以屏蔽或者加echo，可以单项测试
 
 ```
-RK WIFI FTP
-http://rsc.realtek.com
-帐号：rockchip_lch 密码：rockchip123
-
-
 rtk FTP ftp3.realtek.com  这个上面放了android各种wifi 蓝牙资源  不同账户和密码拿的东西不一样
 
 BT FTP
