@@ -5,32 +5,26 @@
 
 SDK编译问题，直接修改build.sh的all选项，涵盖了所有的部分，可以屏蔽或者加echo，可以单项测试
 
-WIFI FTP
-
+```
+RK WIFI FTP
 http://rsc.realtek.com
-
 帐号：rockchip_lch 密码：rockchip123
 
-这个上面一样放到ftp3.realtek.com  这个上面放了android各种wifi 蓝牙资源  不同账户和密码拿的东西不一样
+
+rtk FTP ftp3.realtek.com  这个上面放了android各种wifi 蓝牙资源  不同账户和密码拿的东西不一样
 
 BT FTP
-
 ftp://ftp3.realtek.com
-
 账号bt	 密码V9nW2h
-
 此账户已经作废
 
+
 realtek auchor 系统下载地址：
-
 帐号：chunqiao.hu@rock-chips.com
-
       poco.ye@rock-chips.com
-
 密码：不公开
-
 https://anchor.realtek.com/Home/Login
-
+```
 
 看上层代码的诀窍是只看后面函数不看前面的类，查看复用以0A 0B 0C 0D 1A..系列为查询比如GRF_GPIO1A_IOMUX 0x0010
 
