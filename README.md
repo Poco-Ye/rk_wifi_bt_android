@@ -18,12 +18,17 @@ BT FTP
 ftp://ftp3.realtek.com
 
 账号bt	 密码V9nW2h
+
 此账户已经作废
 
 realtek auchor 系统下载地址：
+
 帐号：chunqiao.hu@rock-chips.com
+
       poco.ye@rock-chips.com
+
 密码：不公开
+
 https://anchor.realtek.com/Home/Login
 
 
