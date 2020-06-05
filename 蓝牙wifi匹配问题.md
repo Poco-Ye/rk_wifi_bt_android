@@ -1,9 +1,11 @@
 ```
 关于匹配这个事情，
-低的版本是RFKILL匹配(wifi_chip_type = "ap6212";)，上层直接读class文件系统，也就是WIFI rfkill dts上的节点kernel class文件系统 cat /sys/class/rkwifi/chip 
+低的版本是RFKILL匹配(wifi_chip_type = "ap6212";)，上层直接读class文件系统，
+也就是WIFI rfkill dts上的节点kernel class文件系统 cat /sys/class/rkwifi/chip 
 
 
-高的版本上层匹配是RFKILL匹配(wifi_chip_type = "ap6255";) + check_wifi_chip_type_string，实现在rk_wifi_ctrl.cpp，读sdio usb pci的pid vid 最先读到那个就是哪个，所以不支持多个设备
+高的版本上层匹配是RFKILL匹配(wifi_chip_type = "ap6255";) + check_wifi_chip_type_string，
+实现在rk_wifi_ctrl.cpp，读sdio usb pci的pid vid 最先读到那个就是哪个，所以不支持多个设备
 
 底层匹配主要是在kernel，用于驱动运行是否对版本匹配，下载fw匹配，module init加载匹配
 
