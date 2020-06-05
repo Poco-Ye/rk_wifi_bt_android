@@ -36,6 +36,33 @@ packages\apps\Bluetooth\res\values\config.xml
 +<bool name="profile_supported_rtkbt">true</bool>
 
 ```
+```
+diff --git a/libwifi_hal/rk_wifi_ctrl.cpp b/libwifi_hal/rk_wifi_ctrl.cpp
+index 57911e7..6492c9a 100755
+--- a/libwifi_hal/rk_wifi_ctrl.cpp
++++ b/libwifi_hal/rk_wifi_ctrl.cpp
+@@ -67,6 +67,7 @@ static wifi_device supported_wifi_devices[] = {
+        {"AP6356S",     "02d0:4356"},
+        {"AP6335",      "02d0:4335"},
+        {"AP6255",      "02d0:a9bf"},
++       {"AP6212",      "02d0:a9a6"},
+        {"RTL8822BE",   "10ec:b822"},
+        {"MVL88W8977",  "02df:9145"},
+ };
+diff --git a/libwifi_hal/wifi_hal_common.cpp b/libwifi_hal/wifi_hal_common.cpp
+index 4639012..7b3acb3 100755
+--- a/libwifi_hal/wifi_hal_common.cpp
++++ b/libwifi_hal/wifi_hal_common.cpp
+@@ -149,6 +149,7 @@ wifi_ko_file_name module_list[] =
+        {"AP6354",          BCM_DRIVER_MODULE_NAME,       BCM_DRIVER_MODULE_PATH, UNKKOWN_DRIVER_MODULE_ARG},
+        {"AP6356S",         BCM_DRIVER_MODULE_NAME,       BCM_DRIVER_MODULE_PATH, UNKKOWN_DRIVER_MODULE_ARG},
+        {"AP6255",          BCM_DRIVER_MODULE_NAME,       BCM_DRIVER_MODULE_PATH, UNKKOWN_DRIVER_MODULE_ARG},
++       {"AP6212",          BCM_DRIVER_MODULE_NAME,       BCM_DRIVER_MODULE_PATH, UNKKOWN_DRIVER_MODULE_ARG},
+        {"APXXX",           BCM_DRIVER_MODULE_NAME,       BCM_DRIVER_MODULE_PATH, UNKKOWN_DRIVER_MODULE_ARG},
+        {"MVL88W8977",      MVL_DRIVER_MODULE_NAME,       MVL_DRIVER_MODULE_PATH, MVL88W8977_DRIVER_MODULE_ARG},
+         {"RK912",         RK912_DRIVER_MODULE_NAME,     RK912_DRIVER_MODULE_PATH, UNKKOWN_DRIVER_MODULE_ARG},
+
+```
 
 
 
