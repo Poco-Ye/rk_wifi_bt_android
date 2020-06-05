@@ -813,3 +813,20 @@ cmd就是OGF往左移动两位,补两位给OCF，但是这两位OCF基本用不�
 0x02左移两位   变成0x08  比如0803  进入sniff mode  LINK POLICY COMMANDS 
 0x01左移两位   变成0x04  比如最经典的0x0405 发起connect  0x0401  hci inquirying  执行inquiry  Link Control commands 
 ```
+65、放开RTK wifi驱动log
+```
+diff --git a/drivers/net/wireless/rockchip_wlan/rtl8822bs/Makefile b/drivers/net/wireless/rockchip_wlan/rtl8822bs/Makefile
+index d0998bfdb6e..5c02443ea2b 100644
+--- a/drivers/net/wireless/rockchip_wlan/rtl8822bs/Makefile
++++ b/drivers/net/wireless/rockchip_wlan/rtl8822bs/Makefile
+@@ -72,7 +72,7 @@ CONFIG_RTW_GRO = y
+ CONFIG_RTW_DEBUG = y
+ # default log level is _DRV_INFO_ = 4,
+ # please refer to "How_to_set_driver_debug_log_level.doc" to set the available level.
+-CONFIG_RTW_LOG_LEVEL = 4
++CONFIG_RTW_LOG_LEVEL = 6
+ ######################## Wake On Lan ##########################
+ CONFIG_WOWLAN = n
+ CONFIG_GPIO_WAKEUP = n
+```
+
