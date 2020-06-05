@@ -1,4 +1,19 @@
 ```
+关于匹配这个事情，
+低的版本是RFKILL匹配(wifi_chip_type = "ap6212";)，上层直接读class文件系统，也就是WIFI rfkill dts上的节点kernel class文件系统 cat /sys/class/rkwifi/chip 
+
+
+高的版本上层匹配是RFKILL匹配(wifi_chip_type = "ap6255";) + check_wifi_chip_type_string，实现在rk_wifi_ctrl.cpp，读sdio usb pci的pid vid 最先读到那个就是哪个，所以不支持多个设备
+
+底层匹配主要是在kernel，用于驱动运行是否对版本匹配，下载fw匹配，module init加载匹配
+
+上层匹配主要有下载fw匹配，加载不同的库匹配，下载不同参数匹配。。。。这个匹配非常的多，
+这个函数的打印十分重要 这个函数的打印十分重要 这个函数的打印十分重要 
+check_wifi_chip_type_string的打印是PLOG的，所以会有时打印不出来，改成PLOG(ERROR)打印出来检查
+```
+
+
+```
 sdk_project@aaaaa:~/7.1_sdk/RK3368H_RK3368_Android7.1_SDK_20170401/packages/apps/Bluetooth$ git diff .
 diff --git a/jni/com_android_bluetooth_btservice_AdapterService.cpp b/jni/com_android_bluetooth_btservice_AdapterService.cpp
 index cff38a4..347370d 100755
