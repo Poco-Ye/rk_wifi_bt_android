@@ -198,6 +198,22 @@ index 811cf25..7fef04e 100644
 
 用示波器抓一下PCM_SYNC PCM_CLK 两端,是否有clk，是声卡那边提供还是模组那边提供,clk的频率和峰峰值
 ```
+蓝牙更换模板
+```
+7.1 8723bu
+
+mount -o rw,remount  /system
+cp   /storage/usbport1/8723bu/bluetooth_rtk.default.so  /system/lib/hw/bluetooth_rtk.default.so
+cp   /storage/usbport1/8723bu/Bluetooth.apk          /system/app/Bluetooth/Bluetooth.apk
+cp   /storage/usbport1/8723bu/libbluetooth_jni.so   /system/lib/libbluetooth_jni.so
+cp   /storage/usbport1/8723bu/libbt-vendor_usb.so   /system/lib/libbt-vendor_usb.so
+cp  /storage/usbport1/8723bu/rtl8723bu_config     /system/etc/firmware/
+cp  /storage/usbport1/8723bu/rtl8723b_fw     /system/etc/firmware/
+
+md5sum  /system/lib/hw/bluetooth_rtk.default.so  /system/app/Bluetooth/Bluetooth.apk  /system/lib/libbluetooth_jni.so  /system/lib/libbt-vendor_usb.so
+
+```
+
 
 ```
 wifi模板一：
@@ -233,7 +249,7 @@ sdio_pwrseq: sdio-pwrseq {
  echo 1 > /sys/class/rkwifi/driver
  
  查看打印出来的log看看问题
- 
+  
  
 ```
 
