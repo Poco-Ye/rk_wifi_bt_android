@@ -829,4 +829,18 @@ index d0998bfdb6e..5c02443ea2b 100644
  CONFIG_WOWLAN = n
  CONFIG_GPIO_WAKEUP = n
 ```
+66、6256打不开
+```
+diff --git a/src/hardware.c b/src/hardware.c
+index 1cc30a9..1178757 100755
+--- a/src/hardware.c
++++ b/src/hardware.c
+@@ -814,6 +814,7 @@ void hw_config_cback(void *p_mem)
+                 for (i=0; (i < LOCAL_NAME_BUFFER_LEN)||(*(p_name+i) != 0); i++)
+                     *(p_name+i) = toupper(*(p_name+i));
 
++                p_name="BCM4345C0";
+                 if ((p_name = strstr(p_name, "BCM")) != NULL)
+                 {
+                     strncpy(hw_cfg_cb.local_chip_name, p_name, \
+```
