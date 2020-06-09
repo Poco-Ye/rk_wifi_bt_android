@@ -844,3 +844,7 @@ index 1cc30a9..1178757 100755
                  {
                      strncpy(hw_cfg_cb.local_chip_name, p_name, \
 ```
+67、查找
+```
+find ./ -iname "*a*"|xargs grep 5
+```
