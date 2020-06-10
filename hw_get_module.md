@@ -139,6 +139,19 @@ index ede3dcc..5d83be1 100755
      .name = "Bluetooth Stack",
      .author = "The Android Open Source Project",
      .methods = &bt_stack_module_methods
+diff --git a/main/Android.mk b/main/Android.mk
+index a5ade0f..75a1dd0 100755
+--- a/main/Android.mk
++++ b/main/Android.mk
+@@ -100,7 +100,7 @@ LOCAL_WHOLE_STATIC_LIBRARIES := \
+     libosi
+ endif
+
+-LOCAL_MODULE := bluetooth.default
++LOCAL_MODULE := bluetooth_rtk.default
+ LOCAL_MODULE_RELATIVE_PATH := hw
+ LOCAL_MODULE_TAGS := optional
+ LOCAL_MODULE_CLASS := SHARED_LIBRARIES
 diff --git a/service/hal/bluetooth_interface.cpp b/service/hal/bluetooth_interface.cpp
 index a551fee..2814e1b 100755
 --- a/service/hal/bluetooth_interface.cpp
@@ -151,12 +164,6 @@ index a551fee..2814e1b 100755
 +    status = module->methods->open(module, BT_HARDWARE_RTK_MODULE_ID, &device);
      if (status) {
        LOG(ERROR) << "Failed to open the Bluetooth module";
-       return false;
-
-
-
-
-
 
 
 
