@@ -16,3 +16,7 @@ index 4440ea5..6663569 100644
  #if (BLE_INCLUDED)
  const bt_event_mask_t CLASSIC_EVENT_MASK = { HCI_DUMO_EVENT_MASK_EXT };
 ```
+
+```
+或者加上图上的命令
+```
