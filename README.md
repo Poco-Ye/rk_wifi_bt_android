@@ -843,6 +843,8 @@ index 1cc30a9..1178757 100755
                  if ((p_name = strstr(p_name, "BCM")) != NULL)
                  {
                      strncpy(hw_cfg_cb.local_chip_name, p_name, \
+		     
+		    //这个可能是错的，除此之外应该是要下BCM4345C5.hcd 看6256目录
 ```
 67、查找
 ```
