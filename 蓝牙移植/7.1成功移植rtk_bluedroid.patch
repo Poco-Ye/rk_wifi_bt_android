@@ -1,0 +1,265 @@
+diff --git a/btif/src/bluetooth.c b/btif/src/bluetooth.c
+index ede3dcc..5d83be1 100755
+--- a/btif/src/bluetooth.c
++++ b/btif/src/bluetooth.c
+@@ -600,7 +600,7 @@ EXPORT_SYMBOL struct hw_module_t HAL_MODULE_INFO_SYM = {
+     .tag = HARDWARE_MODULE_TAG,
+     .version_major = 1,
+     .version_minor = 0,
+-    .id = BT_HARDWARE_MODULE_ID,
++    .id = BT_HARDWARE_RTK_MODULE_ID,
+     .name = "Bluetooth Stack",
+     .author = "The Android Open Source Project",
+     .methods = &bt_stack_module_methods
+diff --git a/main/Android.mk b/main/Android.mk
+index a5ade0f..75a1dd0 100755
+--- a/main/Android.mk
++++ b/main/Android.mk
+@@ -100,7 +100,7 @@ LOCAL_WHOLE_STATIC_LIBRARIES := \
+     libosi
+ endif
+ 
+-LOCAL_MODULE := bluetooth.default
++LOCAL_MODULE := bluetooth_rtk.default
+ LOCAL_MODULE_RELATIVE_PATH := hw
+ LOCAL_MODULE_TAGS := optional
+ LOCAL_MODULE_CLASS := SHARED_LIBRARIES
+diff --git a/main/bte_conf.c b/main/bte_conf.c
+index 2b7a906..0c02459 100755
+--- a/main/bte_conf.c
++++ b/main/bte_conf.c
+@@ -21,168 +21,53 @@
+ #include <assert.h>
+ #include <stdio.h>
+ #include <string.h>
++
+ #include "bta_api.h"
+ #include "osi/include/compat.h"
+ #include "osi/include/config.h"
+ #include "osi/include/log.h"
+ #ifdef BLUETOOTH_RTK
+-#include <stdlib.h>
+-#include <dirent.h>
+-#include <sys/stat.h>
+-#include <unistd.h>
+-#include <sys/types.h>
+-
+ #include "bt_hci_bdroid.h"
+ #include "bdroid_buildcfg.h"
+ extern char bt_hci_device_node[BT_HCI_DEVICE_NODE_MAX_LEN];
+ extern bool bluetooth_rtk_h5_flag;
+ #endif
+ 
++extern int check_wifi_chip_type_string(char *type);
+ #ifdef BLUETOOTH_RTK
+-
+-#define USB_DEVICE_DIRECTORY  "/sys/bus/usb/devices"
+-#define DEBUG_SCAN_USB     FALSE
+-
+-int Check_Key_Value(char* path,char* key,int value){
+-    FILE *fp;
+-    char newpath[100];
+-    char string_get[6];
+-    int value_int = 0;
+-    memset(newpath,0,100);
+-    sprintf(newpath,"%s/%s",path,key);
+-    if((fp=fopen(newpath,"r"))!=NULL){
+-        memset(string_get,0,6);
+-        if(fgets(string_get,5,fp)!=NULL)
+-            if(DEBUG_SCAN_USB)
+-                ALOGE("string_get %s =%s\n",key,string_get);
+-        fclose(fp);
+-        value_int = strtol(string_get,NULL,16);
+-        if(value_int == value)
+-            return 1;
+-    }
+-    return 0;
+-}
+-
+-int Scan_Usb_Devices_For_RTK(char* path){
+-    char newpath[100];
+-    char subpath[100];
+-    DIR * pdir;
+-    DIR * newpdir;
+-    struct dirent * ptr;
+-    struct dirent * newptr;
+-    struct stat filestat;
+-    struct stat subfilestat;
+-    if(stat(path, &filestat) != 0){
+-        ALOGE("The file or path(%s) can not be get stat!\n", newpath);
+-        return -1;
+-    }
+-    if((filestat.st_mode & S_IFDIR) != S_IFDIR){
+-        ALOGE("(%s) is not be a path!\n", path);
+-        return -1;
+-    }
+-    pdir =opendir(path);
+-    /*enter sub direc*/
+-    while((ptr = readdir(pdir))!=NULL){
+-        if(strcmp(ptr->d_name, ".") == 0 || strcmp(ptr->d_name, "..") == 0)
+-            continue;
+-        memset(newpath,0,100);
+-        sprintf(newpath,"%s/%s", path,ptr->d_name);
+-        if(DEBUG_SCAN_USB)
+-            ALOGE("The file or path(%s)\n", newpath);
+-        if(stat(newpath, &filestat) != 0){
+-            ALOGE("The file or path(%s) can not be get stat!\n", newpath);
+-            continue;
+-        }
+-        /* Check if it is path. */
+-        if((filestat.st_mode & S_IFDIR) == S_IFDIR){
+-            if(!Check_Key_Value(newpath,"idVendor",0x0bda))
+-                continue;
+-            newpdir =opendir(newpath);
+-            /*read sub directory*/
+-            while((newptr = readdir(newpdir))!=NULL){
+-                if(strcmp(newptr->d_name, ".") == 0 || strcmp(newptr->d_name, "..") == 0)
+-                    continue;
+-                memset(subpath,0,100);
+-                sprintf(subpath,"%s/%s", newpath,newptr->d_name);
+-                if(DEBUG_SCAN_USB)
+-                    ALOGE("The file or path(%s)\n", subpath);
+-                if(stat(subpath, &subfilestat) != 0){
+-                    ALOGE("The file or path(%s) can not be get stat!\n", newpath);
+-                    continue;
+-                }
+-                 /* Check if it is path. */
+-                if((subfilestat.st_mode & S_IFDIR) == S_IFDIR){
+-                    if(Check_Key_Value(subpath,"bInterfaceClass",0xe0) && \
+-                        Check_Key_Value(subpath,"bInterfaceSubClass",0x01) && \
+-                        Check_Key_Value(subpath,"bInterfaceProtocol",0x01)){
+-                        closedir(newpdir);
+-                        closedir(pdir);
+-                        return 1;
+-                    }
+-                }
+-            }
+-            closedir(newpdir);
+-        }
+-    }
+-    closedir(pdir);
+-    return 0;
+-}
+-
+ void bte_load_rtkbt_conf(const char *path)
+ {
++    char type[64];
+     assert(path != NULL);
+ 
++    ALOGI("%s attempt to load rtkbt conf from %s",__func__, path);
++
+     config_t *config = config_new(path);
+     if (!config) {
+       ALOGI("%s file >%s< not found", __func__, path);
+       return;
+     }
+     memset(bt_hci_device_node, 0, sizeof(bt_hci_device_node));
+-    /*0.check rtkbt.conf*/
++#if 0
+     strlcpy(bt_hci_device_node, config_get_string(config, CONFIG_DEFAULT_SECTION, "BtDeviceNode","/dev/rtk_btusb"), sizeof(bt_hci_device_node));
+-    if(bt_hci_device_node[0]=='?'){
+-        /*1.Scan_Usb_Device*/
+-        if(Scan_Usb_Devices_For_RTK(USB_DEVICE_DIRECTORY) == 0x01)
+-            strlcpy(bt_hci_device_node,"/dev/rtk_btusb", sizeof(bt_hci_device_node));
+-        else{
+-            int i = 0;
+-            while(bt_hci_device_node[i]!= '\0'){
+-                bt_hci_device_node[i] = bt_hci_device_node[i+1];
+-                i++;
+-            }
+-        }
++#else
++    //check_wifi_chip_type_string(type);
++    strcpy(type,"RTL8723BU");
++    if (strstr(type, "AU")!=NULL || strstr(type, "BU")!=NULL || strstr(type, "CU")!=NULL || strstr(type, "RTL8822BE") != NULL) {
++        strlcpy(bt_hci_device_node, "/dev/rtk_btusb", sizeof(bt_hci_device_node));
++    } else if (!strncmp(type, "RTL", 3)) {
++        strlcpy(bt_hci_device_node, "/dev/ttyS0", sizeof(bt_hci_device_node));
+     }
+-
++#endif
+     config_free(config);
+     if(!strcmp(bt_hci_device_node, "/dev/rtk_btusb")){
+         bluetooth_rtk_h5_flag = FALSE;
++        LOG_INFO(LOG_TAG, "%s bluetooth_rtk_h5_flag :%d", __func__,bluetooth_rtk_h5_flag);
+     }else {
+         bluetooth_rtk_h5_flag = TRUE;
+     }
+-    LOG_DEBUG(LOG_TAG, "bt_hci_device_node   = %s, bluetooth_rtk_h5_flag = %d \n",bt_hci_device_node, bluetooth_rtk_h5_flag);
+-
+-}
+-#endif
+-
+-#ifdef BLUETOOTH_RTK_BQB
+-unsigned int cert_conf_mask = 0;
+-void cert_conf(const char *p_conf_value)
+-{
+-    unsigned int i;
+-    static char buf[1024];
+-    char * p = buf;
+-
+-    memset(buf, 0, sizeof(buf));
+-    cert_conf_mask = strtol(p_conf_value, 0, 16);
+-    for(i=0;i<(sizeof(BLUETOOTH_RTK_BQB_PATCH_ITEMSTR)/sizeof(char*));i++)
+-    {
+-        if(cert_conf_mask &(1<<i))
+-            p += sprintf(p, "%s(%d) ", BLUETOOTH_RTK_BQB_PATCH_ITEMSTR[i],i);
+-    }
+-    ALOGI("BQB MASK: %s\n", buf);
+ }
+ #endif
+-
+ // Parses the specified Device ID configuration file and registers the
+ // Device ID records with SDP.
+ void bte_load_did_conf(const char *p_path) {
+diff --git a/main/stack_config.c b/main/stack_config.c
+index 8505990..a76cf3a 100755
+--- a/main/stack_config.c
++++ b/main/stack_config.c
+@@ -50,17 +50,9 @@ static config_t *config;
+ static future_t *init() {
+ // TODO(armansito): Find a better way than searching by a hardcoded path.
+ #if defined(OS_GENERIC)
+-#ifdef BLUETOOTH_RTK
+-  const char *path = "rtkbt_stack.conf";
+-#else
+   const char *path = "bt_stack.conf";
+-#endif
+ #else  // !defined(OS_GENERIC)
+-#ifdef BLUETOOTH_RTK
+-  const char *path = "/etc/bluetooth/rtkbt_stack.conf";
+-#else
+   const char *path = "/etc/bluetooth/bt_stack.conf";
+-#endif
+ #endif  // defined(OS_GENERIC)
+   assert(path != NULL);
+ 
+@@ -157,14 +149,12 @@ const stack_config_t interface = {
+   get_btsnoop_turned_on,
+   get_btsnoop_should_save_last,
+   get_trace_config_enabled,
+-#ifdef BLUETOOTH_RTK
++  #ifdef BLUETOOTH_RTK
+   get_btsnoop_heartbeat_log,
+   get_btsnoop_bqb_log,
+   get_btsnoop_h5enable_log,
+-#ifdef BLUETOOTH_RTK_COEX
+   get_btsnoop_coexenable_log,
+ #endif
+-#endif
+   get_pts_secure_only_mode,
+   get_pts_conn_updates_disabled,
+   get_pts_crosskey_sdp_disable,
+diff --git a/service/hal/bluetooth_interface.cpp b/service/hal/bluetooth_interface.cpp
+index a551fee..2814e1b 100755
+--- a/service/hal/bluetooth_interface.cpp
++++ b/service/hal/bluetooth_interface.cpp
+@@ -264,7 +264,7 @@ class BluetoothInterfaceImpl : public BluetoothInterface {
+ 
+     // Open the Bluetooth adapter.
+     hw_device_t* device;
+-    status = module->methods->open(module, BT_HARDWARE_MODULE_ID, &device);
++    status = module->methods->open(module, BT_HARDWARE_RTK_MODULE_ID, &device);
+     if (status) {
+       LOG(ERROR) << "Failed to open the Bluetooth module";
+       return false;
