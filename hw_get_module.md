@@ -116,6 +116,48 @@ static int load(const char *id,
 102 goto done;
 103 }
 
-100 ALOGE("load: id=%s != hmi->id=%s", id, hmi->id);  这个就是校验id和名字一致
+100 ALOGE("load: id=%s != hmi->id=%s", id, hmi->id);  这个就是校验id和库的名字是必须一致的
+
+
+yebin@ubuntu:~/RK3229_Android7.1_Box_20190723/hardware$ grep BT_HARDWARE_RTK_MODULE_ID -nr
+realtek/rtkbt/code/bt_bak/btif/src/bluetooth.c:602:    .id = BT_HARDWARE_RTK_MODULE_ID,
+realtek/rtkbt/code/bt_bak/service/hal/bluetooth_interface.cpp:267:    status = module->methods->open(module, BT_HARDWARE_RTK_MODULE_ID, &device);
+libhardware/include/hardware/bluetooth.h:36:#define BT_HARDWARE_RTK_MODULE_ID "bluetooth_rtk"
+
+所以新的库移植到RK
+
+diff --git a/btif/src/bluetooth.c b/btif/src/bluetooth.c
+index ede3dcc..5d83be1 100755
+--- a/btif/src/bluetooth.c
++++ b/btif/src/bluetooth.c
+@@ -600,7 +600,7 @@ EXPORT_SYMBOL struct hw_module_t HAL_MODULE_INFO_SYM = {
+     .tag = HARDWARE_MODULE_TAG,
+     .version_major = 1,
+     .version_minor = 0,
+-    .id = BT_HARDWARE_MODULE_ID,
++    .id = BT_HARDWARE_RTK_MODULE_ID,
+     .name = "Bluetooth Stack",
+     .author = "The Android Open Source Project",
+     .methods = &bt_stack_module_methods
+diff --git a/service/hal/bluetooth_interface.cpp b/service/hal/bluetooth_interface.cpp
+index a551fee..2814e1b 100755
+--- a/service/hal/bluetooth_interface.cpp
++++ b/service/hal/bluetooth_interface.cpp
+@@ -264,7 +264,7 @@ class BluetoothInterfaceImpl : public BluetoothInterface {
+
+     // Open the Bluetooth adapter.
+     hw_device_t* device;
+-    status = module->methods->open(module, BT_HARDWARE_MODULE_ID, &device);
++    status = module->methods->open(module, BT_HARDWARE_RTK_MODULE_ID, &device);
+     if (status) {
+       LOG(ERROR) << "Failed to open the Bluetooth module";
+       return false;
+
+
+
+
+
+
+
 
 ```
