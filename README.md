@@ -850,3 +850,28 @@ index 1cc30a9..1178757 100755
 ```
 find ./ -iname "*a*"|xargs grep 5
 ```
+68、RTK模组连上就断开
+```
+--- a/overlay/packages/apps/Bluetooth/res/values/config.xml
++++ b/overlay/packages/apps/Bluetooth/res/values/config.xml
+@@ -16,8 +16,8 @@
+     <bool name="profile_supported_a2dp">true</bool>
+     <bool name="profile_supported_a2dp_sink">false</bool>
+     <bool name="profile_supported_hdp">false</bool>
+-    <bool name="profile_supported_hs_hfp">false</bool>
+-    <bool name="profile_supported_hfpclient">false</bool>
++    <bool name="profile_supported_hs_hfp">true</bool>
++    <bool name="profile_supported_hfpclient">true</bool>
+
+--- a/res/values/config.xml
++++ b/res/values/config.xml
+@@ -13,7 +13,7 @@
+    limitations under the License.
+ -->
+ <resources>
+-    <bool name="profile_supported_rtkbt">false</bool>
++    <bool name="profile_supported_rtkbt">true</bool>
+     <bool name="profile_supported_a2dp">true</bool>
+     <bool name="profile_supported_a2dp_sink">false</bool>
+     
+```
