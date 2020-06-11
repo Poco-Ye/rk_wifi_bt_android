@@ -1,0 +1,394 @@
+01-01 00:01:24.738  1279  1279 V BtOppService: onCreate
+01-01 00:01:24.824  1279  1279 V BtOppService: Starting RfcommListener
+01-01 00:01:24.847  1279  1325 V BtOppService: Deleted complete outbound shares, number =  0
+01-01 00:01:24.859  1279  1325 V BtOppService: Deleted complete inbound failed shares, number = 0
+01-01 00:01:24.877  1279  1328 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:01:24.881  1279  1279 V BtOppService: onStartCommand
+01-01 00:01:24.892  1279  1279 V BtOppService: start RfcommListener
+01-01 00:01:24.895  1279  1279 V BtOppService: RfcommListener started
+01-01 00:01:24.895  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:01:24.896  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:01:24.904  1279  1328 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:01:24.925  1279  1328 V BtOppService: pendingUpdate is false keepUpdateThread is false sListenStarted is true
+01-01 00:02:23.831  1279  1279 D BtOppService: Get incoming connection
+01-01 00:02:23.831  1279  1279 I BtOppService: Start Obex Server
+01-01 00:02:23.854  1279  1279 D BtOppService: Get ServerSession com.android.bluetooth.opp.BluetoothOppObexServerSession@688b00a for incoming connectioncom.android.bluetooth.BluetoothObexTransport@d384875
+01-01 00:02:24.966  1279  1279 V BtOppService: onStartCommand
+01-01 00:02:24.967  1279  1350 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:02:24.987  1279  1279 V BtOppService: onStartCommand
+01-01 00:02:24.989  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:02:24.991  1279  1350 E BtOppService: insertShare found null URI at cursor!
+01-01 00:02:24.992  1279  1350 V BtOppService: Service adding new entry
+01-01 00:02:24.992  1279  1350 V BtOppService: ID      : 1
+01-01 00:02:24.992  1279  1350 V BtOppService: URI     : null
+01-01 00:02:24.992  1279  1350 V BtOppService: HINT    : IMG_20200505_212139.jpg
+01-01 00:02:24.992  1279  1350 V BtOppService: FILENAME: null
+01-01 00:02:24.992  1279  1350 V BtOppService: MIMETYPE: image/jpeg
+01-01 00:02:24.992  1279  1350 V BtOppService: DIRECTION: 1
+01-01 00:02:24.993  1279  1350 V BtOppService: DESTINAT: 30:74:96:74:F0:C3
+01-01 00:02:24.993  1279  1350 V BtOppService: VISIBILI: 0
+01-01 00:02:24.993  1279  1350 V BtOppService: CONFIRM : 0
+01-01 00:02:24.993  1279  1350 V BtOppService: STATUS  : 190
+01-01 00:02:24.993  1279  1350 V BtOppService: TOTAL   : 1533188
+01-01 00:02:24.993  1279  1350 V BtOppService: CURRENT : 0
+01-01 00:02:24.993  1279  1350 V BtOppService: TIMESTAMP : 144025
+01-01 00:02:24.993  1279  1350 V BtOppService: SCANNED : false
+01-01 00:02:24.995  1279  1350 V BtOppService: Service create new Batch 1 for INBOUND info 1
+01-01 00:02:25.001  1279  1350 V BtOppService: Service start server transfer new Batch 1 for info 1
+01-01 00:02:25.079  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:02:25.081  1279  1350 V BtOppService: Array update: inserting 1 @ 0
+01-01 00:02:25.083  1279  1350 V BtOppService: pendingUpdate is true keepUpdateThread is true sListenStarted is true
+01-01 00:02:25.090  1279  1350 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:02:25.092  1279  1350 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:02:29.400  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:02:29.401  1279  1361 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:02:29.409  1279  1361 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:02:29.410  1279  1361 V BtOppService: Service handle info 1 confirmation updated
+01-01 00:02:29.428  1279  1361 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:02:29.639  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:02:29.643  1279  1364 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:02:29.644  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:02:29.736  1279  1364 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:02:29.766  1279  1364 V BtOppService: pendingUpdate is true keepUpdateThread is true sListenStarted is true
+01-01 00:02:29.862  1279  1364 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:02:29.906  1279  1364 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:02:30.439  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:02:30.441  1279  1370 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:02:30.452  1279  1370 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:02:30.455  1279  1370 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:02:31.370  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:02:31.379  1279  1372 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:02:31.389  1279  1372 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:02:31.393  1279  1372 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:02:32.131  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:02:32.138  1279  1374 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:02:32.145  1279  1374 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:02:32.147  1279  1374 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:02:32.947  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:02:32.949  1279  1376 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:02:32.957  1279  1376 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:02:32.959  1279  1376 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:02:33.806  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:02:33.807  1279  1378 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:02:33.816  1279  1378 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:02:33.819  1279  1378 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:02:34.615  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:02:34.620  1279  1379 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:02:34.628  1279  1379 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:02:34.631  1279  1379 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:02:35.434  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:02:35.440  1279  1381 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:02:35.446  1279  1381 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:02:35.449  1279  1381 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:02:36.247  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:02:36.248  1279  1383 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:02:36.256  1279  1383 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:02:36.259  1279  1383 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:02:37.013  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:02:37.015  1279  1385 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:02:37.032  1279  1385 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:02:37.034  1279  1385 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:02:37.935  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:02:37.937  1279  1387 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:02:37.943  1279  1387 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:02:37.946  1279  1387 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:02:38.763  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:02:38.765  1279  1389 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:02:38.770  1279  1389 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:02:38.774  1279  1389 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:02:39.564  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:02:39.565  1279  1390 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:02:39.572  1279  1390 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:02:39.574  1279  1390 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:02:40.478  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:02:40.483  1279  1392 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:02:40.489  1279  1392 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:02:40.493  1279  1392 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:02:41.370  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:02:41.373  1279  1394 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:02:41.378  1279  1394 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:02:41.380  1279  1394 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:02:42.252  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:02:42.253  1279  1396 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:02:42.270  1279  1396 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:02:42.272  1279  1396 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:02:43.053  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:02:43.055  1279  1398 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:02:43.063  1279  1398 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:02:43.066  1279  1398 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:02:44.003  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:02:44.008  1279  1400 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:02:44.015  1279  1400 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:02:44.018  1279  1400 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:02:44.770  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:02:44.772  1279  1402 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:02:44.777  1279  1402 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:02:44.779  1279  1402 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:02:45.605  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:02:45.606  1279  1403 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:02:45.612  1279  1403 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:02:45.614  1279  1403 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:02:46.469  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:02:46.471  1279  1405 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:02:46.477  1279  1405 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:02:46.481  1279  1405 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:02:47.243  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:02:47.249  1279  1407 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:02:47.260  1279  1407 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:02:47.263  1279  1407 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:02:48.029  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:02:48.031  1279  1409 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:02:48.037  1279  1409 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:02:48.040  1279  1409 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:02:48.775  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:02:48.777  1279  1411 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:02:48.789  1279  1411 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:02:48.791  1279  1411 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:02:48.811  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:02:48.813  1279  1412 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:02:48.825  1279  1412 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:02:48.826  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:02:48.827  1279  1412 D BtOppService: Scanning file /storage/emulated/0/bluetooth/IMG_20200505_212139.jpg
+01-01 00:02:48.855  1279  1412 V BtOppService: Connecting to MediaScannerConnection 
+01-01 00:02:48.873  1279  1412 V BtOppService: pendingUpdate is true keepUpdateThread is true sListenStarted is true
+01-01 00:02:48.890  1279  1412 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:02:48.890  1279  1412 D BtOppService: Scanning file /storage/emulated/0/bluetooth/IMG_20200505_212139.jpg
+01-01 00:02:48.892  1279  1412 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:02:48.935  1279  1279 V BtOppService: MediaScannerConnection onMediaScannerConnected
+01-01 00:02:49.002  1279  1319 V BtOppService: MediaScannerConnection onScanCompleted
+01-01 00:02:49.003  1279  1319 V BtOppService: MediaScannerConnection path is /storage/emulated/0/bluetooth/IMG_20200505_212139.jpg
+01-01 00:02:49.003  1279  1319 V BtOppService: MediaScannerConnection Uri is content://media/external/images/media/4007
+01-01 00:02:49.003  1279  1319 V BtOppService: MediaScannerConnection disconnect
+01-01 00:02:49.003  1279  1279 V BtOppService: Update mInfo.id 1 for data uri= content://media/external/images/media/4007
+01-01 00:02:49.043  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:02:49.044  1279  1415 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:02:49.051  1279  1415 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:02:49.055  1279  1415 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:02:50.218  1279  1279 V BtOppService: onStartCommand
+01-01 00:02:50.222  1279  1417 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:02:50.234  1279  1279 V BtOppService: onStartCommand
+01-01 00:02:50.238  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:02:50.241  1279  1417 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:02:50.242  1279  1417 E BtOppService: insertShare found null URI at cursor!
+01-01 00:02:50.242  1279  1417 V BtOppService: Service adding new entry
+01-01 00:02:50.242  1279  1417 V BtOppService: ID      : 2
+01-01 00:02:50.243  1279  1417 V BtOppService: URI     : null
+01-01 00:02:50.243  1279  1417 V BtOppService: HINT    : IMG_20200602_201019.jpg
+01-01 00:02:50.243  1279  1417 V BtOppService: FILENAME: null
+01-01 00:02:50.243  1279  1417 V BtOppService: MIMETYPE: image/jpeg
+01-01 00:02:50.243  1279  1417 V BtOppService: DIRECTION: 1
+01-01 00:02:50.243  1279  1417 V BtOppService: DESTINAT: 30:74:96:74:F0:C3
+01-01 00:02:50.243  1279  1417 V BtOppService: VISIBILI: 0
+01-01 00:02:50.243  1279  1417 V BtOppService: CONFIRM : 2
+01-01 00:02:50.243  1279  1417 V BtOppService: STATUS  : 190
+01-01 00:02:50.243  1279  1417 V BtOppService: TOTAL   : 2179073
+01-01 00:02:50.243  1279  1417 V BtOppService: CURRENT : 0
+01-01 00:02:50.244  1279  1417 V BtOppService: TIMESTAMP : 144025
+01-01 00:02:50.244  1279  1417 V BtOppService: SCANNED : false
+01-01 00:02:50.244  1279  1417 V BtOppService: Service add info 2 to existing batch 1
+01-01 00:02:50.286  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:02:50.290  1279  1417 V BtOppService: Array update: inserting 2 @ 1
+01-01 00:02:50.292  1279  1417 V BtOppService: pendingUpdate is true keepUpdateThread is true sListenStarted is true
+01-01 00:02:50.296  1279  1417 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:02:50.297  1279  1417 W BtOppService: updateShare() called for ID 2 with null URI
+01-01 00:02:50.300  1279  1417 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:02:50.307  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:02:50.310  1279  1419 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:02:50.328  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:02:50.330  1279  1419 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:02:50.331  1279  1419 W BtOppService: updateShare() called for ID 2 with null URI
+01-01 00:02:50.336  1279  1419 V BtOppService: pendingUpdate is true keepUpdateThread is true sListenStarted is true
+01-01 00:02:50.342  1279  1419 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:02:50.342  1279  1419 W BtOppService: updateShare() called for ID 2 with null URI
+01-01 00:02:50.343  1279  1419 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:02:51.154  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:02:51.156  1279  1421 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:02:51.174  1279  1421 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:02:51.175  1279  1421 W BtOppService: updateShare() called for ID 2 with null URI
+01-01 00:02:51.177  1279  1421 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:02:51.924  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:02:51.926  1279  1423 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:02:51.934  1279  1423 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:02:51.934  1279  1423 W BtOppService: updateShare() called for ID 2 with null URI
+01-01 00:02:51.937  1279  1423 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:02:52.768  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:02:52.770  1279  1425 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:02:52.778  1279  1425 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:02:52.778  1279  1425 W BtOppService: updateShare() called for ID 2 with null URI
+01-01 00:02:52.780  1279  1425 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:02:53.615  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:02:53.616  1279  1426 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:02:53.621  1279  1426 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:02:53.622  1279  1426 W BtOppService: updateShare() called for ID 2 with null URI
+01-01 00:02:53.625  1279  1426 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:02:54.456  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:02:54.458  1279  1428 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:02:54.467  1279  1428 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:02:54.468  1279  1428 W BtOppService: updateShare() called for ID 2 with null URI
+01-01 00:02:54.471  1279  1428 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:02:55.227  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:02:55.229  1279  1430 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:02:55.236  1279  1430 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:02:55.237  1279  1430 W BtOppService: updateShare() called for ID 2 with null URI
+01-01 00:02:55.242  1279  1430 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:02:56.070  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:02:56.072  1279  1432 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:02:56.079  1279  1432 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:02:56.080  1279  1432 W BtOppService: updateShare() called for ID 2 with null URI
+01-01 00:02:56.083  1279  1432 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:02:56.885  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:02:56.886  1279  1434 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:02:56.893  1279  1434 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:02:56.894  1279  1434 W BtOppService: updateShare() called for ID 2 with null URI
+01-01 00:02:56.896  1279  1434 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:02:57.608  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:02:57.614  1279  1435 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:02:57.624  1279  1435 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:02:57.624  1279  1435 W BtOppService: updateShare() called for ID 2 with null URI
+01-01 00:02:57.626  1279  1435 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:02:58.464  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:02:58.466  1279  1437 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:02:58.474  1279  1437 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:02:58.475  1279  1437 W BtOppService: updateShare() called for ID 2 with null URI
+01-01 00:02:58.477  1279  1437 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:02:59.307  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:02:59.308  1279  1446 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:02:59.315  1279  1446 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:02:59.316  1279  1446 W BtOppService: updateShare() called for ID 2 with null URI
+01-01 00:02:59.318  1279  1446 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:03:00.145  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:03:00.147  1279  1448 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:03:00.163  1279  1448 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:03:00.163  1279  1448 W BtOppService: updateShare() called for ID 2 with null URI
+01-01 00:03:00.167  1279  1448 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:03:00.975  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:03:00.980  1279  1450 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:03:00.993  1279  1450 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:03:00.993  1279  1450 W BtOppService: updateShare() called for ID 2 with null URI
+01-01 00:03:00.995  1279  1450 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:03:01.795  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:03:01.796  1279  1453 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:03:01.801  1279  1453 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:03:01.802  1279  1453 W BtOppService: updateShare() called for ID 2 with null URI
+01-01 00:03:01.805  1279  1453 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:03:02.640  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:03:02.641  1279  1454 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:03:02.649  1279  1454 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:03:02.650  1279  1454 W BtOppService: updateShare() called for ID 2 with null URI
+01-01 00:03:02.653  1279  1454 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:03:03.476  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:03:03.478  1279  1456 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:03:03.486  1279  1456 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:03:03.487  1279  1456 W BtOppService: updateShare() called for ID 2 with null URI
+01-01 00:03:03.490  1279  1456 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:03:04.257  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:03:04.259  1279  1458 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:03:04.264  1279  1458 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:03:04.265  1279  1458 W BtOppService: updateShare() called for ID 2 with null URI
+01-01 00:03:04.267  1279  1458 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:03:05.041  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:03:05.047  1279  1460 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:03:05.057  1279  1460 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:03:05.058  1279  1460 W BtOppService: updateShare() called for ID 2 with null URI
+01-01 00:03:05.059  1279  1460 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:03:05.887  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:03:05.888  1279  1462 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:03:05.893  1279  1462 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:03:05.894  1279  1462 W BtOppService: updateShare() called for ID 2 with null URI
+01-01 00:03:05.896  1279  1462 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:03:06.744  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:03:06.747  1279  1464 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:03:06.755  1279  1464 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:03:06.755  1279  1464 W BtOppService: updateShare() called for ID 2 with null URI
+01-01 00:03:06.757  1279  1464 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:03:07.578  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:03:07.583  1279  1465 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:03:07.590  1279  1465 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:03:07.590  1279  1465 W BtOppService: updateShare() called for ID 2 with null URI
+01-01 00:03:07.593  1279  1465 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:03:08.417  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:03:08.419  1279  1467 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:03:08.432  1279  1467 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:03:08.433  1279  1467 W BtOppService: updateShare() called for ID 2 with null URI
+01-01 00:03:08.435  1279  1467 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:03:09.263  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:03:09.264  1279  1469 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:03:09.276  1279  1469 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:03:09.276  1279  1469 W BtOppService: updateShare() called for ID 2 with null URI
+01-01 00:03:09.279  1279  1469 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:03:10.075  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:03:10.078  1279  1471 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:03:10.088  1279  1471 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:03:10.089  1279  1471 W BtOppService: updateShare() called for ID 2 with null URI
+01-01 00:03:10.091  1279  1471 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:03:10.936  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:03:10.940  1279  1473 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:03:10.948  1279  1473 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:03:10.948  1279  1473 W BtOppService: updateShare() called for ID 2 with null URI
+01-01 00:03:10.951  1279  1473 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:03:11.692  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:03:11.694  1279  1474 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:03:11.705  1279  1474 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:03:11.706  1279  1474 W BtOppService: updateShare() called for ID 2 with null URI
+01-01 00:03:11.708  1279  1474 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:03:12.482  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:03:12.486  1279  1476 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:03:12.492  1279  1476 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:03:12.492  1279  1476 W BtOppService: updateShare() called for ID 2 with null URI
+01-01 00:03:12.496  1279  1476 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:03:13.357  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:03:13.362  1279  1478 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:03:13.373  1279  1478 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:03:13.374  1279  1478 W BtOppService: updateShare() called for ID 2 with null URI
+01-01 00:03:13.376  1279  1478 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:03:14.122  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:03:14.123  1279  1480 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:03:14.132  1279  1480 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:03:14.133  1279  1480 W BtOppService: updateShare() called for ID 2 with null URI
+01-01 00:03:14.135  1279  1480 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:03:14.957  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:03:14.958  1279  1482 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:03:14.970  1279  1482 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:03:14.971  1279  1482 W BtOppService: updateShare() called for ID 2 with null URI
+01-01 00:03:14.972  1279  1482 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:03:15.778  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:03:15.780  1279  1484 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:03:15.788  1279  1484 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:03:15.789  1279  1484 W BtOppService: updateShare() called for ID 2 with null URI
+01-01 00:03:15.792  1279  1484 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:03:16.488  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:03:16.490  1279  1485 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:03:16.498  1279  1485 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:03:16.499  1279  1485 W BtOppService: updateShare() called for ID 2 with null URI
+01-01 00:03:16.501  1279  1485 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:03:17.181  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:03:17.183  1279  1487 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:03:17.195  1279  1487 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:03:17.195  1279  1487 W BtOppService: updateShare() called for ID 2 with null URI
+01-01 00:03:17.198  1279  1487 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:03:17.215  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:03:17.216  1279  1488 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:03:17.225  1279  1488 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:03:17.226  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:03:17.225  1279  1488 W BtOppService: updateShare() called for ID 2 with null URI
+01-01 00:03:17.228  1279  1488 D BtOppService: Scanning file /storage/emulated/0/bluetooth/IMG_20200602_201019.jpg
+01-01 00:03:17.228  1279  1488 V BtOppService: Connecting to MediaScannerConnection 
+01-01 00:03:17.251  1279  1488 V BtOppService: pendingUpdate is true keepUpdateThread is true sListenStarted is true
+01-01 00:03:17.260  1279  1488 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:03:17.260  1279  1488 W BtOppService: updateShare() called for ID 2 with null URI
+01-01 00:03:17.260  1279  1488 D BtOppService: Scanning file /storage/emulated/0/bluetooth/IMG_20200602_201019.jpg
+01-01 00:03:17.263  1279  1488 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
+01-01 00:03:17.270  1279  1279 V BtOppService: MediaScannerConnection onMediaScannerConnected
+01-01 00:03:17.313  1279  1292 V BtOppService: MediaScannerConnection onScanCompleted
+01-01 00:03:17.313  1279  1292 V BtOppService: MediaScannerConnection path is /storage/emulated/0/bluetooth/IMG_20200602_201019.jpg
+01-01 00:03:17.313  1279  1292 V BtOppService: MediaScannerConnection Uri is content://media/external/images/media/4008
+01-01 00:03:17.314  1279  1292 V BtOppService: MediaScannerConnection disconnect
+01-01 00:03:17.319  1279  1279 V BtOppService: Update mInfo.id 2 for data uri= content://media/external/images/media/4008
+01-01 00:03:17.362  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:03:17.364  1279  1279 V BtOppService: ContentObserver received notification
+01-01 00:03:17.365  1279  1490 V BtOppService: pendingUpdate is true keepUpdateThread is false sListenStarted is true
+01-01 00:03:17.368  1279  1490 W BtOppService: updateShare() called for ID 1 with null URI
+01-01 00:03:17.369  1279  1490 V BtOppService: Batch 1 is finished
+01-01 00:03:17.369  1279  1490 V BtOppService: Remove batch 1
+01-01 00:03:17.369  1279  1490 W BtOppService: updateShare() called for ID 2 with null URI
+01-01 00:03:17.371  1279  1490 V BtOppService: pendingUpdate is false keepUpdateThread is true sListenStarted is true
