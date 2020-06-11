@@ -1,0 +1,91 @@
+01-01 00:02:23.852  1279  1279 D BtOppObexServer: Create ServerSession with transport com.android.bluetooth.BluetoothObexTransport@d384875
+01-01 00:02:24.018  1279  1348 D BtOppObexServer: onConnect
+01-01 00:02:24.025  1279  1348 V BtOppObexServer: onConnect(): uuid =null
+01-01 00:02:24.942  1279  1348 D BtOppObexServer: onPut javax.obex.ServerOperation@6264e98
+01-01 00:02:24.962  1279  1348 V BtOppObexServer: Mimetype guessed from extension jpg is image/jpeg
+01-01 00:02:24.990  1279  1348 V BtOppObexServer: insert contentUri: content://com.android.bluetooth.opp/btopp/1
+01-01 00:02:24.990  1279  1348 V BtOppObexServer: mLocalShareInfoId = 1
+01-01 00:02:25.005  1279  1350 D BtOppObexServer: Start!
+01-01 00:02:25.005  1279  1350 D BtOppObexServer: addShare for id 1
+01-01 00:02:25.005  1279  1350 D BtOppObexServer: processShareInfo() 1
+01-01 00:02:25.080  1279  1350 V BtOppObexServer: Generate BluetoothOppReceiveFileInfo:
+01-01 00:02:25.081  1279  1350 V BtOppObexServer: filename  :/storage/emulated/0/bluetooth/IMG_20200505_212139.jpg
+01-01 00:02:25.081  1279  1350 V BtOppObexServer: length    :1533188
+01-01 00:02:25.081  1279  1350 V BtOppObexServer: status    :0
+01-01 00:02:25.992  1279  1348 V BtOppObexServer: MSG_CONNECT_TIMEOUT sent
+01-01 00:02:29.413  1279  1348 D BtOppObexServer: Server unblocked 
+01-01 00:02:29.413  1279  1348 V BtOppObexServer: after confirm: userAccepted=1
+01-01 00:02:30.425  1279  1348 V BtOppObexServer: Receive file position = 65523 readLength 65523 bytes took 858 ms
+01-01 00:02:31.355  1279  1348 V BtOppObexServer: Receive file position = 131046 readLength 65523 bytes took 917 ms
+01-01 00:02:32.115  1279  1348 V BtOppObexServer: Receive file position = 196569 readLength 65523 bytes took 746 ms
+01-01 00:02:32.936  1279  1348 V BtOppObexServer: Receive file position = 262092 readLength 65523 bytes took 806 ms
+01-01 00:02:33.791  1279  1348 V BtOppObexServer: Receive file position = 327615 readLength 65523 bytes took 843 ms
+01-01 00:02:34.602  1279  1348 V BtOppObexServer: Receive file position = 393138 readLength 65523 bytes took 797 ms
+01-01 00:02:35.423  1279  1348 V BtOppObexServer: Receive file position = 458661 readLength 65523 bytes took 808 ms
+01-01 00:02:36.235  1279  1348 V BtOppObexServer: Receive file position = 524184 readLength 65523 bytes took 801 ms
+01-01 00:02:36.999  1279  1348 V BtOppObexServer: Receive file position = 589707 readLength 65523 bytes took 753 ms
+01-01 00:02:37.920  1279  1348 V BtOppObexServer: Receive file position = 655230 readLength 65523 bytes took 907 ms
+01-01 00:02:38.751  1279  1348 V BtOppObexServer: Receive file position = 720753 readLength 65523 bytes took 816 ms
+01-01 00:02:39.546  1279  1348 V BtOppObexServer: Receive file position = 786276 readLength 65523 bytes took 783 ms
+01-01 00:02:40.466  1279  1348 V BtOppObexServer: Receive file position = 851799 readLength 65523 bytes took 903 ms
+01-01 00:02:41.359  1279  1348 V BtOppObexServer: Receive file position = 917322 readLength 65523 bytes took 881 ms
+01-01 00:02:42.235  1279  1348 V BtOppObexServer: Receive file position = 982845 readLength 65523 bytes took 865 ms
+01-01 00:02:43.041  1279  1348 V BtOppObexServer: Receive file position = 1048368 readLength 65523 bytes took 789 ms
+01-01 00:02:43.991  1279  1348 V BtOppObexServer: Receive file position = 1113891 readLength 65523 bytes took 937 ms
+01-01 00:02:44.760  1279  1348 V BtOppObexServer: Receive file position = 1179414 readLength 65523 bytes took 758 ms
+01-01 00:02:45.591  1279  1348 V BtOppObexServer: Receive file position = 1244937 readLength 65523 bytes took 821 ms
+01-01 00:02:46.458  1279  1348 V BtOppObexServer: Receive file position = 1310460 readLength 65523 bytes took 854 ms
+01-01 00:02:47.230  1279  1348 V BtOppObexServer: Receive file position = 1375983 readLength 65523 bytes took 760 ms
+01-01 00:02:48.018  1279  1348 V BtOppObexServer: Receive file position = 1441506 readLength 65523 bytes took 775 ms
+01-01 00:02:48.763  1279  1348 V BtOppObexServer: Receive file position = 1507029 readLength 65523 bytes took 734 ms
+01-01 00:02:48.800  1279  1348 V BtOppObexServer: Receive file position = 1533188 readLength 26159 bytes took 26 ms
+01-01 00:02:48.811  1279  1348 D BtOppObexServer: Receiving file completed for /storage/emulated/0/bluetooth/IMG_20200505_212139.jpg
+01-01 00:02:50.209  1279  1348 D BtOppObexServer: onPut javax.obex.ServerOperation@a7bdd3a
+01-01 00:02:50.212  1279  1348 V BtOppObexServer: Mimetype guessed from extension jpg is image/jpeg
+01-01 00:02:50.239  1279  1348 V BtOppObexServer: insert contentUri: content://com.android.bluetooth.opp/btopp/2
+01-01 00:02:50.240  1279  1348 V BtOppObexServer: mLocalShareInfoId = 2
+01-01 00:02:50.244  1279  1417 D BtOppObexServer: addShare for id 2
+01-01 00:02:50.244  1279  1417 D BtOppObexServer: processShareInfo() 2
+01-01 00:02:50.288  1279  1417 V BtOppObexServer: Generate BluetoothOppReceiveFileInfo:
+01-01 00:02:50.288  1279  1417 V BtOppObexServer: filename  :/storage/emulated/0/bluetooth/IMG_20200602_201019.jpg
+01-01 00:02:50.288  1279  1417 V BtOppObexServer: length    :2179073
+01-01 00:02:50.288  1279  1417 V BtOppObexServer: status    :0
+01-01 00:02:50.297  1279  1348 D BtOppObexServer: Server unblocked 
+01-01 00:02:50.297  1279  1348 V BtOppObexServer: after confirm: userAccepted=2
+01-01 00:02:51.128  1279  1348 V BtOppObexServer: Receive file position = 65523 readLength 65523 bytes took 798 ms
+01-01 00:02:51.909  1279  1348 V BtOppObexServer: Receive file position = 131046 readLength 65523 bytes took 755 ms
+01-01 00:02:52.758  1279  1348 V BtOppObexServer: Receive file position = 196569 readLength 65523 bytes took 833 ms
+01-01 00:02:53.599  1279  1348 V BtOppObexServer: Receive file position = 262092 readLength 65523 bytes took 831 ms
+01-01 00:02:54.443  1279  1348 V BtOppObexServer: Receive file position = 327615 readLength 65523 bytes took 828 ms
+01-01 00:02:55.213  1279  1348 V BtOppObexServer: Receive file position = 393138 readLength 65523 bytes took 757 ms
+01-01 00:02:56.059  1279  1348 V BtOppObexServer: Receive file position = 458661 readLength 65523 bytes took 833 ms
+01-01 00:02:56.874  1279  1348 V BtOppObexServer: Receive file position = 524184 readLength 65523 bytes took 803 ms
+01-01 00:02:57.596  1279  1348 V BtOppObexServer: Receive file position = 589707 readLength 65523 bytes took 711 ms
+01-01 00:02:58.450  1279  1348 V BtOppObexServer: Receive file position = 655230 readLength 65523 bytes took 842 ms
+01-01 00:02:59.296  1279  1348 V BtOppObexServer: Receive file position = 720753 readLength 65523 bytes took 831 ms
+01-01 00:03:00.131  1279  1348 V BtOppObexServer: Receive file position = 786276 readLength 65523 bytes took 825 ms
+01-01 00:03:00.962  1279  1348 V BtOppObexServer: Receive file position = 851799 readLength 65523 bytes took 818 ms
+01-01 00:03:01.786  1279  1348 V BtOppObexServer: Receive file position = 917322 readLength 65523 bytes took 809 ms
+01-01 00:03:02.628  1279  1348 V BtOppObexServer: Receive file position = 982845 readLength 65523 bytes took 833 ms
+01-01 00:03:03.463  1279  1348 V BtOppObexServer: Receive file position = 1048368 readLength 65523 bytes took 824 ms
+01-01 00:03:04.246  1279  1348 V BtOppObexServer: Receive file position = 1113891 readLength 65523 bytes took 771 ms
+01-01 00:03:05.028  1279  1348 V BtOppObexServer: Receive file position = 1179414 readLength 65523 bytes took 771 ms
+01-01 00:03:05.877  1279  1348 V BtOppObexServer: Receive file position = 1244937 readLength 65523 bytes took 836 ms
+01-01 00:03:06.732  1279  1348 V BtOppObexServer: Receive file position = 1310460 readLength 65523 bytes took 846 ms
+01-01 00:03:07.566  1279  1348 V BtOppObexServer: Receive file position = 1375983 readLength 65523 bytes took 822 ms
+01-01 00:03:08.406  1279  1348 V BtOppObexServer: Receive file position = 1441506 readLength 65523 bytes took 828 ms
+01-01 00:03:09.249  1279  1348 V BtOppObexServer: Receive file position = 1507029 readLength 65523 bytes took 831 ms
+01-01 00:03:10.064  1279  1348 V BtOppObexServer: Receive file position = 1572552 readLength 65523 bytes took 801 ms
+01-01 00:03:10.923  1279  1348 V BtOppObexServer: Receive file position = 1638075 readLength 65523 bytes took 845 ms
+01-01 00:03:11.679  1279  1348 V BtOppObexServer: Receive file position = 1703598 readLength 65523 bytes took 743 ms
+01-01 00:03:12.470  1279  1348 V BtOppObexServer: Receive file position = 1769121 readLength 65523 bytes took 778 ms
+01-01 00:03:13.343  1279  1348 V BtOppObexServer: Receive file position = 1834644 readLength 65523 bytes took 861 ms
+01-01 00:03:14.111  1279  1348 V BtOppObexServer: Receive file position = 1900167 readLength 65523 bytes took 754 ms
+01-01 00:03:14.944  1279  1348 V BtOppObexServer: Receive file position = 1965690 readLength 65523 bytes took 821 ms
+01-01 00:03:15.767  1279  1348 V BtOppObexServer: Receive file position = 2031213 readLength 65523 bytes took 810 ms
+01-01 00:03:16.477  1279  1348 V BtOppObexServer: Receive file position = 2096736 readLength 65523 bytes took 699 ms
+01-01 00:03:17.170  1279  1348 V BtOppObexServer: Receive file position = 2162259 readLength 65523 bytes took 682 ms
+01-01 00:03:17.206  1279  1348 V BtOppObexServer: Receive file position = 2179073 readLength 16814 bytes took 25 ms
+01-01 00:03:17.215  1279  1348 D BtOppObexServer: Receiving file completed for /storage/emulated/0/bluetooth/IMG_20200602_201019.jpg
+01-01 00:03:17.323  1279  1348 D BtOppObexServer: onDisconnect
+01-01 00:03:17.369  1279  1490 D BtOppObexServer: Stop!
