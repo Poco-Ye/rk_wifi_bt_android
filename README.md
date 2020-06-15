@@ -875,3 +875,16 @@ find ./ -iname "*a*"|xargs grep 5
      <bool name="profile_supported_a2dp_sink">false</bool>
      
 ```
+69、蓝牙安全模式
+```
+安全模式大体上可分为两种(1 2 3 4)Legacy Security Modes(1、2、3, 也称Legacy Pairing)和Security Mode 4(即SSP)
+Legacy Security Modes用于蓝牙v2.0及更早版本, 设备需要输入Pin Code, 当双方Pin Code相同时配对成功
+Pin Code通常为4个字节, 如0000和1234
+
+SSP用于蓝牙v2.1及后续版本, 对于BR/EDR要求强制支持
+SSP使用四种不同的配对模式：Numeric Comparison、Just Works、Passkey Entry、Out Of Band
+像simple paring就是Numeric Comparison   pin code request就是Passkey Entry
+
+```
+
+
