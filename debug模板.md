@@ -13,6 +13,10 @@ ALOGE("%s xxx %04x", __FUNCTION__, xxx);
 ALOGW("xxx %s", xxx);
 
 package
+
+public static final boolean DEBUG = true;
+public static final boolean VERBOSE = true;
+
 private static final String TAG = "TAG_poco"
 Log.e(TAG, "xxx=" + xxx + " xxx=" + xxx);
 
