@@ -887,4 +887,10 @@ SSP使用四种不同的配对模式：Numeric Comparison、Just Works、Passkey
 
 ```
 
+70、bt trace
+```
+system/bt/include/bt_trace.h
+可以找到每一个子项的 6个级别的log的打印函数，每个子项可以跟踪打印，每个级别都用一个函数名 
+```
+
 
