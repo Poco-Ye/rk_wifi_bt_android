@@ -29,3 +29,21 @@ vendor/partner_gms/products/gms_overlay/frameworks/base/core/res/res/values/conf
 不想打开就改成false
 <bool name="config_enableAutoPowerModes">false</bool>
 ```
+
+
+```
+但是以上修改的原理是，防火墙不阻挡某些进程进行网络访问，其实网络还是在的，只是有防火墙，有时候以上设置没有效果，可参考以下
+diff --git a/services/core/java/com/android/server/DeviceIdleController.java b/services/core/java/com/android/server/DeviceIdleController.java
+index 05c7504..e89f6de 100644
+--- a/services/core/java/com/android/server/DeviceIdleController.java
++++ b/services/core/java/com/android/server/DeviceIdleController.java
+@@ -1033,7 +1033,8 @@ public class DeviceIdleController extends SystemService
+                         lightChanged = mLocalPowerManager.setLightDeviceIdleMode(true);
+                     }
+                     try {
+-                        mNetworkPolicyManager.setDeviceIdleMode(true);
++                        mNetworkPolicyManager.setDeviceIdleMode(false);
+                         mBatteryStats.noteDeviceIdleMode(msg.what == MSG_REPORT_IDLE_ON
+                                 ? BatteryStats.DEVICE_IDLE_MODE_DEEP
+                                 : BatteryStats.DEVICE_IDLE_MODE_LIGHT, null, Process.myUid());
+```
