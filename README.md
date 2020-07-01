@@ -892,5 +892,12 @@ SSP使用四种不同的配对模式：Numeric Comparison、Just Works、Passkey
 system/bt/include/bt_trace.h
 可以找到每一个子项的 6个级别的log的打印函数，每个子项可以跟踪打印，每个级别都用一个函数名 
 ```
+71、共存匹配
+```
+rk3126c:/proc/net/rtl8723ds/wlan0 # cat btcoex
 
+============[BT Coexist info]============
+ Ant PG Num/ Mech/ Pos               = 1/ 1/ S1
+ CoexVer WL/  BT_Desired/ BT_Report  = 20161208_12/ 0x10/ 0x10 (Match)
+```
 
