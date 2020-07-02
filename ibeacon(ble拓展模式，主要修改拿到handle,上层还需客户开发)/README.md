@@ -61,3 +61,14 @@ index 0c3e501..bf2eb5a 100644
 +#define BLE_VND_INCLUDED TRUE
 #endif
 ```
+
+```
+发送和接收ble advertiser的参考资料
+
+http://blog.csdn.net/lansefeiyang08/article/details/46482073
+https://www.cnblogs.com/CharlesGrant/p/7155211.html
+https://race604.com/android-ble-in-action/
+
+如何创建GATTServer
+https://blog.csdn.net/sinat_19628093/article/details/51789617?locationNum=10
+```
