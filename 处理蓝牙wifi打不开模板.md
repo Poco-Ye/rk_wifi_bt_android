@@ -214,9 +214,17 @@ md5sum  /system/lib/hw/bluetooth_rtk.default.so  /system/app/Bluetooth/Bluetooth
 
 ```
 
-
 ```
 wifi模板一：
+
+点击关系平板电脑--->开发者模式（连续点击 版本号）退出-->系统-->高级---> 开发者选项-->启动wlan 详细日志记录功能（勾选）
+点击关系平板电脑--->开发者模式（连续点击 版本号）退出-->系统-->高级---> 开发者选项-->启动bluetooth hci snoop log 详细日志记录功能（勾选）
+
+```
+
+
+```
+wifi模板二：
 测量一下LPO 引脚有无32.768k clk 还有频偏，测量WL_REG_ON电平 ，VDDIO电平 ,VBAT电平，还有晶体频偏
 
 echo 0 > /sys/class/rkwifi/power
