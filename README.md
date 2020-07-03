@@ -900,4 +900,22 @@ rk3126c:/proc/net/rtl8723ds/wlan0 # cat btcoex
  Ant PG Num/ Mech/ Pos               = 1/ 1/ S1
  CoexVer WL/  BT_Desired/ BT_Report  = 20161208_12/ 0x10/ 0x10 (Match)
 ```
+72、32.768K
+```
+static void mmc_pwrseq_simple_pre_power_on(struct mmc_host *host)
+{
+        struct mmc_pwrseq_simple *pwrseq = container_of(host->pwrseq,
+                                        struct mmc_pwrseq_simple, pwrseq);
 
+        if (!IS_ERR(pwrseq->ext_clk) && !pwrseq->clk_enabled) {
+                clk_prepare_enable(pwrseq->ext_clk);
+                pwrseq->clk_enabled = true;
+        }
+
+        mmc_pwrseq_simple_set_gpios_value(pwrseq, 1);
+}
+这个里面是有设置的
+kernel/drivers/mmc/core/pwrseq_simple.c
+clk_prepare_enable(pwrseq->ext_clk);
+这个就是打开PMU 32K的
+```
