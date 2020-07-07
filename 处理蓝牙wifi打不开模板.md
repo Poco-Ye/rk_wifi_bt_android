@@ -77,6 +77,10 @@ PMU 配置LDO提供的 VDDIO引脚的电平，VBAT引脚电平，BT_RTS_N使能�
 echo 0 > /sys/class/rfkill/rfkill0/state
 echo 1 > /sys/class/rfkill/rfkill0/state
 BT_RTS_N引脚有无电平变化
+
+bt_wake引脚在模组出问题的时候（比如蓝牙反复打开，最好保证bt_wake这个引脚是高电平），
+不清楚是否有进入lpm模式的fw，最好就是保证这个引脚是高电平，虽然我之前屏蔽过这个脚，
+但是没有确认过默认是否是高，可能会导致过一段时间死掉。
  
 ```
 
