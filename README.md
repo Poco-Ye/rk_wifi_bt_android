@@ -919,3 +919,21 @@ kernel/drivers/mmc/core/pwrseq_simple.c
 clk_prepare_enable(pwrseq->ext_clk);
 这个就是打开PMU 32K的
 ```
+73、wifi识不到卡
+```
++++ b/drivers/mmc/core/sdio.c
+@@ -647,6 +647,7 @@ try_again:
+* try to init uhs card. sdio_read_cccr will take over this task
+* to make sure which speed mode should work.
+*/
++ /*
+if (!powered_resume && (rocr & ocr & R4_18V_PRESENT)) {
+err = mmc_set_signal_voltage(host, MMC_SIGNAL_VOLTAGE_180,
+ocr_card);
+@@ -658,6 +659,7 @@ try_again:
+ocr &= ~R4_18V_PRESENT;
+}
+}
++ */
+屏蔽cmd11, CMD11作用是 转换卡工作电压到1.8V，我们主控模块供给就是1.8V，不支持再转换，这个是没有风险的。
+```
