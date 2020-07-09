@@ -937,3 +937,21 @@ ocr &= ~R4_18V_PRESENT;
 + */
 屏蔽cmd11, CMD11作用是 转换卡工作电压到1.8V，我们主控模块供给就是1.8V，不支持再转换，这个是没有风险的。
 ```
+74、8.1后编译不了模块
+```
+device/rockchip/rk3399
+diff --git a/BoardConfig.mk b/BoardConfig.mk
+index f73ae68..78301a5 100755
+--- a/BoardConfig.mk
++++ b/BoardConfig.mk
+@@ -82,7 +82,7 @@ endif
+ ENABLE_CPUSETS := true
+
+ # Enable Dex compile opt as default
+-WITH_DEXPREOPT := true
++WITH_DEXPREOPT := false
+
+ BOARD_NFC_SUPPORT := false
+ BOARD_HAS_GPS := false
+
+```
