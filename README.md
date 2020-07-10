@@ -852,6 +852,7 @@ find ./ -iname "*a*"|xargs grep 5
 ```
 68、RTK模组连上就断开
 ```
+device/rockchip/common/overlay
 --- a/overlay/packages/apps/Bluetooth/res/values/config.xml
 +++ b/overlay/packages/apps/Bluetooth/res/values/config.xml
 @@ -16,8 +16,8 @@
@@ -863,6 +864,7 @@ find ./ -iname "*a*"|xargs grep 5
 +    <bool name="profile_supported_hs_hfp">true</bool>
 +    <bool name="profile_supported_hfpclient">true</bool>
 
+packages/apps/Bluetooth
 --- a/res/values/config.xml
 +++ b/res/values/config.xml
 @@ -13,7 +13,7 @@
