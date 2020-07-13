@@ -262,8 +262,31 @@ sdio_pwrseq: sdio-pwrseq {
  echo 1 > /sys/class/rkwifi/driver
  
  查看打印出来的log看看问题
-  
  
+
+ 
+```
+
+```
+hcq@ubuntu:~/33997.1/kernel/drivers/net/wireless/rockchip_wlan/rkwifi/bcmdhd$ git diff  Makefile   
+diff --git a/drivers/net/wireless/rockchip_wlan/rkwifi/bcmdhd/Makefile b/drivers/net/wireless/rockchip_wlan/rkwifi/bcmdhd/Makefile
+index b8a11e7..51d812f 100644
+--- a/drivers/net/wireless/rockchip_wlan/rkwifi/bcmdhd/Makefile
++++ b/drivers/net/wireless/rockchip_wlan/rkwifi/bcmdhd/Makefile
+@@ -23,6 +23,11 @@ DHDCFLAGS = -Wall -Wstrict-prototypes -Dlinux -DBCMDRIVER -DSDTEST       \
+        -Idrivers/net/wireless/rockchip_wlan/rkwifi/bcmdhd \
+        -Idrivers/net/wireless/rockchip_wlan/rkwifi/bcmdhd/include
+
++DHDCFLAGS += -DDHD_8021X_DUMP -DDHD_DHCP_DUMP -DDHD_ICMP_DUMP -DDHD_ARP_DUMP
++DHDCFLAGS += -DDHD_TX_DUMP -DDHD_TX_FULL_DUMP
++DHDCFLAGS += -DDHD_RX_DUMP -DDHD_RX_FULL_DUMP
++
++
+ DHDOFILES = aiutils.o siutils.o sbutils.o bcmutils.o bcmwifi_channels.o \
+        dhd_linux.o dhd_linux_platdev.o dhd_linux_sched.o dhd_pno.o \
+        dhd_common.o dhd_ip.o dhd_linux_wq.o dhd_custom_gpio.o \
+
+再提供上层logcat
 ```
 
 
