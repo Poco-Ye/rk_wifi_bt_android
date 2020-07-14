@@ -957,3 +957,46 @@ index f73ae68..78301a5 100755
  BOARD_HAS_GPS := false
 
 ```
+75、wifi WL_WAKE_HOST引脚屏蔽唤醒功能
+```
+diff --git a/drivers/net/wireless/rockchip_wlan/rkwifi/bcmdhd/Makefile b/drivers/net/wireless/rockchip_wlan/rkwifi/bcmdhd/Makefile
+index 2550ff6..56bb6fd 100644
+--- a/drivers/net/wireless/rockchip_wlan/rkwifi/bcmdhd/Makefile
++++ b/drivers/net/wireless/rockchip_wlan/rkwifi/bcmdhd/Makefile
+@@ -7,7 +7,7 @@ MODULE_NAME = bcmdhd
+CONFIG_BCMDHD_SDIO := y
+#CONFIG_BCMDHD_PCIE := y
+#CONFIG_BCMDHD_USB := y
+-CONFIG_BCMDHD_OOB := y
++CONFIG_BCMDHD_OOB := n
+CONFIG_BCMDHD_PROPTXSTATUS := y
+CONFIG_BCMDHD_AG := y
+#CONFIG_DHD_USE_STATIC_BUF := y
+--- a/drivers/net/wireless/rockchip_wlan/rkwifi/bcmdhd/bcmsdh_sdmmc_linux.c
++++ b/drivers/net/wireless/rockchip_wlan/rkwifi/bcmdhd/bcmsdh_sdmmc_linux.c
+@@ -246,12 +246,12 @@ static int bcmsdh_sdmmc_suspend(struct device *pdev)
+
+dhd_mmc_suspend = TRUE;
+sdioh = sdio_get_drvdata(func);
+- err = bcmsdh_suspend(sdioh->bcmsdh);
++ /*err = bcmsdh_suspend(sdioh->bcmsdh);
+if (err) {
+printf("%s bcmsdh_suspend err=%d\n", __FUNCTION__, err);
+dhd_mmc_suspend = FALSE;
+return err;
+- }
++ }*/
+
+sdio_flags = sdio_get_host_pm_caps(func);
+if (!(sdio_flags & MMC_PM_KEEP_POWER)) {
+@@ -284,7 +284,7 @@ static int bcmsdh_sdmmc_resume(struct device *pdev)
+
+dhd_mmc_suspend = FALSE;
+sdioh = sdio_get_drvdata(func);
+- bcmsdh_resume(sdioh->bcmsdh);
++ //bcmsdh_resume(sdioh->bcmsdh);
+
+smp_mb();
+printf("%s Exit\n", __FUNCTION__);
+
+```
