@@ -1000,3 +1000,25 @@ smp_mb();
 printf("%s Exit\n", __FUNCTION__);
 
 ```
+76、打开ALOGV log debug
+```
+  * Normally we strip the effects of ALOGV (VERBOSE messages),
+  * LOG_FATAL and LOG_FATAL_IF (FATAL assert messages) from the
+  * release builds be defining NDEBUG.  You can modify this (for
+  * example with "#define LOG_NDEBUG 0" at the top of your source
+  * file) to change that behavior.
+  */
+  
+  在你的文件上面输入#define LOG_NDEBUG 0 即可
+
+ #ifndef LOG_NDEBUG
+ #ifdef NDEBUG
+ #define LOG_NDEBUG 1
+ #else
+ #define LOG_NDEBUG 0
+ #endif
+ #endif
+
+```
+
+
