@@ -174,6 +174,43 @@ setprop  persist.bluetooth.btsnooppath   /sdcard/btsnoop_hci.log
 关闭再打开蓝牙，每打开一次蓝牙产生新的btsnoop_hci.log
 复现问题后，不要再动蓝牙开关(再次打开蓝牙后会产生新的btsnoop_hci.log就看不到问题)提供一下/sdcard/btsnoop_hci.log
 ```
+蓝牙模板五：
+```
+7.1之后，蓝牙的btsnoop是抓不齐的，要抓vendor可以
+
+diff --git a/include/vnd_rksdk.txt b/include/vnd_rksdk.txt
+index 811cf25..967b27c 100644
+--- a/include/vnd_rksdk.txt
++++ b/include/vnd_rksdk.txt
+@@ -5,10 +5,10 @@ UART_TARGET_BAUD_RATE = 1500000
+ FW_PATCH_SETTLEMENT_DELAY_MS = 200
+ USERIAL_VENDOR_SET_BAUD_DELAY_US = 200000
+ LPM_IDLE_TIMEOUT_MULTIPLE = 5
+-BTVND_DBG = FALSE
++BTVND_DBG = TRUE
+ BTHW_DBG = TRUE
+-VNDUSERIAL_DBG = FALSE
+-UPIO_DBG = FALSE
++VNDUSERIAL_DBG = TRUE
++UPIO_DBG = TRUE
+ USE_CONTROLLER_BDADDR = FALSE
+ FW_AUTO_DETECTION = TRUE
+ BT_WAKE_VIA_PROC = TRUE
+
+--- a/bluetooth/1.0/default/vendor_interface.cc
++++ b/bluetooth/1.0/default/vendor_interface.cc
+@@ -16,6 +16,8 @@
+
+ #include "vendor_interface.h"
+
++
++#define LOG_NDEBUG 0
+ #define LOG_TAG "android.hardware.bluetooth@1.0-impl"
+ #include <cutils/properties.h>
+ #include <utils/Log.h>
+
+
+```
 
 
 蓝牙模板五：
