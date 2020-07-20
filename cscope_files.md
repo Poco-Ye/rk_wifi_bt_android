@@ -26,4 +26,7 @@ frameworks/base/services/core/java/com/android/server
 frameworks/base/services/core/java/com/android/server/connectivity
 frameworks/base/core/java/android/net
 frameworks/base/services/core/jni/
+system/netd
+system/core/libnetutils
+packages/apps/Settings/src/com/android/settings/ethernet
 ```
