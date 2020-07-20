@@ -22,6 +22,7 @@ ETHERNET
 Rockchip_Android10.0_SDK_Release_20191211
 ```
 frameworks/opt/net/ethernet
+frameworks/opt/net/ethernet/java/com/android/server/ethernet
 frameworks/base/services/core/java/com/android/server
 frameworks/base/services/core/java/com/android/server/connectivity
 frameworks/base/core/java/android/net
