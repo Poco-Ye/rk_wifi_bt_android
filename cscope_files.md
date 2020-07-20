@@ -1,5 +1,4 @@
 BT
-
 RK3229_Android7.1_Box_20190723
 ```
 frameworks/opt/bluetooth
@@ -15,4 +14,14 @@ hardware/realtek
 system/bt
 kernel/net/rfkill/rfkill-bt.c
 kernel/drivers/bluetooth
+```
+
+ETHERNET
+Rockchip_Android10.0_SDK_Release_20191211
+```
+frameworks/opt/net/ethernet
+frameworks/base/services/core/java/com/android/server
+frameworks/base/services/core/java/com/android/server/connectivity
+frameworks/base/core/java/android/net
+frameworks/base/services/core/jni/
 ```
