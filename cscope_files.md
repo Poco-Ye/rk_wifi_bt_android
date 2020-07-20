@@ -1,4 +1,5 @@
 BT
+
 RK3229_Android7.1_Box_20190723
 ```
 frameworks/opt/bluetooth
@@ -17,6 +18,7 @@ kernel/drivers/bluetooth
 ```
 
 ETHERNET
+
 Rockchip_Android10.0_SDK_Release_20191211
 ```
 frameworks/opt/net/ethernet
