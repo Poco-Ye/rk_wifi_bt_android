@@ -15,6 +15,54 @@ ip ru show table eth0
 07-24 06:01:58.722   428   538 D UntrustedWifiNetworkFactory: got request NetworkRequ
 
 
+ifconfig wlan0 down
+iwconfig wlan0 mode monitor
+ifconfig wlan0 up
+
+
+
+
+svc wifi enable
+svc wifi disable
+在/data/misc/wifi/wpa_supplicant.conf添加
+network={
+ssid="*******"     #表示wifi热点名
+psk="*******"      #表示密码
+key_mgmt=WPA-PSK   #加密方式
+#key_mgmt-NONE     不加密
+}
+未启动
+wpa_supplicant  -iwlan0  -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf
+svc wifi enable
+adb reboot
+已启动
+wpa_cli reconfigure
+wpa_cli reconnect
+没有加密或者wep或者使用指令，没有办法，一般都是要使用wpa的使用以上该改法
+iwlist scanning | grep ESSID
+iw dev wlan0 scan |grep SSID
+iw dev wlan0 connect "HUAWEI P10" key 0:3143531435
+
+
+
+
+ifconfig eth0 up
+ifconfig eth0 192.168.1.100 broadcast 192.168.1.255 netmask 255.255.255.0 up
+单网卡添加多个IP地址
+ifconfig eth0:0 192.168.1.100 netmask 255.255.255.0 up
+ifconfig eth0:1 192.168.2.100 netmask 255.255.255.0 up
+若转换不了域名  主要是域名问题
+echo "nameserver 8.8.8.8" > /etc/resolv.conf
+或者
+ndc resolver setnetdns eth0 "" 8.8.8.8
+
+用ip route
+ip addr add 192.168.1.100/24 dev eth0
+ip link set dev eth0 up
+echo "nameserver 8.8.8.8" > /etc/resolv.conf或者ndc resolver setnetdns eth0 "" 8.8.8.8 8.8.4.4
+ip route add default via 192.168.1.1 dev eth0
+
+
 
 
 ```
