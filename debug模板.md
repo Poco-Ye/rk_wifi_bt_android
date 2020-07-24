@@ -5,7 +5,8 @@ printk(KERN_ERR "TAG_poco: %s xxx %d xxx %d\n",xxx, xxx, xxx);
 printk(KERN_WARNING "TAG_poco: %s xxx %d\n", xxx, xxx);
 
 hardware
-#define LOG_NDEBUG 0   //针对目标TAG
+在Android.mk设置LOCAL_CFLAGS += -DLOG_NDEBUG=0
+#define LOG_NDEBUG 0   //在文件针对目标TAG
 #define LOG_TAG "TAG_poco"
 ALOGE("%s xxx %04x", __FUNCTION__, xxx);
 ALOGW("xxx %s", xxx);
