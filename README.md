@@ -1025,5 +1025,30 @@ printf("%s Exit\n", __FUNCTION__);
  #endif
 
 ```
+77、退出设置界面搜索不到蓝牙
+```
+bt_config.conf 
+DiscoveryTimeout = 120
+这个限制其实是为了安全考虑的，无视这个限制，有可能被没有配对过的人给抢占了蓝牙。
+设置模式为打开inquiry scan（可发现）和page scan（可连接）
+packages/apps/Bluetooth$ git diff src/com/android/bluetooth/btservice/AdapterProperties.java
+diff --git a/src/com/android/bluetooth/btservice/AdapterProperties.java b/src/com/android/bluetooth/btservice/AdapterProperties.java
+index 242e271..a425abc 100644
+--- a/src/com/android/bluetooth/btservice/AdapterProperties.java
++++ b/src/com/android/bluetooth/btservice/AdapterProperties.java
+@@ -611,9 +611,9 @@ class AdapterProperties {
+                     /* mDiscoverableTimeout is part of the
+                        adapterPropertyChangedCallback received before
+                        onBluetoothReady */
+-                    if (mDiscoverableTimeout != 0)
++                    /*if (mDiscoverableTimeout != 0)
+                       setScanMode(AbstractionLayer.BT_SCAN_MODE_CONNECTABLE);
+-                    else /* if timeout == never (0) at startup */
++                    else*/ /* if timeout == never (0) at startup */
+                       setScanMode(AbstractionLayer.BT_SCAN_MODE_CONNECTABLE_DISCOVERABLE);
+                     /* though not always required, this keeps NV up-to date on first-boot after flash */
+                     setDiscoverableTimeout(mDiscoverableTimeout);
+```
+
 
 
