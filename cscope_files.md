@@ -17,6 +17,25 @@ kernel/net/rfkill/rfkill-bt.c
 kernel/drivers/bluetooth
 ```
 
+RK3288W-Version_ANDROID8.1-TABLET-SDK_V1.0.0_20180512
+```
+frameworks/opt/bluetooth
+frameworks/base/packages/SettingsLib/src/com/android/settingslib/bluetooth
+frameworks/base/services/core/java/com/android/server/BluetoothManagerService.java
+frameworks/base/services/core/java/com/android/server/BluetoothService.java
+frameworks/base/core/java/android/bluetooth
+packages/apps/Settings/src/com/android/settings/bluetooth
+packages/apps/Bluetooth
+hardware/interfaces/bluetooth
+hardware/libhardware/include/hardware
+hardware/broadcom/libbt
+hardware/realtek/rtkbt
+system/bt
+kernel/net/rfkill/rfkill-bt.c
+kernel/drivers/bluetooth
+```
+
+
 ETHERNET
 
 Rockchip_Android10.0_SDK_Release_20191211
