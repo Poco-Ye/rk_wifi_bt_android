@@ -44,6 +44,45 @@ iw dev wlan0 scan |grep SSID
 iw dev wlan0 connect "HUAWEI P10" key 0:3143531435
 
 
+连接隐藏ssid命令：
+1. wpa加密
+wpa_cli IFNAME=wlan0 add_network
+wpa_cli IFNAME=wlan0 set_network 0 ssid \"ASUS_AP1\" 
+wpa_cli IFNAME=wlan0 set_network 0 key_mgmt WPA-PSK
+wpa_cli IFNAME=wlan0 set_network 0 psk \"66666666\" 
+wpa_cli IFNAME=wlan0 set_network 0 priority 0
+wpa_cli IFNAME=wlan0 set_network 0 scan_ssid 1
+wpa_cli IFNAME=wlan0 enable_network 0
+wpa_cli save_config
+
+2. wep加密
+wpa_cli IFNAME=wlan0 add_network
+wpa_cli IFNAME=wlan0 set_network 0 ssid \"ASUS_AP1\" 
+wpa_cli IFNAME=wlan0 set_network 0 key_mgmt NONE
+wpa_cli IFNAME=wlan0 set_network 0 auth_alg OPEN SHARED
+wpa_cli IFNAME=wlan0 set_network 0 wep_key0 \"66666666\" 
+wpa_cli IFNAME=wlan0 set_network 0 wep_tx_keyidx 0
+wpa_cli IFNAME=wlan0 set_network 0 priority 0
+wpa_cli IFNAME=wlan0 set_network 0 scan_ssid 1
+wpa_cli IFNAME=wlan0 enable_network 0
+wpa_cli save_config
+
+3. 无加密
+wpa_cli IFNAME=wlan0 add_network
+wpa_cli IFNAME=wlan0 set_network 0 ssid \"ASUS_AP1\" 
+wpa_cli IFNAME=wlan0 set_network 0 key_mgmt NONE
+wpa_cli IFNAME=wlan0 set_network 0 priority 0
+wpa_cli IFNAME=wlan0 set_network 0 scan_ssid 1
+wpa_cli IFNAME=wlan0 enable_network 0
+wpa_cli save_config
+
+
+
+
+
+
+
+
 
 
 ifconfig eth0 up
