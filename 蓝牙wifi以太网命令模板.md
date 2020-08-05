@@ -77,10 +77,9 @@ wpa_cli IFNAME=wlan0 enable_network 0
 wpa_cli save_config
 
 
-
-
-
-
+cat /proc/net/rtl88x2cs/wlan0/survey_info
+wpa_cli -iwlan0 scan/scan_r
+wpa_cli -iwlan0 log_level debug & logcat -s wpa_supplicat
 
 
 
