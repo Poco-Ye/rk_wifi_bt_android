@@ -100,7 +100,8 @@ ip link set dev eth0 up
 echo "nameserver 8.8.8.8" > /etc/resolv.conf或者ndc resolver setnetdns eth0 "" 8.8.8.8 8.8.4.4
 ip route add default via 192.168.1.1 dev eth0
 
-
-
+更改路由的优先级
+route del default gw 192.168.10.1 dev eth0
+route add default gw 192.168.10.1 dev eth0 metric 99
 
 ```
