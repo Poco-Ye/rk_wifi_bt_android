@@ -439,6 +439,9 @@ fw没打开heartbeat，上层打开就会心跳计数异常退出
 fw打开 上层也打开 会出现长时间概率性断开回连
 fw打开fw 上层没有打开 会出现连上反复回连
 请联系rtk在config关掉heartbeat，一般只有tv的fw才会有带这个mesh的功能
+$(LOCAL_PATH)/system/lib/rtkbt/heartbeat.so:system/lib/rtkbt/heartbeat.so \
+hardware/realtek/rtkbt/rtkbt.mk
+直接将heartbeat.so给去了
 ```
 29、查看mmc0 mmc1 mmc2 clock是否配的好
 ```
