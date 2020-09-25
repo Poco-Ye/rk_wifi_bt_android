@@ -1,3 +1,5 @@
+关于蓝牙wifi以太网的极端问题，确实倒腾很久检查不出问题，有一种情况是客户买的是水货的主控 或者BT/WIFI或者phy
+
 关于dmesg或者logcat |grep -e -e -e 的问题可以研究各种嵌入式各个部分的问题，关于.repo/repo/repo sync -c xxx -no-tags和git stash gis stash pop可以管理嵌入式各个部分的问题
 
 蓝牙问题主要先在snoop找到连接开头的地方，然后baseband或者linklayer cmd/complete cmd-reply/complete和l2cap都可以并列进行，关于link的问题最好看文案表，关于L2CAP以上问题最好看chart，非常直观，有可能出现在link（包括link control control&baseband  link policy）上，出现在link上问题经常换fw或者改地址，出现l2cap可能是软件上或者也有可能通信干扰
