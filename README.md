@@ -1055,5 +1055,50 @@ index 242e271..a425abc 100644
                      setDiscoverableTimeout(mDiscoverableTimeout);
 ```
 
+78、电源域(io-domain)问题
+```
+主要看两个节点，一个是grf:，还有一个是i2c
+io-domain是设置复用寄存器的，i2c是PMU控制给电压的
+比如：
+
+
+I2C节点上控制PMU LDO2脚给3.3V
+--- a/arch/arm64/boot/dts/rockchip/px30-evb-ddr3-v10.dts
++++ b/arch/arm64/boot/dts/rockchip/px30-evb-ddr3-v10.dts
+@@ -458,13 +458,13 @@
+                        vcc1v8_soc: LDO_REG2 {
+                                regulator-always-on;
+                                regulator-boot-on;
+-                               regulator-min-microvolt = <1800000>;
+-                               regulator-max-microvolt = <1800000>;
++                               regulator-min-microvolt = <3300000>;
++                               regulator-max-microvolt = <3300000>;
+
+                                regulator-name = "vcc1v8_soc";
+                                regulator-state-mem {
+                                        regulator-on-in-suspend;
+-                                       regulator-suspend-microvolt = <1800000>;
++                                       regulator-suspend-microvolt = <3300000>;
+                                };
+                        };
+
+
+GRF io_domains设置节点
+
+
+--- a/arch/arm64/boot/dts/rockchip/rk3326-evb-ai-va-v11.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3326-evb-ai-va-v11.dts
+@@ -1047,7 +1047,7 @@
+ &io_domains {
+        status = "okay";
+
+-       vccio1-supply = <&vcc1v8_soc>;
++       vccio1-supply = <&vccio_sd>;   //会将对应寄存器的位设置为0   1是1.8V  0是3.3V
+        vccio2-supply = <&vccio_sd>;
+        vccio3-supply = <&vcc1v8_dvp>;
+        vccio4-supply = <&vcc1v8_soc>;
+
+```
+
 
 
