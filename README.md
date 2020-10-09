@@ -1063,6 +1063,14 @@ io-domain是设置复用寄存器的，i2c是PMU控制给电压的
 
 
 I2C节点上控制PMU LDO2脚给3.3V
+
+ &i2c0 {
+     status = "okay";
+     clock-frequency = <400000>;
+     i2c-scl-rising-time-ns = <280>;
+     i2c-scl-falling-time-ns = <16>;
+     rk809: pmic@20 {
+
 --- a/arch/arm64/boot/dts/rockchip/px30-evb-ddr3-v10.dts
 +++ b/arch/arm64/boot/dts/rockchip/px30-evb-ddr3-v10.dts
 @@ -458,13 +458,13 @@
