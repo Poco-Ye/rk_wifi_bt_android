@@ -693,6 +693,22 @@ prebuilts/gcc/linux-x86/aarch64/gcc-linaro-6.3.1-2017.05-x86_64_aarch64-linux-gn
 或prebuilts/gcc/linux-x86/aarch64/gcc-linaro-6.3.1-2017.05-x86_64_aarch64-linux-gnu/bin/aarch64-linux-gnu-addr2line 5950 -e ~/poco/libbt-vendor.so -f -C -s  直接查看位置
 找到if (timer_settime(lpm_proc_cb.timer_id, 0, &ts, 0) == 0) {
 这个方法就是用来找代码位置的
+
+加上这patch
+diff --git a/src/upio.c b/src/upio.c
+index 4e998b9..fac5dc6 100644
+--- a/src/upio.c
++++ b/src/upio.c
+@@ -73,7 +73,7 @@
+  * the bluesleep LPM code. The current value used in bluesleep is 10sec.
+  */
+ #ifndef PROC_BTWRITE_TIMER_TIMEOUT_MS
+-#define PROC_BTWRITE_TIMER_TIMEOUT_MS   8000
++#define PROC_BTWRITE_TIMER_TIMEOUT_MS   0
+ #endif
+
+ /* lpm proc control block */
+
 ```
 53、有关ble app开发出现问题
 ```
