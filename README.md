@@ -1107,6 +1107,26 @@ GRF io_domains设置节点
         vccio4-supply = <&vcc1v8_soc>;
 
 ```
+79、WIFI10.0调试6275遇到问题
+```
+a、10.0的kernel烧写要经过mkimage.sh打包
+b、漏掉RFKILL，整个部分要比驱动先运行的，oob中断引脚申请失败（驱动先运行或者引脚被占用），一定要将驱动编译成KO的模式
+c、外部clk一样是按照把 clocks = <&rk808 1>;  clock-names = "ext_clock"; 这两个屏蔽
+d、rockchip/common/wifi_bt_common.mk这个部分的作用是给其它Android.mk作标准变量的，比如：
+frameworks/opt/net/wifi/libwifi_hal/Android.mk
+ifdef WIFI_DRIVER_FW_PATH_PARAM中的$(WIFI_DRIVER_FW_PATH_PARAM)
+wifi_hal_cflags += -DWIFI_DRIVER_FW_PATH_PARAM=\"$(WIFI_DRIVER_FW_PATH_PARAM)\"
+else
+wifi_hal_cflags += -DWIFI_DRIVER_FW_PATH_PARAM=\"/sys/module/wlan/parameters/fwpath\"
+endif
+
+有定义是这个：
+WIFI_DRIVER_FW_PATH_PARAM   := "/sys/module/bcmdhd/parameters/firmware_path"
+
+但是10.0的wifi6有一个问题，这个路径是按照驱动的名字进行修改的，就会出现错误
+
+这个东西的功能是驱动生成的，wpa_supplicent写到这里告诉驱动要加载什么FW，什么模式
+```
 
 
 
