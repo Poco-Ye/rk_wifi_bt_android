@@ -1143,6 +1143,11 @@ WIFI_DRIVER_FW_PATH_PARAM   := "/sys/module/bcmdhd/parameters/firmware_path"
 
 这个东西的功能是驱动生成的，wpa_supplicent写到这里告诉驱动要加载什么FW，什么模式
 ```
-
+80、蓝牙BQB拿QDID是IC原厂的事情
+```
+SIG认证的流程是用PTS dongle和PTS PC工具进行每个profile测试和RF测试
+可以在这搜索https://launchstudio.bluetooth.com/listings/search
+产品再拿个DID
+```
 
 
