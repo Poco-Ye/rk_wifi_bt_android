@@ -465,6 +465,8 @@ signal voltage: 0 (1.80 V)
 
 32、蓝牙休眠问题，逻辑分析仪抓博通wake BT引脚，CTS引脚
 ```
+echo 1 > /sys/power/wake_lock 这样系统就不休眠
+
 RTK休眠（怎么休眠还得fw来改方式）
 1. Non-link mode
 1) 放6s 之后就会自动进入LPS。
