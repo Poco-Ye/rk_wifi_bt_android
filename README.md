@@ -1151,5 +1151,9 @@ SIG认证的流程是用PTS dongle和PTS PC工具进行每个profile测试和RF�
 可以在这搜索https://launchstudio.bluetooth.com/listings/search
 产品再拿个DID
 ```
-
+81、wifi连接对比查看测试文档
+```
+cat /data/misc/wifi/wpa_supplicant.conf
+cat /data/misc/wifi/networkHistory.txt
+```
 
