@@ -39,4 +39,6 @@ patch非常重要，因为sdk太多，客户拿的sdk很多没有repo，所以�
 git format-patch -1 commit（git format-patch -3 commit是生成3个）
 git am patch(一个一个打比较好)
 git am *.patch(一起打也行)
+
+这个比较好在有commit注释说明
 ```
