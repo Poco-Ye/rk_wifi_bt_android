@@ -1,3 +1,4 @@
+```
 我们的patch 一个文件对应一个.git 目录
 
 因为是git diff 出来的 有些兄弟是git format-patch -N 出来的 但是都不会影响 哪怕是diff -ruN 整个目录 那和git diff出来又多大的区别呢
@@ -33,3 +34,9 @@ patch是一个非常强大的工具，比git am 和git applay 都强，你可以
 再有一个，如果想回到原来的代码 可以patch -Rp1 < xxx.patch 去掉刚刚打的patch 或者是git stash 就Ok
 
 patch非常重要，因为sdk太多，客户拿的sdk很多没有repo，所以经常改的功能以patch的方法打上，但是经常不会合出各种问题
+
+
+git format-patch -1 commit（git format-patch -3 commit是生成3个）
+git am patch(一个一个打比较好)
+git am *.patch(一起打也行)
+```
