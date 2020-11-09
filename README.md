@@ -779,6 +779,21 @@ index 14665c0..5f1739a 100644
         status = "okay";
  };
 
+diff --git a/drivers/mmc/core/core.c b/drivers/mmc/core/core.c
+index 3e3c79f..928bd86 100644
+--- a/drivers/mmc/core/core.c
++++ b/drivers/mmc/core/core.c
+@@ -1763,7 +1763,7 @@ void mmc_power_up(struct mmc_host *host, u32 ocr)
+         * This delay should be sufficient to allow the power supply
+         * to reach the minimum voltage.
+         */
+-       mmc_delay(10);
++       mmc_delay(100);
+
+        mmc_pwrseq_post_power_on(host);
+
+
+
 ```
 60、蓝牙7.1之后log
 ```
