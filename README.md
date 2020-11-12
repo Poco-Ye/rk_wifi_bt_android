@@ -1241,6 +1241,20 @@ make ARCH=arm modules -j32或者编译进入内核
 
 
 ```
+83、cpu ddr定频
+```
+cpu定频
+echo  user_space > /sys/class/thermal/thermal_zone0/policy                                        / * 关闭温控 * /
+echo  userspace  > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor                      / * 切换变频策略 * /
+cat  /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies                   / * 查看支持那些频率 * /
+echo 1512000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_setspeed
+cat        /sys/devices/system/cpu/cpu0/cpufreq/scaling_setspeed               
+ddr定频
+echo userspace > /sys/class/devfreq/dmc/governor
+cat /sys/class/devfreq/dmc/governor
+echo XXX> /sys/class/devfreq/dmc/userspace/set_freq
+```
+
 
 
 
