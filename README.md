@@ -1171,4 +1171,76 @@ SIG认证的流程是用PTS dongle和PTS PC工具进行每个profile测试和RF�
 cat /data/misc/wifi/wpa_supplicant.conf
 cat /data/misc/wifi/networkHistory.txt
 ```
+82、RTK的Makefile编译platform p2p0找不到问题
+```
+--- a/rtl8723bu/Makefile
++++ b/rtl8723bu/Makefile
+@@ -76,7 +76,7 @@ CONFIG_RTW_SDIO_PM_KEEP_POWER = y
+ ###################### MP HW TX MODE FOR VHT #######################
+ CONFIG_MP_VHT_HW_TX_MODE = n
+ ###################### Platform Related #######################
+-CONFIG_PLATFORM_I386_PC = y
++CONFIG_PLATFORM_I386_PC = n
+ CONFIG_PLATFORM_ANDROID_X86 = n
+ CONFIG_PLATFORM_ANDROID_INTEL_X86 = n
+ CONFIG_PLATFORM_JB_X86 = n
+@@ -101,7 +101,7 @@ CONFIG_PLATFORM_ARM_TCC8920_JB42 = n
+ CONFIG_PLATFORM_ARM_TCC8930_JB42 = n
+ CONFIG_PLATFORM_ARM_RK2818 = n
+ CONFIG_PLATFORM_ARM_RK3066 = n
+-CONFIG_PLATFORM_ARM_RK3188 = n
++CONFIG_PLATFORM_ARM_RK3188 = y
+ CONFIG_PLATFORM_ARM_URBETTER = n
+ CONFIG_PLATFORM_ARM_TI_PANDA = n
+ CONFIG_PLATFORM_MIPS_JZ4760 = n
+@@ -1250,9 +1250,9 @@ EXTRA_CFLAGS += -DRTW_ENABLE_WIFI_CONTROL_FUNC
+ EXTRA_CFLAGS += -DRTW_SUPPORT_PLATFORM_SHUTDOWN
+ # default setting for Special function
+ ARCH := arm
+-CROSS_COMPILE := /home/android_sdk/Rockchip/Rk3188/prebuilts/gcc/linux-x86/arm/arm-eabi-4.6/bin/arm-eabi-
+-KSRC := /home/android_sdk/Rockchip/Rk3188/kernel
+-MODULE_NAME := wlan
++#CROSS_COMPILE := /home/android_sdk/Rockchip/Rk3188/prebuilts/gcc/linux-x86/arm/arm-eabi-4.6/bin/arm-eabi-
++#KSRC := /home/android_sdk/Rockchip/Rk3188/kernel
++MODULE_NAME := 8723bu
+ endif
+
+ ifeq ($(CONFIG_PLATFORM_ARM_RK3066), y)
+
+把那个编译器链接去掉
+
+make ARCH=arm rockchip_defconfig
+make ARCH=arm modules -j32或者编译进入内核
+
+--- a/drivers/net/wireless/rockchip_wlan/rtl8723bu/os_dep/linux/rtw_android.c
++++ b/drivers/net/wireless/rockchip_wlan/rtl8723bu/os_dep/linux/rtw_android.c
+@@ -1041,7 +1041,7 @@ void *wifi_get_country_code(char *ccode)
+        if (!ccode)
+                return NULL;
+        if (wifi_control_data && wifi_control_data->get_country_code) {
+-               return wifi_control_data->get_country_code(ccode);
++               return NULL;//wifi_control_data->get_country_code(ccode);
+        }
+        return NULL;
+ }
+ 
+ 
+ 还不行加这个
+
+--- a/drivers/net/wireless/rockchip_wlan/rtl8723bu/os_dep/linux/rtw_android.c
++++ b/drivers/net/wireless/rockchip_wlan/rtl8723bu/os_dep/linux/rtw_android.c
+@@ -1041,7 +1041,7 @@ void *wifi_get_country_code(char *ccode)
+        if (!ccode)
+                return NULL;
+        if (wifi_control_data && wifi_control_data->get_country_code) {
+-               return wifi_control_data->get_country_code(ccode);
++               return NULL;//wifi_control_data->get_country_code(ccode);
+        }
+        return NULL;
+ }
+
+
+```
+
+
 
