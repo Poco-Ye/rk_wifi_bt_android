@@ -1254,7 +1254,41 @@ echo userspace > /sys/class/devfreq/dmc/governor
 cat /sys/class/devfreq/dmc/governor
 echo XXX> /sys/class/devfreq/dmc/userspace/set_freq
 ```
+84、wifi驱动博通-35的问题
+```
+和oob相关
+diff --git a/drivers/net/wireless/rockchip_wlan/rkwifi/bcmdhd/dhd_gpio.c b/drivers/net/wireless/rockchip_wlan/rkwifi/bcmdhd/dhd_gpio.c
+index e5faafd..f5708d7 100644
+--- a/drivers/net/wireless/rockchip_wlan/rkwifi/bcmdhd/dhd_gpio.c
++++ b/drivers/net/wireless/rockchip_wlan/rkwifi/bcmdhd/dhd_gpio.c
+@@ -286,7 +286,7 @@ int dhd_wlan_init_gpio(void)
+                }
+        }
+        host_oob_irq = rockchip_wifi_get_oob_irq();
+-
++#if 0
+ #ifdef HW_OOB
+        host_oob_irq_flags = IORESOURCE_IRQ | IORESOURCE_IRQ_SHAREABLE;
+        irq_flags = rockchip_wifi_get_oob_irq_flag();
+@@ -299,6 +299,16 @@ int dhd_wlan_init_gpio(void)
+ #else
+        host_oob_irq_flags = IORESOURCE_IRQ | IORESOURCE_IRQ_HIGHEDGE | IORESOURCE_IRQ_SHAREABLE;
+ #endif
++#endif
++
++#ifdef HW_OOB
++    #ifdef HW_OOB_LOW_LEVEL
++           host_oob_irq_flags = IORESOURCE_IRQ | IORESOURCE_IRQ_LOWLEVEL | IORESOURCE_IRQ_SHAREABLE;
++    #else
++           host_oob_irq_flags = IORESOURCE_IRQ | IORESOURCE_IRQ_HIGHLEVEL | IORESOURCE_IRQ_SHAREABLE;
++    #endif
++#endif
++
 
+        dhd_wlan_resources[0].start = dhd_wlan_resources[0].end = host_oob_irq;
+        dhd_wlan_resources[0].flags = host_oob_irq_flags;
+
+```
 
 
 
