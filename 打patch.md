@@ -41,4 +41,9 @@ git am patch(一个一个打比较好)
 git am *.patch(一起打也行)
 
 这个比较好在有commit注释说明
+
+
+修改上一次错误提交，与普通不同是加上refs/for进行review
+git add . && git commit --amend --no-edit
+git push origin HEAD:refs/for/master
 ```
