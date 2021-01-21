@@ -793,6 +793,8 @@ index 3e3c79f..928bd86 100644
         mmc_pwrseq_post_power_on(host);
 
 
+如果还是打不开，RTK
+去掉bt_host_wake上接的电阻OK了
 
 ```
 60、蓝牙7.1之后log
