@@ -1291,6 +1291,28 @@ index e5faafd..f5708d7 100644
         dhd_wlan_resources[0].flags = host_oob_irq_flags;
 
 ```
+85、usb蓝牙热启动，概率性下fw失败
+```
+[   40.699850] rtk_btusb: check_fw_version: Controller lmp = 0x8723, patch lmp = 0x9a3a, default patch lmp = 0x8723
+[   40.699895] rtk_btusb: check_fw_version: Cold BT controller startup
+[   59.874909] rtk_btusb: check_fw_version: Controller lmp = 0x9a3a, patch lmp = 0x9a3a, default patch lmp = 0x8723
+[   59.874977] rtk_btusb: check_fw_version: Warm BT controller startup with same lmp
+[   82.270859] rtk_btusb: check_fw_version: Controller lmp = 0x9a3a, patch lmp = 0x9a3a, default patch lmp = 0x8723
+[   82.270877] rtk_btusb: check_fw_version: Warm BT controller startup with same lmp
+
+
+--- a/drivers/bluetooth/rtk_btusb.c
++++ b/drivers/bluetooth/rtk_btusb.c
+@@ -1372,7 +1372,7 @@ int reset_controller(firmware_info* fw_info)
+     }
+
+     //sleep 1s for firmware reset.
+-    msleep(1000);
++    msleep(2000);
+     RTKBT_INFO("%s: Wait fw reset for 1ms",__func__);
+
+     return ret_val;
+```
 
 
 
