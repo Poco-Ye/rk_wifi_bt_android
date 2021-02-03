@@ -80,6 +80,7 @@ index 333368f..e596920 100644
 
 
 
+kernel4.4_mmc_rescan can't find card
 ----------------------------------------------------4.19内核-------------------------------------------------------------
 diff --git a/arch/arm64/boot/dts/rockchip/rk3326-evb-lp3-v10.dtsi b/arch/arm64/boot/dts/rockchip/rk3326-evb-lp3-v10.dtsi
 index 6fb2875..c8c7102 100644
