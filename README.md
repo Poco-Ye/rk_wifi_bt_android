@@ -1313,6 +1313,29 @@ index e5faafd..f5708d7 100644
 
      return ret_val;
 ```
+86、驱动的学习与分析
+```
+--- a/drivers/mmc/core/Makefile
++++ b/drivers/mmc/core/Makefile
+@@ -2,11 +2,11 @@
+ # Makefile for the kernel mmc core.
+ #
 
+-obj-$(CONFIG_MMC)              += mmc_core.o
++obj-m          += mmc_core.o
+ mmc_core-y                     := core.o bus.o host.o \
+                                   mmc.o mmc_ops.o sd.o sd_ops.o \
+                                   sdio.o sdio_ops.o sdio_bus.o \
+                                   sdio_cis.o sdio_io.o sdio_irq.o \
+                                   quirks.o slot-gpio.o
+-mmc_core-$(CONFIG_OF)          += pwrseq.o pwrseq_simple.o pwrseq_emmc.o
++mmc_core-y             += pwrseq.o pwrseq_simple.o pwrseq_emmc.o
+ mmc_core-$(CONFIG_DEBUG_FS)    += debugfs.o
+ 
+make ARCH=arm64 modules SUBDIRS=./drivers/mmc/
+
+以Makefile 为主，config可以不用看，以module为主分析生命周期
+
+```
 
 
