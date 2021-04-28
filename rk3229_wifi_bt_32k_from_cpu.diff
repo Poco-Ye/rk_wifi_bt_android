@@ -1,0 +1,88 @@
+sdk_project@aaaaa:~/9.0sdk/RK3229_ANDROID9.0_BOX_SDK_V1.0_20190125/kernel$ git diff arch/arm/boot/dts/rk3229-evb.dts
+diff --git a/arch/arm/boot/dts/rk3229-evb.dts b/arch/arm/boot/dts/rk3229-evb.dts
+index fc4f19f..3251bfd 100644
+--- a/arch/arm/boot/dts/rk3229-evb.dts
++++ b/arch/arm/boot/dts/rk3229-evb.dts
+@@ -45,6 +45,7 @@
+ #include "rk322x.dtsi"
+ #include "rk3229-cpu-opp.dtsi"
+ #include "rk322x-android.dtsi"
++#include <dt-bindings/clock/rk3228-cru.h>
+ 
+ / {
+        model = "Rockchip RK3229 Evaluation board";
+@@ -226,6 +227,8 @@
+        wireless-wlan {
+                compatible = "wlan-platdata";
+                rockchip,grf = <&grf>;
++				assigned-clocks = <&cru SCLK_HDMI_CEC>;
++				assigned-clock-rates = <32768>;
++        		clock-names = "ext_clock";
++        		clocks = <&cru SCLK_HDMI_CEC>;
++				assigned-clock-parents = <&cru PLL_CPLL>;
+                wifi_chip_type = "ap6335";
+                sdio_vref = <1800>;
+                WIFI,host_wake_irq = <&gpio0 28 GPIO_ACTIVE_HIGH>;
+ 
+ &pinctrl {
++
++        pinctrl-names = "default";
++        pinctrl-0 = <&clk_32k_out>;
++
++        clk_32k {
++                clk_32k_out: clk-32k-out {
++                        rockchip,pins =
++                                <1 8 RK_FUNC_2 &pcfg_pull_none>;
++                };
++        };
+ 	pmic {
+ 		pmic_int_l: pmic-int-l {
+ 		rockchip,pins =
+diff --git a/include/linux/rfkill-wlan.h b/include/linux/rfkill-wlan.h
+index f529cfd..618aeb0 100644
+--- a/include/linux/rfkill-wlan.h
++++ b/include/linux/rfkill-wlan.h
+@@ -5,6 +5,7 @@
+ #include <linux/types.h>
+ #include <linux/init.h>
+ #include <linux/device.h>
++#include <linux/clk.h>
+ 
+ struct rksdmmc_iomux {
+     char    *name;  //set the MACRO of gpio
+@@ -42,6 +43,7 @@ struct rksdmmc_gpio_wifi_moudle {
+     struct rksdmmc_gpio   ANTSEL3;  //pin6--ANTSEL3 
+     struct rksdmmc_gpio   GPS_LAN;  //pin33--GPS_LAN
+     struct regmap *grf;
++    struct clk              *ext_clk;
+ };
+ 
+ enum {
+diff --git a/net/rfkill/rfkill-wlan.c b/net/rfkill/rfkill-wlan.c
+index a4b6e5d..19e7117 100644
+--- a/net/rfkill/rfkill-wlan.c
++++ b/net/rfkill/rfkill-wlan.c
+@@ -653,6 +653,14 @@ static int wlan_platdata_parse_dt(struct device *dev,
+ 			data->wifi_int_b.enable = flags;
+ 			LOG("%s: get property: WIFI,host_wake_irq = %d, flags = %d.\n", __func__, gpio, flags);
+         } else data->wifi_int_b.io = -1;
++        
++	data->ext_clk = devm_clk_get(dev, "ext_clock");
++        if (IS_ERR(data->ext_clk)) {
++                LOG("%s: clk_get wifi 32k failed!!!.\n", __func__);
++        } else {
++		 LOG("%s: clk_get wifi 32k sucess!!!.\n", __func__);
++                clk_prepare_enable(data->ext_clk);
++        }
+ 	}
+ 
+     return 0;
+@@ -826,6 +834,8 @@ static int rfkill_wlan_remove(struct platform_device *pdev)
+     
+     if (gpio_is_valid(rfkill->pdata->reset_n.io))
+         gpio_free(rfkill->pdata->reset_n.io);
++
++	clk_disable_unprepare(rfkill->pdata->ext_clk);
+     
+ //    if (gpio_is_valid(rfkill->pdata->vddio.io))
+ //        gpio_free(rfkill->pdata->vddio.io);
