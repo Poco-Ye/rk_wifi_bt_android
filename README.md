@@ -1336,9 +1336,10 @@ make ARCH=arm64 modules SUBDIRS=./drivers/mmc/
 
 以Makefile 为主，config可以不用看，以module为主分析生命周期
 
-87、模组32k由主控提供
+87、模组32k由主控引脚提供
 
 ```
+参考
+rk3229_wifi_bt_32k_from_cpu.diff
 ```
-
 
