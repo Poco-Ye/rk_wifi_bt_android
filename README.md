@@ -1336,6 +1336,9 @@ make ARCH=arm64 modules SUBDIRS=./drivers/mmc/
 
 以Makefile 为主，config可以不用看，以module为主分析生命周期
 
+87、模组32k由主控提供
+
+```
 ```
 
 
