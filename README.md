@@ -965,6 +965,9 @@ static void mmc_pwrseq_simple_pre_power_on(struct mmc_host *host)
 kernel/drivers/mmc/core/pwrseq_simple.c
 clk_prepare_enable(pwrseq->ext_clk);
 这个就是打开PMU 32K的
+
+查看wifi efuse
+cat /proc/net/rtl88x2bs/wlan0/efuse_map
 ```
 73、wifi识不到卡
 ```
