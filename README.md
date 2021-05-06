@@ -946,6 +946,9 @@ rk3126c:/proc/net/rtl8723ds/wlan0 # cat btcoex
 ============[BT Coexist info]============
  Ant PG Num/ Mech/ Pos               = 1/ 1/ S1
  CoexVer WL/  BT_Desired/ BT_Report  = 20161208_12/ 0x10/ 0x10 (Match)
+ 
+ 查看wifi efuse
+cat /proc/net/rtl88x2bs/wlan0/efuse_map
 ```
 72、32.768K
 ```
@@ -966,8 +969,6 @@ kernel/drivers/mmc/core/pwrseq_simple.c
 clk_prepare_enable(pwrseq->ext_clk);
 这个就是打开PMU 32K的
 
-查看wifi efuse
-cat /proc/net/rtl88x2bs/wlan0/efuse_map
 ```
 73、wifi识不到卡
 ```
