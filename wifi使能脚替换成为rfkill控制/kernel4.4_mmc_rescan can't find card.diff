@@ -1,0 +1,79 @@
+diff --git a/arch/arm/boot/dts/rk3288-evb.dtsi b/arch/arm/boot/dts/rk3288-evb.dtsi
+index 1101fe5..ebb35c2 100644
+--- a/arch/arm/boot/dts/rk3288-evb.dtsi
++++ b/arch/arm/boot/dts/rk3288-evb.dtsi
+@@ -201,6 +201,7 @@
+ 		rockchip,grf = <&grf>;
+ 		wifi_chip_type = "ap6335";
+ 		sdio_vref = <1800>;
++		WIFI,poweren_gpio = <&gpio4 28 GPIO_ACTIVE_HIGH>;
+ 		WIFI,host_wake_irq = <&gpio4 30 GPIO_ACTIVE_HIGH>;
+ 		status = "okay";
+ 	};
+@@ -372,8 +373,8 @@
+ 	cap-sdio-irq;
+ 	disable-wp;
+ 	keep-power-in-suspend;
+-	mmc-pwrseq = <&sdio_pwrseq>;
+-	non-removable;
++//	mmc-pwrseq = <&sdio_pwrseq>;
++//	non-removable;
+ 	num-slots = <1>;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&sdio0_bus4 &sdio0_cmd &sdio0_clk &sdio0_int>;
+diff --git a/drivers/mmc/host/dw_mmc.c b/drivers/mmc/host/dw_mmc.c
+index 8730e2e..3606dd1 100644
+--- a/drivers/mmc/host/dw_mmc.c
++++ b/drivers/mmc/host/dw_mmc.c
+@@ -1492,7 +1492,7 @@ static int dw_mci_set_sdio_status(struct mmc_host *mmc, int val)
+ {
+ 	struct dw_mci_slot *slot = mmc_priv(mmc);
+ 	struct dw_mci *host = slot->host;
+-
++    
+ 	if (!(mmc->restrict_caps & RESTRICT_CARD_TYPE_SDIO))
+ 		return 0;
+ 
+@@ -1517,6 +1517,8 @@ static int dw_mci_get_cd(struct mmc_host *mmc)
+ 	struct dw_mci_board *brd = slot->host->pdata;
+ 	struct dw_mci *host = slot->host;
+ 	int gpio_cd = mmc_gpio_get_cd(mmc);
++	 if (mmc->restrict_caps & RESTRICT_CARD_TYPE_SDIO)
++		 return test_bit(DW_MMC_CARD_PRESENT, &slot->flags);
+ 
+ 	/* Use platform get_cd function, else try onboard card detect */
+ 	if ((brd->quirks & DW_MCI_QUIRK_BROKEN_CARD_DETECTION) ||
+@@ -2754,6 +2756,8 @@ static int dw_mci_init_slot(struct dw_mci *host, unsigned int id)
+ 	}
+ 
+ 	dw_mci_get_cd(mmc);
++	if (mmc->restrict_caps & RESTRICT_CARD_TYPE_SDIO)
++	       clear_bit(DW_MMC_CARD_PRESENT, &slot->flags);
+ 
+ 	ret = mmc_add_host(mmc);
+ 	if (ret)
+
+
+sdk_project@aaaaa:~/9.0sdk/Rk3288W_ANDROID9.0_MID_V1.0.0_20199410/kernel/net/rfkill$ git diff .
+diff --git a/net/rfkill/rfkill-wlan.c b/net/rfkill/rfkill-wlan.c
+index 333368f..e596920 100644
+--- a/net/rfkill/rfkill-wlan.c
++++ b/net/rfkill/rfkill-wlan.c
+@@ -405,7 +405,7 @@ EXPORT_SYMBOL(rockchip_wifi_power);
+ extern int mmc_host_rescan(struct mmc_host *host, int val, int irq_type);
+ int rockchip_wifi_set_carddetect(int val)
+ {
+-       return mmc_host_rescan(NULL, val, 1);
++       return mmc_host_rescan(NULL, val, 0);
+ }
+ EXPORT_SYMBOL(rockchip_wifi_set_carddetect);
+ 
+@@ -833,7 +833,8 @@ static int rfkill_wlan_probe(struct platform_device *pdev)
+     {
+         rockchip_wifi_power(1);
+     }
+-
++    msleep(100);
++    rockchip_wifi_set_carddetect(1);
+ #if BCM_STATIC_MEMORY_SUPPORT
+     rockchip_init_wifi_mem();

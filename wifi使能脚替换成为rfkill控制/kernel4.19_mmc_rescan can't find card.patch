@@ -1,0 +1,82 @@
+diff --git a/arch/arm64/boot/dts/rockchip/rk3326-evb-lp3-v10.dtsi b/arch/arm64/boot/dts/rockchip/rk3326-evb-lp3-v10.dtsi
+index 6fb2875..c8c7102 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3326-evb-lp3-v10.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3326-evb-lp3-v10.dtsi
+@@ -148,7 +148,9 @@
+        wireless-wlan {
+                compatible = "wlan-platdata";
+                wifi_chip_type = "AP6210";
++        		WIFI,poweren_gpio = <&gpio0 RK_PA2 GPIO_ACTIVE_HIGH>;
++        		WIFI,vbat_gpio = <&gpio3 RK_PB6 GPIO_ACTIVE_HIGH>;
++               WIFI,host_wake_irq = <&gpio0 RK_PA5 GPIO_ACTIVE_HIGH>;
+                status = "okay";
+        };
+
+@@ -784,9 +786,9 @@
+        supports-sdio;
+        ignore-pm-notify;
+        keep-power-in-suspend;
+-       non-removable;
+-       mmc-pwrseq = <&sdio_pwrseq>;
+-       sd-uhs-sdr104;
++       //non-removable;
++       //mmc-pwrseq = <&sdio_pwrseq>;
++       //sd-uhs-sdr104;
+        status = "okay";
+ };
+
+
+
+
+diff --git a/drivers/mmc/host/dw_mmc.c b/drivers/mmc/host/dw_mmc.c
+index 8730e2e..3606dd1 100644
+--- a/drivers/mmc/host/dw_mmc.c
++++ b/drivers/mmc/host/dw_mmc.c
+@@ -1492,7 +1492,7 @@ static int dw_mci_set_sdio_status(struct mmc_host *mmc, int val)
+ {
+ 	struct dw_mci_slot *slot = mmc_priv(mmc);
+ 	struct dw_mci *host = slot->host;
+-
++    
+ 	if (!(mmc->restrict_caps & RESTRICT_CARD_TYPE_SDIO))
+ 		return 0;
+ 
+@@ -1517,6 +1517,8 @@ static int dw_mci_get_cd(struct mmc_host *mmc)
+ 	struct dw_mci_board *brd = slot->host->pdata;
+ 	struct dw_mci *host = slot->host;
+ 	int gpio_cd = mmc_gpio_get_cd(mmc);
++	 if (mmc->restrict_caps & RESTRICT_CARD_TYPE_SDIO)
++		 return test_bit(DW_MMC_CARD_PRESENT, &slot->flags);
+ 
+ 	/* Use platform get_cd function, else try onboard card detect */
+ 	if ((brd->quirks & DW_MCI_QUIRK_BROKEN_CARD_DETECTION) ||
+@@ -2754,6 +2756,8 @@ static int dw_mci_init_slot(struct dw_mci *host, unsigned int id)
+ 	}
+ 
+ 	dw_mci_get_cd(mmc);
++	if (mmc->restrict_caps & RESTRICT_CARD_TYPE_SDIO)
++	       clear_bit(DW_MMC_CARD_PRESENT, &slot->flags);
+ 
+ 	ret = mmc_add_host(mmc);
+ 	if (ret)
+
+-
+
+diff --git a/net/rfkill/rfkill-wlan.c b/net/rfkill/rfkill-wlan.c
+index 27bf91f..3c22704 100644
+--- a/net/rfkill/rfkill-wlan.c
++++ b/net/rfkill/rfkill-wlan.c
+@@ -757,6 +757,10 @@ static int rfkill_wlan_probe(struct platform_device *pdev)
+
+        if (pdata->wifi_power_remain)
+                rockchip_wifi_power(1);
++
++    rockchip_wifi_power(1);
++    msleep(100);
++    rockchip_wifi_set_carddetect(1);
+
+ #if BCM_STATIC_MEMORY_SUPPORT
+        rockchip_init_wifi_mem();
+
+ #if BCM_STATIC_MEMORY_SUPPORT
+     rockchip_init_wifi_mem();
