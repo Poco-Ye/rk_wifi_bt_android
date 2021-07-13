@@ -932,6 +932,11 @@ SSP用于蓝牙v2.1及后续版本, 对于BR/EDR要求强制支持
 SSP使用四种不同的配对模式：Numeric Comparison、Just Works、Passkey Entry、Out Of Band
 像simple paring就是Numeric Comparison   pin code request就是Passkey Entry
 
+Numeric Comparison：配对双方都显示一个6位的数字，由用户来核对数字是否一致，一致即可配对。例如手机之间的配对。
+Just Works：用于配对没有显示没有输入的设备，主动发起连接即可配对，用户看不到配对过程。例如连接蓝牙耳机。
+Passkey Entry：要求配对目标输入一个在本地设备上显示的6位数字，输入正确即可配对。例如连接蓝牙键盘。
+Out of Band：两设备的通过别的途径交换配对信息，例如NFC等。例如一些NFC蓝牙音箱。
+
 ```
 
 70、bt trace
