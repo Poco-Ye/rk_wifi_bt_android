@@ -937,6 +937,17 @@ Just Works：用于配对没有显示没有输入的设备，主动发起连接�
 Passkey Entry：要求配对目标输入一个在本地设备上显示的6位数字，输入正确即可配对。例如连接蓝牙键盘。
 Out of Band：两设备的通过别的途径交换配对信息，例如NFC等。例如一些NFC蓝牙音箱。
 
+oob这个没有用过，是借助NFC的这种
+Numeric Comparison这个用的就多了，比如两个手机，生成pin码，然后两边确认，然后交互link key
+just work 和Numeric Comparison是一样的，就是会有个指令下去Command: HCI_IO_Capability_Request_Reply，然后event回复IO_Capability: NoInputNoOutput
+没有显示和输入的能力，走的Numeric Comparison，就是默认对端确认pin码，不用显示和键盘敲了
+Passkey Entry  这个就没有什么难的了，就是直接HCI_Link_Key_Request去问key，然后回个16个字节的key即可
+
+
+特别说明:这个link key 空中是抓不到的，只有pin 码才抓的到，
+
+像ellisys去解包，第一步就是要抓配对过程，第二步就是要输入link key，才能解密看到log，如果没有抓到配对过程，就解不了包
+
 ```
 
 70、bt trace
