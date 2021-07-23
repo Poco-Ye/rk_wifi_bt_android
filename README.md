@@ -1363,4 +1363,27 @@ make ARCH=arm64 modules SUBDIRS=./drivers/mmc/
 参考
 rk3229_wifi_bt_32k_from_cpu.diff
 ```
+88、pcie以太网 rtl8111 kernel/drivers/net/ethernet/realtek/r8169.c
+```
+unable to load firmware patch rtl_nic/rtl8168h-2.fw (-2)
+这个应该不影响，以前吃不到也是能正常工作的。
+
+不清楚是否模块进行休眠导致。
+确认这个有关闭：
+CONFIG_PCIEASPM_POWERSAVE=n
+
+关闭pcie_aspm=off 验证看
+diff --git a/arch/arm64/boot/dts/rockchip/rk3568-android.dtsi b/arch/arm64/boot/dts/rockchip/rk3568-android.dtsi
+index 01cd37c..92472a6 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3568-android.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3568-android.dtsi
+@@ -6,7 +6,7 @@
+
+ / {
+        chosen: chosen {
+-               bootargs = "earlycon=uart8250,mmio32,0xfe660000 console=ttyFIQ0";
++               bootargs = "earlycon=uart8250,pcie_aspm=off,mmio32,0xfe660000 console=ttyFIQ0";
+        };
+
+```
 
