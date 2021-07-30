@@ -1386,4 +1386,9 @@ index 01cd37c..92472a6 100644
         };
 
 ```
+89、3328 32K引脚设置
+```
+echo 1 > sys/kernel/debug/clk/clk_rtc32k/clk_enable_count
+io -4 0xff10001c 0x03000100
+```
 
