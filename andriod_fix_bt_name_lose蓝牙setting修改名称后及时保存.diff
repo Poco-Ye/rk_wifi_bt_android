@@ -1,0 +1,116 @@
+
+sdk_project@aaaaa:~/5.1_sdk/RK3288_ANDROID5.1-SDK_V1.00_20150515/external/bluetooth_rtk/bluedroid$ git diff .
+diff --git a/btif_rtk/src/btif_core.c b/btif_rtk/src/btif_core.c
+index 8df3d3e..3d911cb 100755
+--- a/btif_rtk/src/btif_core.c
++++ b/btif_rtk/src/btif_core.c
+@@ -1277,6 +1277,8 @@ bt_status_t btif_set_adapter_property(const bt_property_t *property)
+                 BTA_DmSetDeviceName((char *)bd_name);
+
+                 storage_req_id = BTIF_CORE_STORAGE_ADAPTER_WRITE;
++                btif_config_save();
++                btif_config_flush();
+             }
+             break;
+
+
+diff --git a/btif/src/btif_config.c b/btif/src/btif_config.c
+old mode 100644
+new mode 100755
+index 629f4c6..47dc1d6
+--- a/btif/src/btif_config.c
++++ b/btif/src/btif_config.c
+@@ -217,6 +217,8 @@ int btif_config_get(const char* section, const char* key, const char* name, char
+         }
+         unlock_slot(&slot_lock);
+     }
++    bdld("section:%s, key:%s, name:%s, value:%p, bytes:%d, type:%d result %d",
++                section, key, name, value, *bytes, *type,ret);
+     return ret;
+ }
+ int btif_config_set(const char* section, const char* key, const char* name, const char*  value, int bytes, int type)
+@@ -359,6 +361,7 @@ int btif_config_save()
+ }
+ void btif_config_flush()
+ {
++    bdld("%s:%d cached_change :%d",__func__,__LINE__,cached_change);
+     lock_slot(&slot_lock);
+     if(cached_change > 0)
+         save_cfg();
+diff --git a/btif/src/btif_dm.c b/btif/src/btif_dm.c
+old mode 100644
+new mode 100755
+index 4930017..2cfba9d
+--- a/btif/src/btif_dm.c
++++ b/btif/src/btif_dm.c
+@@ -29,11 +29,15 @@
+ #include <unistd.h>
+ 
+ #include <hardware/bluetooth.h>
+-
++#include <sys/types.h>
++#include <sys/stat.h>
++#include <fcntl.h>
+ #include <utils/Log.h>
+ #include <cutils/properties.h>
+ #include "gki.h"
+ #include "btu.h"
++#include<time.h>
++#include<stdlib.h>
+ #include "bd.h"
+ #include "bta_api.h"
+ #include "btif_api.h"
+@@ -1567,6 +1571,7 @@ static void btif_dm_upstreams_evt(UINT16 event, char* p_param)
+     {
+         case BTA_DM_ENABLE_EVT:
+         {
++    BTIF_TRACE_EVENT("%s %d",__func__,__LINE__);
+              BD_NAME bdname;
+              bt_status_t status;
+              bt_property_t prop;
+@@ -1579,6 +1584,7 @@ static void btif_dm_upstreams_evt(UINT16 event, char* p_param)
+              {
+                  /* A name exists in the storage. Make this the device name */
+                  BTA_DmSetDeviceName((char*)prop.val);
++             	 btif_storage_set_adapter_property(&prop);
+              }
+              else
+              {
+@@ -1615,6 +1621,7 @@ static void btif_dm_upstreams_evt(UINT16 event, char* p_param)
+              btif_storage_load_autopair_device_list();
+ 
+              btif_enable_bluetooth_evt(p_data->enable.status, p_data->enable.bd_addr);
++    BTIF_TRACE_EVENT("%s %d",__func__,__LINE__);
+         }
+         break;
+ 
+@@ -2966,7 +2973,9 @@ void btif_dm_save_ble_bonding_keys(void)
+                                          BTIF_DM_LE_KEY_LCSRK,
+                                          sizeof(btif_dm_ble_lcsrk_keys_t));
+     }
+-
++   /// add flush config to file
++   BTIF_TRACE_DEBUG("%s try to call btif_config_flush ",__FUNCTION__);
++   btif_config_flush();
+ }
+ 
+ 
+@@ -3134,7 +3143,34 @@ void btif_dm_on_disable()
+         btif_dm_cancel_bond(&bd_addr);
+     }
+ }
+
+diff --git a/btif/src/btif_storage.c b/btif/src/btif_storage.c
+old mode 100644
+new mode 100755
+index 5b1bf96..3fa86bd
+--- a/btif/src/btif_storage.c
++++ b/btif/src/btif_storage.c
+@@ -254,6 +254,7 @@ static int prop2cfg(bt_bdaddr_t *remote_bd_addr, bt_property_t *prop)
+             btif_config_set_str("Remote", bdstr, BTIF_STORAGE_PATH_REMOTE_ALIASE, value);
+             /* save friendly name immediately */
+             btif_config_save();
++            btif_config_flush();
+             break;
+         case BT_PROPERTY_ADAPTER_SCAN_MODE:
+             btif_config_set_int("Local", "Adapter",
