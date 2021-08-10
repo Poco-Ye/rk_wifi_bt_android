@@ -18,7 +18,7 @@ nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 let Tlist_WinWidth=50
 set autoindent
 set smartindent
-
+nnoremap <silent> <F3> :TlistToggle<CR>
 
 set fileencodings=utf-8,gb2312,gbk,gb18030
 set termencoding=utf-8
