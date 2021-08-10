@@ -25,3 +25,13 @@ set termencoding=utf-8
 set fileformats=unix
 set encoding=prc
 ```
+这个是cygwin的bash的配置，颜色没有，还有cscope默认跳到vi不会跳到vim
+```
+alias grep='grep --color=auto'
+alias ls='ls --color=auto'
+alias d='cd /cygdrive/c/Users/Administrator/Desktop/'
+export CSCOPE_EDITOR=vim
+export EDITOR=vim
+alias c='cscope -d'
+
+```
