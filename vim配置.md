@@ -1,5 +1,6 @@
 
 set expandtab一定要有，这个将tab变为空格的，如果没有，多人push的时候格式不对，tab不一样，不要tab符
+其它工具可以设置前景色好看一点
 ```
 set number
 set hlsearch
@@ -18,4 +19,9 @@ let Tlist_WinWidth=50
 set autoindent
 set smartindent
 
+
+set fileencodings=utf-8,gb2312,gbk,gb18030
+set termencoding=utf-8
+set fileformats=unix
+set encoding=prc
 ```
