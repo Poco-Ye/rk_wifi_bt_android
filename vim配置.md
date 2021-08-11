@@ -19,6 +19,8 @@ let Tlist_WinWidth=50
 set autoindent
 set smartindent
 nnoremap <silent> <F3> :TlistToggle<CR>
+set nocscopeverbose
+
 
 set fileencodings=utf-8,gb2312,gbk,gb18030
 set termencoding=utf-8
