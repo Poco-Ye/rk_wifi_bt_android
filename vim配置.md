@@ -19,6 +19,7 @@ let Tlist_WinWidth=50
 set autoindent
 set smartindent
 nnoremap <silent> <F3> :TlistToggle<CR>
+map <F9> :!cscope -R<CR>:cs reset<CR><CR>   
 set nocscopeverbose
 
 
