@@ -58,7 +58,6 @@ set autoindent
 set smartindent
 nnoremap <silent> <F3> :TlistToggle<CR>
 map <F9> :!ctags -R&&cscope -Rb<CR>:cs reset<CR><CR>   
-set nocscopeverbose
 let g:SuperTabDefaultCompletionType = "<c-n>"
 
 
