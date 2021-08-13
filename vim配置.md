@@ -1,6 +1,8 @@
-
 set expandtab一定要有，这个将tab变为空格的，如果没有，多人push的时候格式不对，tab不一样，不要tab符
 其它工具可以设置前景色好看一点
+
+这个是在java目录上进行过滤的
+find ./ -name "*"> cscope.files&&sed -i '/.git/,/cscope.files/d' cscope.files
 ## 安装tab补全插件
 ```
 https://www.vim.org/scripts/script.php?script_id=1643
