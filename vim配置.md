@@ -31,6 +31,7 @@ set autoindent        //自动对齐 学习vs code先进工具
 set smartindent       //自动对齐 学习vs code先进工具
 nnoremap <silent> <F3> :TlistToggle<CR>  //按F3打开左边列表
 map <F9> :!ctags -R&&cscope -Rb<CR>:cs reset<CR><CR>    //这个是刷新cscope数据库，改了很多的时候刷新一下
+set nocscopeverbose //cygwin使用 不加 add不了cscoupe.out
 let g:SuperTabDefaultCompletionType = "<c-n>"  //从头开始检索，学习先进cs code功能，类似ctrl + n 这个需要安装插件supertab.vim，直接按tab进行补全
 
 
@@ -58,7 +59,8 @@ let Tlist_WinWidth=50
 set autoindent
 set smartindent
 nnoremap <silent> <F3> :TlistToggle<CR>
-map <F9> :!ctags -R&&cscope -Rb<CR>:cs reset<CR><CR>   
+map <F9> :!ctags -R&&cscope -Rb<CR>:cs reset<CR><CR>
+set nocscopeverbose
 let g:SuperTabDefaultCompletionType = "<c-n>"
 
 
