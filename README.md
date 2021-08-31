@@ -1391,4 +1391,14 @@ index 01cd37c..92472a6 100644
 echo 1 > sys/kernel/debug/clk/clk_rtc32k/clk_enable_count
 io -4 0xff10001c 0x03000100
 ```
+90、RK3288+AP6212在系统睡眠后，短时间内可以ping通，但是时间稍长就无法ping通
+```
+系统休眠策略中默认开启doze策略引起，修改为false 再全编译。
+
+device/rockchip/common$ grep config_enableAutoPowerModes . -nr
+./overlay/frameworks/base/core/res/res/values/config.xml:230: <bool name="config_enableAutoPowerModes">true</bool>
+
+带GMS包的也是默认为true
+vendor/partner_gms/products/gms_overlay/frameworks/base/core/res/res/values/config.xml:25: <bool name="config_enableAutoPowerModes">true</bool>
+```
 
