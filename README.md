@@ -1401,4 +1401,17 @@ device/rockchip/common$ grep config_enableAutoPowerModes . -nr
 带GMS包的也是默认为true
 vendor/partner_gms/products/gms_overlay/frameworks/base/core/res/res/values/config.xml:25: <bool name="config_enableAutoPowerModes">true</bool>
 ```
+91、休眠唤醒
+```
+先保证VBAT VDDIO休眠不断电。
+
+wifi_reg_on休眠时不下电，可做如下修改：
+rockchip_suspend: rockchip-suspend {
+compatible = "rockchip,pm-rk3568";
+status = "okay";
+rockchip,sleep-debug-en = <2>;
+rockchip,sleep-mode-config = <
+(0 | RKPM_SLP_ARMOFF_LOGOFF 把这个屏蔽掉 | RKPM_SLP_CENTER_OFF | RKPM_SLP_HW_PLLS_OFF | RKPM_SLP_PMUALIVE_32K | RKPM_SLP_OSC_DIS | RKPM_SLP_PMIC_LP 这个也屏蔽掉掉 | RKPM_SLP_32K_PVTM
+)
+```
 
