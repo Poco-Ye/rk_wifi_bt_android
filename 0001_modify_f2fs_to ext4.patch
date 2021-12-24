@@ -1,0 +1,64 @@
+lspei@ubuntu:~/work/3399/Android7.1-tablet/out/target/product/rk3399_mid/root$ git diff .
+diff --git a/fstab.rk30board.bootmode.emmc b/fstab.rk30board.bootmode.emmc
+index 9adbfb9..833c85e 100755
+--- a/fstab.rk30board.bootmode.emmc
++++ b/fstab.rk30board.bootmode.emmc
+@@ -8,11 +8,11 @@
+ #/dev/block/platform/fe330000.sdhci/by-name/system         /system             ext4      ro,noatime,nodiratime,noauto_da_alloc                                  wait,check,verify
+ /dev/block/platform/fe330000.sdhci/by-name/cache          /cache              ext4      noatime,nodiratime,nosuid,nodev,noauto_da_alloc,discard                wait,check
+ /dev/block/platform/fe330000.sdhci/by-name/metadata       /metadata           ext4      noatime,nodiratime,nosuid,nodev,noauto_da_alloc,discard                wait,check
+-/dev/block/platform/fe330000.sdhci/by-name/userdata       /data               f2fs      noatime,nodiratime,nosuid,nodev,discard,inline_xattr                   wait,check,notrim,forceencrypt=/metad
++#/dev/block/platform/fe330000.sdhci/by-name/userdata       /data               f2fs      noatime,nodiratime,nosuid,nodev,discard,inline_xattr                   wait,check,notrim,forceencrypt=/meta
+ #data for f2fs nobarrier
+ #/dev/block/platform/fe330000.sdhci/by-name/userdata       /data               f2fs      noatime,nodiratime,nosuid,nodev,discard,inline_xattr,nobarrier   wait,check,notrim,forceencrypt=/metadata/k
+ #data for ext4
+-#/dev/block/platform/fe330000.sdhci/by-name/userdata       /data               ext4      noatime,nodiratime,nosuid,nodev,noauto_da_alloc,discard,errors=panic   wait,check,forceencrypt=/metadata/ke
++/dev/block/platform/fe330000.sdhci/by-name/userdata       /data               ext4      noatime,nodiratime,nosuid,nodev,noauto_da_alloc,discard,errors=panic   wait,check,forceencrypt=/metadata/key
+ /dev/block/platform/fe330000.sdhci/by-name/misc          /misc                emmc        defaults      defaults
+ # sdcard
+ /devices/platform/fe320000.dwmmc/mmc_host*                auto  auto    defaults        voldmanaged=sdcard1:auto,encryptable=userdata
+ 
+ 
+
+ 
+ lspei@ubuntu:~/work/3399/Android7.1-tablet/out/target/product/rk3399_mid/recovery/root$ git diff .
+diff --git a/root/fstab.rk30board.bootmode.emmc b/root/fstab.rk30board.bootmode.emmc
+index 9adbfb9..833c85e 100755
+--- a/root/fstab.rk30board.bootmode.emmc
++++ b/root/fstab.rk30board.bootmode.emmc
+@@ -8,11 +8,11 @@
+ #/dev/block/platform/fe330000.sdhci/by-name/system         /system             ext4      ro,noatime,nodiratime,noauto_da_alloc                                  wait,check,verify
+ /dev/block/platform/fe330000.sdhci/by-name/cache          /cache              ext4      noatime,nodiratime,nosuid,nodev,noauto_da_alloc,discard                wait,check
+ /dev/block/platform/fe330000.sdhci/by-name/metadata       /metadata           ext4      noatime,nodiratime,nosuid,nodev,noauto_da_alloc,discard                wait,check
+-/dev/block/platform/fe330000.sdhci/by-name/userdata       /data               f2fs      noatime,nodiratime,nosuid,nodev,discard,inline_xattr                   wait,check,notrim,forceencrypt=/metad
++#/dev/block/platform/fe330000.sdhci/by-name/userdata       /data               f2fs      noatime,nodiratime,nosuid,nodev,discard,inline_xattr                   wait,check,notrim,forceencrypt=/meta
+ #data for f2fs nobarrier
+ #/dev/block/platform/fe330000.sdhci/by-name/userdata       /data               f2fs      noatime,nodiratime,nosuid,nodev,discard,inline_xattr,nobarrier   wait,check,notrim,forceencrypt=/metadata/k
+ #data for ext4
+-#/dev/block/platform/fe330000.sdhci/by-name/userdata       /data               ext4      noatime,nodiratime,nosuid,nodev,noauto_da_alloc,discard,errors=panic   wait,check,forceencrypt=/metadata/ke
++/dev/block/platform/fe330000.sdhci/by-name/userdata       /data               ext4      noatime,nodiratime,nosuid,nodev,noauto_da_alloc,discard,errors=panic   wait,check,forceencrypt=/metadata/key
+ /dev/block/platform/fe330000.sdhci/by-name/misc          /misc                emmc        defaults      defaults
+ # sdcard
+ /devices/platform/fe320000.dwmmc/mmc_host*                auto  auto    defaults        voldmanaged=sdcard1:auto,encryptable=userdata
+ 
+ 
+ 
+ 
+ lspei@ubuntu:~/work/3399/Android7.1-tablet/out/target/product/rk3399_mid/recovery/root/etc$ git diff .
+diff --git a/root/etc/recovery.emmc.fstab b/root/etc/recovery.emmc.fstab
+index b880ef7..be5e2f6 100755
+--- a/root/etc/recovery.emmc.fstab
++++ b/root/etc/recovery.emmc.fstab
+@@ -5,7 +5,7 @@
+ /dev/block/platform/fe330000.sdhci/by-name/system                /system              ext4             defaults                  defaults
+ /dev/block/platform/fe330000.sdhci/by-name/cache                 /cache               ext4             defaults                  defaults
+ /dev/block/platform/fe330000.sdhci/by-name/metadata              /metadata            ext4             defaults                  defaults
+-/dev/block/platform/fe330000.sdhci/by-name/userdata              /data                f2fs             defaults                  defaults
++/dev/block/platform/fe330000.sdhci/by-name/userdata              /data                ext4             defaults                  defaults
+ /dev/block/platform/fe330000.sdhci/by-name/cust                  /cust                ext4             defaults                  defaults
+ /dev/block/platform/fe330000.sdhci/by-name/custom                /custom              ext4             defaults                  defaults
+ /dev/block/platform/fe330000.sdhci/by-name/misc                  /misc                emmc             defaults                  defaults
+
+
+
+说明： 修改后重新打包升级， 系统启动后cat 相关配制，确认生效。 具验证回写速度会在3s 完成。可等待3S再重启验证。
