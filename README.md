@@ -1414,4 +1414,39 @@ rockchip,sleep-mode-config = <
 (0 | RKPM_SLP_ARMOFF_LOGOFF 把这个屏蔽掉 | RKPM_SLP_CENTER_OFF | RKPM_SLP_HW_PLLS_OFF | RKPM_SLP_PMUALIVE_32K | RKPM_SLP_OSC_DIS | RKPM_SLP_PMIC_LP 这个也屏蔽掉掉 | RKPM_SLP_32K_PVTM
 )
 ```
+92、去掉just work
+```
+diff --git a/btif/src/btif_dm.cc b/btif/src/btif_dm.cc
+old mode 100644
+new mode 100755
+index 48d32909e..4283051e8
+--- a/btif/src/btif_dm.cc
++++ b/btif/src/btif_dm.cc
+@@ -1003,10 +1003,13 @@ static void btif_dm_ssp_cfm_req_evt(tBTA_DM_SP_CFM_REQ* p_ssp_cfm_req) {
+   }
+
+   pairing_cb.sdp_attempts = 0;
+-  HAL_CBACK(bt_hal_cbacks, ssp_request_cb, &bd_addr, &bd_name, cod,
++
++  btif_dm_ssp_reply(&bd_addr, (p_ssp_cfm_req->just_works ? BT_SSP_VARIANT_CONSENT
++                                       : BT_SSP_VARIANT_PASSKEY_CONFIRMATION), true, p_ssp_cfm_req->num_val);
++  /*HAL_CBACK(bt_hal_cbacks, ssp_request_cb, &bd_addr, &bd_name, cod,
+             (p_ssp_cfm_req->just_works ? BT_SSP_VARIANT_CONSENT
+                                        : BT_SSP_VARIANT_PASSKEY_CONFIRMATION),
+-            p_ssp_cfm_req->num_val);
++            p_ssp_cfm_req->num_val);*/
+ }
+
+ static void btif_dm_ssp_key_notif_evt(tBTA_DM_SP_KEY_NOTIF* p_ssp_key_notif) {
+@@ -1036,8 +1039,9 @@ static void btif_dm_ssp_key_notif_evt(tBTA_DM_SP_KEY_NOTIF* p_ssp_key_notif) {
+     cod = COD_UNCLASSIFIED;
+   }
+
+-  HAL_CBACK(bt_hal_cbacks, ssp_request_cb, &bd_addr, &bd_name, cod,
+-            BT_SSP_VARIANT_PASSKEY_NOTIFICATION, p_ssp_key_notif->passkey);
++  btif_dm_ssp_reply(&bd_addr, BT_SSP_VARIANT_PASSKEY_NOTIFICATION, true, p_ssp_key_notif->passkey);
++  /*HAL_CBACK(bt_hal_cbacks, ssp_request_cb, &bd_addr, &bd_name, cod,
++            BT_SSP_VARIANT_PASSKEY_NOTIFICATION, p_ssp_key_notif->passkey);*/
+ }
+```
 
