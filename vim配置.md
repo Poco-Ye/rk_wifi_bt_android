@@ -15,12 +15,19 @@ vim supertab.vmb
 ```
 ## vim配置注释
 ```
-set number      //行号
-set hlsearch    //按'/'查找的时候高亮
-set ts=4        //按tab是4个空格
-set sw=4        //按'>>'缩进指令是4个空格
-set expandtab   //重点 这个必须要有，否则玩完，把tab变空格，在哪提交都不会看到格式不对
-nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>  //这个是cscope用的 我其实不多用 因为没有记录 我还是喜欢cs find 的方式
+set number      "行号
+set hlsearch    "按'/'查找的时候高亮
+set ts=4        "按tab是4个空格
+set sw=4        "按'>>'缩进指令是4个空格
+set expandtab   "重点 这个必须要有，否则玩完，把tab变空格，在哪提交都不会看到格式不对
+set softtabstop=-1 "这个更重点,没有这个,写的时候back不会回退一个tab,书写体验极差,加上这个和各种工具对齐媲美
+inoremap { {}<Esc>i<CR><Esc>koi<Esc>j<C-S-v><S-%>=j<S-$>xa "补齐{
+inoremap } {}<Esc>i  "补齐 }
+inoremap [ []<Esc>i  "补齐 [
+inoremap " ""<Esc>i  "补齐 "
+inoremap ' ''<Esc>i  "补齐 '
+inoremap ( ()<Esc>i  "补齐(
+nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>  "这个是cscope用的 我其实不多用 因为没有记录 我还是喜欢cs find 的方式
 nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
 nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
 nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
@@ -28,17 +35,17 @@ nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
 nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nmap <C-\>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
 nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
-let Tlist_WinWidth=50  //这个是左边的列表宽度
-set autoindent        //自动对齐 学习vs code先进工具
-set smartindent       //自动对齐 学习vs code先进工具
-nnoremap <silent> <F3> :TlistToggle<CR>  //按F3打开左边列表
-map <F9> :!ctags -R&&cscope -Rb<CR>:cs reset<CR><CR>    //这个是刷新cscope数据库，改了很多的时候刷新一下
-set nocscopeverbose //cygwin使用 不加 add不了cscoupe.out
-let g:SuperTabDefaultCompletionType = "<c-n>"  //从头开始检索，学习先进cs code功能，类似ctrl + n 这个需要安装插件supertab.vim，直接按tab进行补全
-hi ModeMsg ctermfg=Green //cscope搜索显示颜色
+let Tlist_WinWidth=50  "这个是左边的列表宽度
+set autoindent        "自动对齐 学习vs code先进工具
+set smartindent       "自动对齐 学习vs code先进工具
+nnoremap <silent> <F3> :TlistToggle<CR>  "按F3打开左边列表
+map <F9> :!ctags -R&&cscope -Rb<CR>:cs reset<CR><CR>    "这个是刷新cscope数据库，改了很多的时候刷新一下
+set nocscopeverbose "cygwin使用 不加 add不了cscoupe.out
+let g:SuperTabDefaultCompletionType = "<c-n>"  "从头开始检索，学习先进cs code功能，类似ctrl + n 这个需要安装插件supertab.vim，直接按tab进行补全
+hi ModeMsg ctermfg=Green "cscope搜索显示颜色
 
 
-set fileencodings=utf-8,gb2312,gbk,gb18030      //识别中文
+set fileencodings=utf-8,gb2312,gbk,gb18030      "识别中文
 set termencoding=utf-8
 set fileformats=unix
 set encoding=prc
@@ -50,6 +57,13 @@ set hlsearch
 set ts=4
 set sw=4
 set expandtab
+set softtabstop=-1 
+inoremap { {}<Esc>i<CR><Esc>koi<Esc>j<C-S-v><S-%>=j<S-$>xa 
+inoremap } {}<Esc>i 
+inoremap [ []<Esc>i 
+inoremap " ""<Esc>i 
+inoremap ' ''<Esc>i
+inoremap ( ()<Esc>i
 nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
 nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
 nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
