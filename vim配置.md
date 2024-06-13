@@ -50,6 +50,12 @@ set fileencodings=utf-8,gb2312,gbk,gb18030      "识别中文
 set termencoding=utf-8
 set fileformats=unix
 set encoding=prc
+
+nnoremap <S-Up> :resize +1<CR>
+nnoremap <S-Down> :resize -1<CR>
+nnoremap <S-Left> :vertical resize +1<CR>
+nnoremap <S-Right> :vertical resize -1<CR>
+
 ```
 ## vim配置表
 ```
@@ -88,6 +94,12 @@ set fileencodings=utf-8,gb2312,gbk,gb18030
 set termencoding=utf-8
 set fileformats=unix
 set encoding=prc
+
+nnoremap <S-Up> :resize +1<CR>
+nnoremap <S-Down> :resize -1<CR>
+nnoremap <S-Left> :vertical resize +1<CR>
+nnoremap <S-Right> :vertical resize -1<CR>
+
 ```
 ## cygwin配置
 这个是cygwin的bash的配置，颜色没有，还有cscope默认跳到vi不会跳到vim
